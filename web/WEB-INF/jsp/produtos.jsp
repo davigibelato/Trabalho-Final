@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : produtos
     Created on : 04/05/2024, 10:34:41
     Author     : Davi
@@ -15,16 +15,24 @@
     <body>
         <main class="main">
             <c:forEach items="${produtos}" var="produto">
-                <div class='produtos'>
-                    <div class="card" style="width: 18rem;">
-                        <img src="data:image/jpeg;base64,${produto.imagemBase64}" class="card-img-top" alt="${produto.nome}">
-                        <div class="card-body">
-                            <h5 class="card-title">${produto.nome}</h5>
-                            <p class="card-text">$ ${produto.valor}</p>
-                            <a href="./produtoUnico?id=${produto.idProduto}" class="btn btn-primary">Comprar</a>
+                <div class="container">
+                    <div class="card">
+                        <div class="content">
+                            <div class="imgBx">
+                                <img src="data:image/jpeg;base64,${produto.imagemBase64}" class="card-img-top" alt="${produto.nome}">
+                            </div>
+                            <div class="contentBx">
+                                <h3>${produto.nome}<br><span>R$ ${produto.valor}</span></h3>
+                            </div>
                         </div>
-                    </div>        
+                        <ul class="sci">
+                            <li>
+                                <a href="./produtoUnico?id=${produto.idProduto}" class="btn btn-primary">Comprar</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </c:forEach>
-    </body>
+            </div>
+        </c:forEach>
+</body>
 </html>
