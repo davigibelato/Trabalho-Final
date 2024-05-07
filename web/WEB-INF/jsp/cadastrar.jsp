@@ -24,7 +24,6 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"
             rel="stylesheet"
             />
-        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/35f5de594d.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="styles/cadastrar.css" rel="stylesheet" type="text/css"/>
@@ -41,8 +40,9 @@
                         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                             <div class="card" style="border-radius: 15px;">
                                 <div class="card-body p-5">
-                                    <h2 class="text-uppercase text-center mb-5">Criar Conta</h2>
-                                    <form action="cadastrar" method="post" id="form-cadastrar">
+                                    <h2 class="text-uppercase text-center mb-5">Cadastrar Produto</h2>
+
+                                    <form action="cadastrarProduto" method="post" enctype="multipart/form-data">
 
                                         <div data-mdb-input-init class="form-outline mb-4">
                                             <input type="text" id="nome"  name="nome" class="form-control form-control-lg" />
@@ -68,10 +68,12 @@
                                             <input type="tel" id="telefone" name="telefone" class="form-control form-control-lg" />
                                             <label class="form-label" for="form3Example4cdg">Telefone</label>
                                         </div>
+
                                         <div data-mdb-input-init class="form-outline mb-4">
                                             <input type="text" id="cpf" name="cpf" class="form-control form-control-lg" />
                                             <label class="form-label" for="form3Example4cdg">CPF</label>
                                         </div>
+
                                         <div class="form-check d-flex justify-content-center mb-5">
                                             <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
                                             <label class="form-check-label" for="form2Example3g">
@@ -79,14 +81,8 @@
                                             </label>
                                         </div>
 
-                                        <div class="d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Cadastrar</button>
-
-                                        </div>
-
                                         <p class="text-center text-muted mt-5 mb-0">Ja tem conta? <a href="./login"
                                                                                                      class="fw-bold text-body"><u>Login </u></a></p>
-
                                     </form>
 
                                 </div>
@@ -98,5 +94,6 @@
         </section>
         <script src="scripts/cadastrar.js" type="text/javascript"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>

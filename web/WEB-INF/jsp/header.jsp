@@ -10,9 +10,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <link href="styles/header.css" rel="stylesheet" type="text/css"/>
-        <link href="styles/produtoUnico.css" rel="stylesheet" type="text/css"/>
-        <title>JSP Page</title>
     </head>
     <body>
         <header>
@@ -44,7 +43,7 @@
                                     <ul class="dropdown-menu">
                                         <c:forEach items="${categorias}" var="categoria">
                                             <li><a class="dropdown-item" href="#">${categoria.nome}</a></li>
-                                        </c:forEach>
+                                            </c:forEach>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
@@ -60,6 +59,8 @@
                 </div>
             </nav>
         </header>
+        
         <script src="https://kit.fontawesome.com/35f5de594d.js" crossorigin="anonymous"></script>
+
     </body>
 </html>
