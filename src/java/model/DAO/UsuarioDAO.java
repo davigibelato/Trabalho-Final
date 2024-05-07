@@ -65,6 +65,7 @@ public class UsuarioDAO {
             stmt.executeUpdate();
             stmt.close();
             conexao.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }

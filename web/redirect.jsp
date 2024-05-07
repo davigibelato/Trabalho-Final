@@ -7,4 +7,3 @@ servlet but should be the only JSP outside of WEB-INF.
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% response.sendRedirect("./cadastrar"); %>
-<link href="styles/produtoUnico.css" rel="stylesheet" type="text/css"/>

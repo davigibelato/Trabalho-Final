@@ -8,25 +8,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="styles/produtos.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="styles/produtos.css" rel="stylesheet" type="text/css"/>
         <title>Puxar Produto</title>
     </head>
     <body>
         <main class="main">
-            <div class="container">
-                <div class="right-box">
-                    <div class="main-image-box">
+            <c:forEach items="${produtos}" var="produto">
+                <div class='produtos'>
+                    <div class="card" style="width: 18rem;">
                         <img src="data:image/jpeg;base64,${produto.imagemBase64}" class="card-img-top" alt="${produto.nome}">
-                    </div>
+                        <div class="card-body">
+                            <h5 class="card-title">${produto.nome}</h5>
+                            <p class="card-text">$ ${produto.valor}</p>
+                            <a href="./produtoUnico?id=${produto.idProduto}" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>        
                 </div>
-                <div class="details-box">
-                    <h1>${produto.nome}</h1>
-                    <h3>Preço:</h3>
-                    <h3>$ ${produto.valor}</h3>
-                    <button>Adicionar ao carrinho</button>
-                </div>
-            </div>
-        </main>
+            </c:forEach>
     </body>
 </html>

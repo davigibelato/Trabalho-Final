@@ -19,7 +19,7 @@ import model.DAO.UsuarioDAO;
  *
  * @author Senai
  */
-public class CadastroController extends HttpServlet {
+public class CadastroUsuarioController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,7 +34,7 @@ public class CadastroController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String url = "/WEB-INF/jsp/cadastrar.jsp";
+        String url = "/WEB-INF/jsp/cadastrarUsuario.jsp";
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
@@ -66,11 +66,14 @@ public class CadastroController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nextPage = "/WEB-INF/jsp/cadastro.jsp";
+
+        String nextPage = "/WEB-INF/jsp/cadastrarUsuario.jsp";
+
         UsuarioDAO dao = new UsuarioDAO();
 
         String errorMessage = "";
         System.out.println("Enrae");
+
         String nome = request.getParameter("nome");
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
@@ -85,11 +88,12 @@ public class CadastroController extends HttpServlet {
                 || telefone == null || telefone.trim().isEmpty()
                 || cpf == null || cpf.trim().isEmpty()) {
             errorMessage = "Todos os campos são obrigatórios.";
+
         } else {
             if (senha.equals(confirmarSenha)) {
                 telefone = telefone.replaceAll("[^0-9]", "");
                 cpf = cpf.replaceAll("[^0-9]", "");
-                
+
                 Usuario usuario = new Usuario();
                 usuario.setNome(nome);
                 usuario.setEmail(email);
@@ -98,17 +102,14 @@ public class CadastroController extends HttpServlet {
                 usuario.setCpf(cpf);
 
                 dao.create(usuario);
-                request.setAttribute("successMessage", "Cadastro realizado com sucesso!");
-                nextPage = "./login";
+
+                nextPage = "/login";
             }
         }
+        request.setAttribute("successMessage", "Cadastro realizado com sucesso!");
 
-        // Definir mensagens de erro na requisição
-        request.setAttribute("errorMessage", errorMessage);
-
-        // Encaminhar para a próxima página
-        RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
-        dispatcher.forward(request, response);
+        RequestDispatcher d = getServletContext().getRequestDispatcher(nextPage);
+        d.forward(request, response);
     }
 
     /**
