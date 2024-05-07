@@ -84,8 +84,11 @@ create table produto_pedido (
     foreign key (pedido) references pedido(idPedido),
     foreign key (produto) references produto(idProduto)
 );
+
 insert into categoria (nome) values ('Periféricos');
 
 insert into subCategoria (nome,idCategoria) values ('Teclado', 1);
+
+insert into subCategoria (nome,idCategoria) values ('Mouse', 1);
 
 
