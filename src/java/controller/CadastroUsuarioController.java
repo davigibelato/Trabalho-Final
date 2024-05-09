@@ -7,12 +7,15 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.BEAN.Categoria;
 import model.BEAN.Usuario;
+import model.DAO.CategoriaDAO;
 import model.DAO.UsuarioDAO;
 
 /**
@@ -35,6 +38,11 @@ public class CadastroUsuarioController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String url = "/WEB-INF/jsp/cadastrarUsuario.jsp";
+
+        CategoriaDAO daoC = new CategoriaDAO();
+
+        List<Categoria> categoria = daoC.listarTodos();
+        request.setAttribute("categorias", categoria);
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);

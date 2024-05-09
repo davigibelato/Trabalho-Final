@@ -23,21 +23,20 @@
         <link
             href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"
             rel="stylesheet"
-        />
+            />
         <script src="https://kit.fontawesome.com/35f5de594d.js" crossorigin="anonymous"></script>
-        
-        
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        
+
         <link href="styles/cadastrar.css" rel="stylesheet" type="text/css"/>
-        
+
         <title>Elite Tech</title>
     </head>
     <body>
         <jsp:include page="header.jsp"></jsp:include>   
 
         <section class="vh-100 bg-image">
-            
+
             <div class="mask d-flex align-items-center h-100 gradient-custom-3">
 
                 <div class="container h-100">
@@ -49,7 +48,7 @@
                             <div class="card" style="border-radius: 15px;">
 
                                 <div class="card-body p-5">
-                                    
+
                                     <h2 class="text-uppercase text-center mb-5">Cadastrar Usuario</h2>
 
                                     <form action="cadastrar" method="post" >
@@ -107,10 +106,8 @@
                 </div>
             </div>
         </section>
-        <script src="scripts/cadastrar.js" type="text/javascript"></script>
-        
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"></script>
-        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"></script>
+
     </body>
 </html>
