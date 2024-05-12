@@ -51,7 +51,7 @@ public class CadastroProdutoController extends HttpServlet {
         SubCategoriaDAO subId = new SubCategoriaDAO();
         List<SubCategoria> subCategoria = subId.listarTodos();
         request.setAttribute("subCategorias", subCategoria);
-        
+
         ProdutoDAO daoId = new ProdutoDAO();
         List<Produto> produto = daoId.listarTodos();
         request.setAttribute("produtos", produto);
@@ -59,7 +59,7 @@ public class CadastroProdutoController extends HttpServlet {
         String url = "/WEB-INF/jsp/cadastrarProduto.jsp";
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -106,6 +106,9 @@ public class CadastroProdutoController extends HttpServlet {
                                 break;
                             case "valor":
                                 produto.setValor(Float.parseFloat(item.getString()));
+                                break;
+                            case "descricao":
+                                produto.setDescricao(item.getString());
                                 break;
                             case "categoria":
                                 produto.setCategoria(Integer.parseInt(item.getString()));

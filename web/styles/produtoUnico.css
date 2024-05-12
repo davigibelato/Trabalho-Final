@@ -3,38 +3,68 @@ body{
     padding: 0;
 }
 
-.container{
-    margin: 20px 200px;
+main .container-produto {
+    padding: 50px 0;
+    margin: 0 150px;
     display: flex;
-
 }
 
-.right-box{
+main .right-box {
     padding: 0;
     margin: 0;
-    border: 1px solid black;
+    border: hidden;
+    border-radius: 10px;
 }
 
-.main-image-box{
-   width: 100%;
-   display: flex;
-   align-items: center;
-   justify-content: center; 
+main .image-box {
+    width: 450px;
+    height: 550px;
 }
 
-.main-image-box img {
-    width: 350px;
-    height: 420px;
+main .image-box img {
+    width: 100%;
+    height: 60%;
 }
 
 
-.details-box{
+main .detalhes-box {
     width: 50%;
-    padding-left: 50px; 
-    gap: 10px;
+    padding-left: 50px;
 }
 
-.details-box button{
+main .detalhes-box h1 {
+    color: #00326D;
+}
+
+main .detalhes-box h2 {
+    color: #286d34;
+}
+
+main .detalhes-box table {
+    margin: 15px 0;
+}
+
+main .detalhes-box table td {
+    padding: 10px 10px 10px 0;
+    font-size: 23px;
+}
+
+main .detalhes-box input {
+    height: 30px;
+    padding: 0 5px;
+}
+
+button {
     border: none;
-    width: 35%;
+    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: #286d34;
+    color: white;
+    margin-top: 14px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: darkgreen;
 }

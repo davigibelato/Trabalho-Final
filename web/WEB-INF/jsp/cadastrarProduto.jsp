@@ -49,6 +49,11 @@
                                             <input type="number" id="valor"  name="valor" class="form-control form-control-lg" />
                                             <label class="form-label" for="form3Example3cg">Valor</label>
                                         </div>
+                                        
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="descricao" id="valor"  name="descricao" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example3cg">Descrição</label>
+                                        </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4"> 
                                             <label class="form-label" for="form3Example4cg">Categoria</label>

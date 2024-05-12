@@ -1,0 +1,42 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+footer{
+    width: 100%;
+    height: auto;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.elements{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.contato, .sobre, .social{
+    margin-top: 10px;
+    width: 35%;
+}
+
+.cop{
+    margin-top: 10px;
+    text-align: center;
+}
+
+p {
+    color: white;
+}
+
+i {
+    color: white;
+}
+

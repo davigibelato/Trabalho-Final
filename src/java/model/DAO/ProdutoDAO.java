@@ -39,6 +39,7 @@ public class ProdutoDAO {
                 p.setIdProduto(rs.getInt("idProduto"));
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
+                p.setDescricao(rs.getString("descricao"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));
                 Blob imagemBlob = rs.getBlob("imagem");
@@ -77,6 +78,7 @@ public class ProdutoDAO {
                 p.setIdProduto(rs.getInt("idProduto"));
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
+                p.setDescricao(rs.getString("descricao"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));
                 Blob imagemBlob = rs.getBlob("imagem");
@@ -116,6 +118,7 @@ public class ProdutoDAO {
                 p.setIdProduto(rs.getInt("idProduto"));
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
+                p.setDescricao(rs.getString("descricao"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));
                 Blob imagemBlob = rs.getBlob("imagem");
@@ -151,6 +154,7 @@ public class ProdutoDAO {
                 p.setIdProduto(rs.getInt("idProduto"));
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
+                p.setDescricao(rs.getString("descricao"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));
                 Blob imagemBlob = rs.getBlob("imagem");
@@ -196,14 +200,15 @@ public class ProdutoDAO {
 
     public boolean inserirProduto(Produto produto) {
         try (Connection conexao = Conexao.conectar();
-                PreparedStatement ps = conexao.prepareStatement("INSERT INTO produto (nome, valor, categoria, subCategoria, imagem) VALUES (?, ?, ?, ?, ?)")) {
+                PreparedStatement ps = conexao.prepareStatement("INSERT INTO produto (nome, valor, descricao, categoria, subCategoria, imagem) VALUES (?, ?, ?, ?, ?, ?)")) {
 
             // Defina os parâmetros do PreparedStatement com os valores do produto
             ps.setString(1, produto.getNome());
             ps.setFloat(2, produto.getValor());
-            ps.setInt(3, produto.getCategoria());
-            ps.setInt(4, produto.getSubCategoria());
-            ps.setBytes(5, produto.getImagemBytes()); // Defina a imagem como array de bytes
+            ps.setString(3, produto.getDescricao());
+            ps.setInt(4, produto.getCategoria());
+            ps.setInt(5, produto.getSubCategoria());
+            ps.setBytes(6, produto.getImagemBytes()); // Defina a imagem como array de bytes
 
             // Execute o PreparedStatement
             int linhasAfetadas = ps.executeUpdate();
@@ -230,6 +235,7 @@ public class ProdutoDAO {
                     p.setIdProduto(rs.getInt("idProduto"));
                     p.setNome(rs.getString("nome"));
                     p.setValor(rs.getFloat("valor"));
+                    p.setDescricao(rs.getString("descricao"));                   
                     p.setCategoria(rs.getInt("categoria"));
                     p.setSubCategoria(rs.getInt("subCategoria"));
                     Blob imagemBlob = rs.getBlob("imagem");
@@ -267,6 +273,7 @@ public class ProdutoDAO {
                 p.setIdProduto(rs.getInt("idProduto"));
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
+                p.setDescricao(rs.getString("descricao"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));
                 Blob imagemBlob = rs.getBlob("imagem");
@@ -296,6 +303,7 @@ public class ProdutoDAO {
                     p.setIdProduto(rs.getInt("idProduto"));
                     p.setNome(rs.getString("nome"));
                     p.setValor(rs.getFloat("valor"));
+                    p.setDescricao(rs.getString("descricao"));
                     p.setCategoria(rs.getInt("categoria"));
                     p.setSubCategoria(rs.getInt("subCategoria"));
                     Blob imagemBlob = rs.getBlob("imagem");
@@ -326,6 +334,7 @@ public class ProdutoDAO {
                     p.setIdProduto(rs.getInt("idProduto"));
                     p.setNome(rs.getString("nome"));
                     p.setValor(rs.getFloat("valor"));
+                    p.setDescricao(rs.getString("descricao"));
                     p.setCategoria(rs.getInt("categoria"));
                     p.setSubCategoria(rs.getInt("subCategoria"));
                     Blob imagemBlob = rs.getBlob("imagem");

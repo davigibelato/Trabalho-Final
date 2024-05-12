@@ -38,12 +38,7 @@ public class CadastroUsuarioController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String url = "/WEB-INF/jsp/cadastrarUsuario.jsp";
-
-        CategoriaDAO daoC = new CategoriaDAO();
-
-        List<Categoria> categoria = daoC.listarTodos();
-        request.setAttribute("categorias", categoria);
-
+        
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
     }
