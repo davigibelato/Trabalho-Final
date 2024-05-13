@@ -1,0 +1,152 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100%;
+    background-color: #FBFBFB;
+}
+
+.global{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.container-1{
+    width: 70%;
+    height: auto;
+    margin-right: 40px;
+    display: grid;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.itens-up {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-bottom: 80px;
+}
+
+.itens-center{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: none;
+}
+
+.teste{
+    display: flex;
+}
+
+.container-quantidade {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 50px;
+}
+.img{
+    width: 100px;
+    height: 100px;
+    border: 1px solid;
+    margin: 20px;
+}
+
+.quantidade{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.quantidade .btns{
+    border: none;
+    padding: 2px;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.quantidade button{
+    border: none;
+    background-color: transparent;
+    font-weight: 400;
+}
+
+.quantidade p{
+    font-weight: 700;
+}
+
+.quantidade .number{
+    font-size: 30px;
+}
+
+.infos-produto{
+    margin: 20px;
+}
+
+.mais-ou-menos{
+    display: flex;
+    gap: 8px;
+}
+
+.container-1 p{
+    margin: 0;
+    padding: 0;
+}
+
+i{
+    color: #FF784E;
+    padding: 9px;
+}
+
+.container-2{
+    background-color: white;
+    height: 342px;
+    padding: 20px;
+}
+
+.container-2 p{
+    font-size: 20px;
+}
+
+.entrega{
+    margin-bottom: 10px;
+}
+
+.container-2 input{
+    padding: 2px;
+}
+
+.entrega p{
+    font-size: 20px;
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.container-2 button{
+    border: none;
+    padding: 5px;
+}
+
+.btns2{
+    color: white;
+    background-color: #FF784E;
+    border: 5px;
+    font-weight: 600;
+}
+
+.btn-blue{
+    background-color: white;
+    color: blue;
+    font-weight: 600;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
