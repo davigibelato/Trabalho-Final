@@ -37,7 +37,7 @@ main .detalhes-box h1 {
 }
 
 main .detalhes-box h2 {
-    color: #286d34;
+    color: #FF3D00;
 }
 
 main .detalhes-box table {
@@ -58,7 +58,7 @@ button {
     border: none;
     border-radius: 5px;
     padding: 10px 15px;
-    background-color: #286d34;
+    background-color: #FF3D00;
     color: white;
     margin-top: 14px;
     cursor: pointer;
@@ -66,5 +66,5 @@ button {
 }
 
 button:hover {
-    background-color: darkgreen;
+    background-color: #ff3c00af;
 }

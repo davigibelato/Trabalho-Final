@@ -39,9 +39,8 @@ public class LoginController extends HttpServlet {
 
         String url = "/WEB-INF/jsp/login.jsp";
         
-        CategoriaDAO daoC = new CategoriaDAO();
-        
-        List<Categoria> categoria = daoC.listarTodos();
+        CategoriaDAO cat = new CategoriaDAO();
+        List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);
         
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);

@@ -39,6 +39,10 @@ public class CadastroUsuarioController extends HttpServlet {
 
         String url = "/WEB-INF/jsp/cadastrarUsuario.jsp";
         
+        CategoriaDAO cat = new CategoriaDAO();
+        List<Categoria> categoria = cat.listarTodos();
+        request.setAttribute("categorias", categoria);
+        
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
     }

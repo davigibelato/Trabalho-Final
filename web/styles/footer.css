@@ -6,37 +6,38 @@
 }
 
 footer{
-    width: 100%;
     height: auto;
     background-color: black;
+}
+
+i,p{
+    color:white;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    text-align: center;
+    justify-items: center;
+    
 }
 
 .elements{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
-    align-items: center;
 }
 
-.contato, .sobre, .social{
-    margin-top: 10px;
-    width: 35%;
+.title{
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
 }
 
-.cop{
-    margin-top: 10px;
-    text-align: center;
+.icons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
-p {
-    color: white;
+footer .cop p {
+    margin: 0;
+    padding: 0;
 }
-
-i {
-    color: white;
-}
-

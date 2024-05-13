@@ -26,9 +26,11 @@
                 </div>
                 <div class="social">
                     <p class="title">Social</p>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-linkedin"></i>
-                    <i class="fa-brands fa-whatsapp"></i>
+                    <div class="icons">
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div> 
                 </div>
             </div>
             <div class="cop">

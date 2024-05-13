@@ -46,6 +46,9 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="">Conta</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="./login">Sair</a>
                                 </li>
                             </ul>

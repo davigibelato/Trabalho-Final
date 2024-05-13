@@ -8,12 +8,15 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Base64;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.BEAN.Categoria;
 import model.BEAN.Produto;
+import model.DAO.CategoriaDAO;
 import model.DAO.ProdutoDAO;
 
 /**
@@ -47,6 +50,10 @@ public class ProdutoController extends HttpServlet {
             imagemBase64 = Base64.getEncoder().encodeToString(produto.getImagemBytes());
         }
         produto.setImagemBase64(imagemBase64);
+        
+        CategoriaDAO cat = new CategoriaDAO();
+        List<Categoria> categoria = cat.listarTodos();
+        request.setAttribute("categorias", categoria);
 
         String url = "/WEB-INF/jsp/produtoUnico.jsp";
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
