@@ -16,7 +16,7 @@
         <header>
             <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-complete">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="">Elite Tech</a>
+                    <a class="navbar-brand" href="./cadastrarProduto">Elite Tech</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa-solid fa-bars"></i>
                     </button>

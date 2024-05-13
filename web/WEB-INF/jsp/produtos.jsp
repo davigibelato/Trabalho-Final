@@ -33,6 +33,7 @@
                     </div>
                 </div>
             </div>
+        </main>    
         </c:forEach>
 </body>
 </html>
