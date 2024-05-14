@@ -10,7 +10,7 @@ footer{
     background-color: black;
 }
 
-i,p{
+.elements i, .elements p{
     color:white;
     display: flex;
     justify-content: center;
@@ -40,4 +40,8 @@ i,p{
 footer .cop p {
     margin: 0;
     padding: 0;
+}
+
+.vendido{
+
 }

@@ -14,8 +14,9 @@
     </head>
     <body>
         <main class="main">
-            <c:forEach items="${produtos}" var="produto">
-                <div class="container">
+
+            <div class="container">
+                <c:forEach items="${produtos}" var="produto">
                     <div class="card">
                         <div class="content">
                             <div class="imgBx">
@@ -31,9 +32,9 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </c:forEach>
             </div>
+
         </main>    
-        </c:forEach>
-</body>
+    </body>
 </html>

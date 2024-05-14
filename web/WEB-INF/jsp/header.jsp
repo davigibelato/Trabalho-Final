@@ -49,7 +49,7 @@
                                     <a class="nav-link" href="">Conta</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">Carrinho</a>
+                                    <a class="nav-link" href="./carrinho">Carrinho</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="./login">Sair</a>
