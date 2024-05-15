@@ -46,7 +46,7 @@ public class HomeController extends HttpServlet {
         
         ProdutoDAO dao = new ProdutoDAO();
 
-        List<Produto> produto = dao.listarTodos();
+        List<Produto> produto = dao.listarSemPromo();
         for (int i = 0; i < produto.size(); i++) {
             if (produto.get(i).getImagemBytes() != null) {
                 String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagemBytes());

@@ -4,10 +4,15 @@
     box-sizing: border-box;
 }
 
-body{
+body {
+    display: flex;
     height: 100vh;
     width: 100%;
     background-color: #FBFBFB;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: column;
 }
 
 .h3{

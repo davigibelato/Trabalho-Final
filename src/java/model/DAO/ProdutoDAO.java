@@ -68,7 +68,7 @@ public class ProdutoDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;
-            String query = "SELECT * FROM produto";
+            String query = "SELECT * FROM produto ";
 
             stmt = conexao.prepareStatement(query);
             rs = stmt.executeQuery();
@@ -140,7 +140,46 @@ public class ProdutoDAO {
         }
         return produtos;
     }
-    
+     public List<Produto> listarSemPromo() {
+        List<Produto> produtos = new ArrayList();
+
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            String query = "SELECT * FROM produto where promocao = 0";
+
+            stmt = conexao.prepareStatement(query);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Produto p = new Produto();
+                p.setIdProduto(rs.getInt("idProduto"));
+                p.setNome(rs.getString("nome"));
+                p.setValor(rs.getFloat("valor"));
+                p.setPromocao(rs.getFloat("promocao"));
+                p.setDescricao(rs.getString("descricao"));
+                p.setCategoria(rs.getInt("categoria"));
+                p.setSubCategoria(rs.getInt("subCategoria"));
+                Blob imagemBlob = rs.getBlob("imagem");
+                if (imagemBlob != null) {
+                    byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
+                    p.setImagemBytes(imagemBytes);
+                }
+              
+                produtos.add(p);
+            }
+
+            rs.close();
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return produtos;
+    }
     public List<Produto> listarPorCategoria(Categoria c) {
         List<Produto> produtos = new ArrayList();
         try {
