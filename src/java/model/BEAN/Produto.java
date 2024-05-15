@@ -18,11 +18,11 @@ public class Produto {
     private int subCategoria;
     private byte[] imagemBytes;
     private String imagemBase64;
-
+    private float promocao;
     public Produto() {
     }
 
-    public Produto(int idProduto, String nome, float valor, String descricao, int categoria, int subCategoria, byte[] imagemBytes, String imagemBase64) {
+    public Produto(int idProduto, String nome, float valor, String descricao, int categoria, int subCategoria, byte[] imagemBytes, String imagemBase64, float promocao) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.valor = valor;
@@ -31,6 +31,7 @@ public class Produto {
         this.subCategoria = subCategoria;
         this.imagemBytes = imagemBytes;
         this.imagemBase64 = imagemBase64;
+        this.promocao = promocao;
     }
 
     public int getIdProduto() {
@@ -96,6 +97,15 @@ public class Produto {
     public void setImagemBase64(String imagemBase64) {
         this.imagemBase64 = imagemBase64;
     }
-    
+
+    public float getPromocao() {
+        return promocao;
+    }
+
+    public void setPromocao(float promocao) {
+        this.promocao = promocao;
+    }
+
+  
     
 }

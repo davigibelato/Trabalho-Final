@@ -38,10 +38,14 @@ footer{
 }
 
 footer .cop p {
+    display: flex;
+    color: white;
     margin: 0;
     padding: 0;
+    justify-content: center;
 }
 
-.vendido{
-
+main .detalhes-box {
+    height: 75vh;
+    padding-left: 50px;
 }

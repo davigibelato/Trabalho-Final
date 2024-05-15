@@ -50,12 +50,12 @@
 
             <div class="back-cards">
                 <div class="cards">
-                    <c:forEach items="${produtos}" var="produto">
+                    <c:forEach items="${produtosPromo}" var="produto">
                         <div class="card" style="width: 18rem;">
                             <img src="data:image/jpeg;base64,${produto.imagemBase64}" class="card-img-top" alt="${produto.nome}">
                             <div class="card-body">
                               <h5 class="card-title">${produto.nome}</h5>
-                              <p class="card-text">R$ ${produto.valor}</p>
+                              <p class="card-text">R$ ${produto.valor - produto.promocao}</p>
                               <a href="./produtoUnico?id=${produto.idProduto}" class="btn btn-primary">Comprar</a>
                             </div>
                           </div>

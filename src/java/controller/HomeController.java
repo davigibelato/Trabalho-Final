@@ -55,6 +55,16 @@ public class HomeController extends HttpServlet {
 
         }
         request.setAttribute("produtos", produto);
+        
+        
+        List<Produto> produtoPromo = dao.listarPromo();
+        for (int i = 0; i < produtoPromo.size(); i++) {
+            if (produtoPromo.get(i).getImagemBytes() != null) {
+                String imagemBase64 = Base64.getEncoder().encodeToString(produtoPromo.get(i).getImagemBytes());
+                produtoPromo.get(i).setImagemBase64(imagemBase64);
+            }
+        }
+        request.setAttribute("produtosPromo", produtoPromo);
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);

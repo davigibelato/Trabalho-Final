@@ -99,7 +99,48 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+    
+    public List<Produto> listarPromo() {
+        List<Produto> produtos = new ArrayList();
 
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            String query = "SELECT * FROM produto where promocao != 0";
+
+            stmt = conexao.prepareStatement(query);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Produto p = new Produto();
+                p.setIdProduto(rs.getInt("idProduto"));
+                p.setNome(rs.getString("nome"));
+                p.setValor(rs.getFloat("valor"));
+                p.setPromocao(rs.getFloat("promocao"));
+                p.setDescricao(rs.getString("descricao"));
+                p.setCategoria(rs.getInt("categoria"));
+                p.setSubCategoria(rs.getInt("subCategoria"));
+                Blob imagemBlob = rs.getBlob("imagem");
+                if (imagemBlob != null) {
+                    byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
+                    p.setImagemBytes(imagemBytes);
+                }
+              
+                produtos.add(p);
+            }
+
+            rs.close();
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return produtos;
+    }
+    
     public List<Produto> listarPorCategoria(Categoria c) {
         List<Produto> produtos = new ArrayList();
         try {
@@ -200,7 +241,7 @@ public class ProdutoDAO {
 
     public boolean inserirProduto(Produto produto) {
         try (Connection conexao = Conexao.conectar();
-                PreparedStatement ps = conexao.prepareStatement("INSERT INTO produto (nome, valor, descricao, categoria, subCategoria, imagem) VALUES (?, ?, ?, ?, ?, ?)")) {
+                PreparedStatement ps = conexao.prepareStatement("INSERT INTO produto (nome, valor, descricao, categoria, subCategoria, imagem,promocao) VALUES (?,?, ?, ?, ?, ?, ?)")) {
 
             // Defina os parâmetros do PreparedStatement com os valores do produto
             ps.setString(1, produto.getNome());
@@ -209,6 +250,7 @@ public class ProdutoDAO {
             ps.setInt(4, produto.getCategoria());
             ps.setInt(5, produto.getSubCategoria());
             ps.setBytes(6, produto.getImagemBytes()); // Defina a imagem como array de bytes
+            ps.setFloat(7, produto.getPromocao()); // Defina a imagem como array de bytes
 
             // Execute o PreparedStatement
             int linhasAfetadas = ps.executeUpdate();
