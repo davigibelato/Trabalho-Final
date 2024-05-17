@@ -40,6 +40,7 @@ create table produto (
     valor float(10,2) not null,
     descricao varchar(100) not null,
     categoria int not null,
+    promocao int not null,
     subCategoria int not null,
     imagem longblob,
     foreign key (categoria) references categoria(idCategoria),
