@@ -38,11 +38,11 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String url = "/WEB-INF/jsp/login.jsp";
-        
+
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);
-        
+
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
 
@@ -60,7 +60,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -74,8 +74,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
         String url = request.getServletPath();
 
         if (url.equals("/logar")) {
@@ -87,6 +86,7 @@ public class LoginController extends HttpServlet {
             // Verificar se os campos estão vazios
             if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
                 nextPage = "/WEB-INF/jsp/login.jsp";
+                System.out.println("NULL");
                 request.setAttribute("errorMessage", "Por favor, preencha todos os campos.");
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
                 dispatcher.forward(request, response);
@@ -105,28 +105,23 @@ public class LoginController extends HttpServlet {
             user.setEmail(email);
             user.setSenha(password);
 
-            try {
-                Usuario userAutenticado = valida.login(user);
+            Usuario userAutenticado = valida.login(user);
 
-                if (userAutenticado != null && !userAutenticado.getEmail().isEmpty()) {
-                    response.sendRedirect("./home");
-                } else {
-                    nextPage = "/WEB-INF/jsp/login.jsp";
-                    request.setAttribute("errorMessage", "Email ou senha inválidos");
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-                    dispatcher.forward(request, response);
-                }
-            } catch (Exception e) {
+            if (userAutenticado != null && !userAutenticado.getEmail().isEmpty()) {
+                response.sendRedirect("./home");
+                System.out.println("Home");
+            } else {
                 nextPage = "/WEB-INF/jsp/login.jsp";
+                System.out.println("Login");
                 request.setAttribute("errorMessage", "Email ou senha inválidos");
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
                 dispatcher.forward(request, response);
             }
+
         } else {
             processRequest(request, response);
         }
     }
-    
 
     /**
      * Returns a short description of the servlet.

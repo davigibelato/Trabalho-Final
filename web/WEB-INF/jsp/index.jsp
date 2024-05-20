@@ -56,7 +56,8 @@
                             <div class="card-body">
                               <h5 class="card-title">${produto.nome}</h5>
                               <p class="card-text">R$ ${produto.valor - produto.promocao}</p>
-                              <a href="./produtoUnico?id=${produto.idProduto}" class="btn btn-primary">Comprar</a>
+                              <a href="./produtoUnico?id=${produto.idProduto}" class="btn btn-primary">
+                                <i class="fa-solid fa-cart-shopping"></i>Comprar</a>
                             </div>
                           </div>
                     </c:forEach>
@@ -68,7 +69,7 @@
                 <img id="b2" src="images/1813.png" alt=""/>
             </div>
 
-            <h1 class="title-h1">Destaques</h1>
+            <h1 class="title-h1">Outros Produtos</h1>
 
             <div class="back-cards">
                 <div class="cards">
@@ -78,7 +79,8 @@
                             <div class="card-body">
                               <h5 class="card-title">${produto.nome}</h5>
                               <p class="card-text">R$ ${produto.valor}</p>
-                              <a href="./produtoUnico?id=${produto.idProduto}" id="btn-card" class="btn btn-primary">Comprar</a>
+                              <a href="./produtoUnico?id=${produto.idProduto}" id="btn-card" class="btn btn-primary">
+                                <i class="fa-solid fa-cart-shopping"></i>Comprar</a>
                             </div>
                           </div>
                     </c:forEach>

@@ -22,8 +22,8 @@ main .image-box {
 }
 
 main .image-box img {
-    width: 100%;
-    height: 60%;
+    width: 90%;
+    height: 90%;
 }
 
 
@@ -52,6 +52,10 @@ main .detalhes-box table td {
 main .detalhes-box input {
     height: 30px;
     padding: 0 5px;
+}
+
+.detalhes-box span{
+    display: none;
 }
 
 button {

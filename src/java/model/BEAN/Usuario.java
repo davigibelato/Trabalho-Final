@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.BEAN;
 
-/**
- *
- * @author Senai
- */
+import java.sql.Timestamp;
+
 public class Usuario {
     private static int idUsuario;
     private String nome;
@@ -16,18 +9,20 @@ public class Usuario {
     private String senha;
     private String cpf;
     private String telefone;
-    private int status;
+    private String status;
+    private Timestamp data_registro; // Adicionando campo data_registro
 
     public Usuario() {
     }
 
-    public Usuario(String nome, String email, String senha, String cpf, String telefone, int status) {
+    public Usuario(String nome, String email, String senha, String cpf, String telefone, String status, Timestamp data_registro) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.cpf = cpf;
         this.telefone = telefone;
         this.status = status;
+        this.data_registro = data_registro;
     }
 
     public static int getIdUsuario() {
@@ -77,13 +72,22 @@ public class Usuario {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    
-    public int getStatus() {
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
+
+    public Timestamp getData_registro() {
+        return data_registro;
+    }
+
+    public void setData_registro(Timestamp data_registro) {
+        this.data_registro = data_registro;
+    }
+
     
 }

@@ -36,13 +36,14 @@ body{
     border-radius: 20px;
 }
 
-.card{
+.card {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     margin: 70px;
-    height: 100%;
+    width: 300px;
+    height: 350px;
 }
 
 .btn-primary {
@@ -63,7 +64,7 @@ body{
     --bs-btn-disabled-border-color: #FF3D00;
 }
 .card p{
-    color: black;
+    color: #ff3c0075;
 }
 
 .bannersSecundario{

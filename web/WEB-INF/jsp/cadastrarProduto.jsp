@@ -46,7 +46,7 @@
                                                            class="form-control form-control-lg" />
                                                     <label class="form-label" for="form3Example3cg">Valor</label>
                                                 </div>
-                                                
+
                                                 <div data-mdb-input-init class="form-outline mb-4">
                                                     <input type="number" id="promocao" name="promocao"
                                                            class="form-control form-control-lg" />
@@ -70,7 +70,8 @@
                                             </div>
 
                                             <div data-mdb-input-init class="form-outline mb-4">
-                                                <label class="form-label" for="form3Example4cdg">SubCategoria</label>
+                                                <label class="form-label"
+                                                       for="form3Example4cdg">SubCategoria</label>
                                                 <select name="subCategoria" id="subCategoria">
                                                     <c:forEach items="${subCategorias}" var="subCategoria">
                                                         <option value="${subCategoria.idSubCategoria}">
@@ -81,8 +82,11 @@
 
                                             <div class="d-flex justify-content-center ">
                                                 <div>
-                                                    <label class="form-label" for="confirmarSenha">Imagem</label>
-                                                    <input type="file" id="imagem" name="imagem" required accept="image/*" class="form-control form-control-lg input-img-cad" onchange="displaySelectedImage(event, 'selectedImage')"/>
+                                                    <label class="form-label">Imagem</label>
+                                                    <input type="file" id="imagem" name="imagem" required
+                                                           accept="image/*"
+                                                           class="form-control form-control-lg input-img-cad"
+                                                           onchange="displaySelectedImage(event, 'selectedImage')" />
                                                 </div>
                                             </div>
 
@@ -102,8 +106,8 @@
             </section>
 
             <div class="cont-produto-cad">
-                    <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                         alt="example placeholder" class="img-produto-cad"/>
+                <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                     alt="example placeholder" class="img-produto-cad" />
 
             </div>
             <script>
@@ -122,7 +126,7 @@
                 }
             </script>
         </div>
-        
+
         <jsp:include page="footer.jsp"></jsp:include>
         <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"></script>

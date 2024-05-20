@@ -16,23 +16,28 @@
             <div class="container-produto">
                 <div class="right-box">
                     <div class="image-box">
-                           <img src="data:image/jpeg;base64,${produto.imagemBase64}" class="card-img-top" alt="${produto.nome}">
+                        <img src="data:image/jpeg;base64,${produto.imagemBase64}" class="card-img-top" alt="${produto.nome}">
                     </div>
                 </div>
+
+
                 <div class="detalhes-box">
-                    <h1>${produto.nome}</h1>
+
+                    <h1>${produto.nome}</h1>  <span>${produto.idProduto}</span>
                     <p>Avaliação (Em estoque)</p>
                     <h2>R$ ${produto.valor}</h2>
-                    <table cellspacing="0" class="inputs">
-                        <tr>
-                            <td><b>Quantidade</b></td>
-                            <td align="right"><input type="number" id="primeiro"></td>
-                        </tr>
-                        <tr>
-                            <td><b>Sub Total</b></td>
-                            <td align="right"><input type="number" id="segundo"></td>
-                        </tr>
-                    </table>
+                    <form action="inserir" method="post">
+                        <table cellspacing="0" class="inputs">
+                            <tr>
+                                <td><b>Quantidade</b></td>
+                                <td align="right"><input type="number" id="quantidade" name="quantidade"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Sub Total</b></td>
+                                <td align="right"><input type="number" id="segundo"></td>
+                            </tr>
+                        </table>
+                    </form>
                     <h4>Especificações</h4>
                     ${produto.descricao}
                     <br>
@@ -40,6 +45,8 @@
                     <!-- <p>Para mais informações do produto, entre em contato com a loja. Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus repellat ipsum aperiam minima
                         facere provident saepe quidem, officia quae iste ad totam autem doloremque perferendis nihil harum dolorem soluta eaque.</p> -->
                 </div>
+
+
             </div>
         </main>
         <jsp:include page="footer.jsp"></jsp:include> 
