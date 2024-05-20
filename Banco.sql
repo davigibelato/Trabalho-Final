@@ -1,15 +1,17 @@
-/*drop database eliteTech_ds;*/
+drop database eliteTech_ds;
 create database eliteTech_ds;
+
 use eliteTech_ds;
 
 create table usuario (
-	idUsuario int primary key auto_increment,
+    idUsuario int primary key auto_increment,
     nome varchar(100) not null,
     email varchar(100) not null,
     senha varchar(100) not null,
     cpf char(11) not null,
     telefone varchar(13),
-    status int
+    status varchar(50) default 'cliente',
+    data_registro timestamp default current_timestamp
 );
 
 create table endereco (
@@ -65,17 +67,13 @@ create table pedido (
     foreign key (usuario) references usuario(idUsuario)
 );
 
+
 create table carrinho (
 	idCarrinho int primary key auto_increment,
-    usuario int,
-    foreign key (usuario) references usuario(idUsuario)
-);
-
-create table carrinho_produto (
-	idCarrinho_produto int primary key auto_increment,
-    carrinho int not null,
+    usuario int not null,
     produto int not null,
-    foreign key (carrinho) references carrinho(idCarrinho),
+    quantidade int not null,
+    foreign key (usuario) references usuario(idUsuario),
     foreign key (produto) references produto(idProduto)
 );
 
@@ -88,6 +86,9 @@ create table produto_pedido (
 );
 
 insert into categoria (nome) values ('Periféricos');
+
+insert into usuario (nome, email, senha, cpf, telefone, status) 
+values ('admin', 'admin@mail.com', 'admin', '11907613943', '4399502591', 'cliente');
 
 insert into subCategoria (nome,idCategoria) values ('Teclado', 1);
 
