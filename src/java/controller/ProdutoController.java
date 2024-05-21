@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.BEAN.Carrinho;
 import model.BEAN.Categoria;
 import model.BEAN.Produto;
+import model.DAO.CarrinhoDAO;
 import model.DAO.CategoriaDAO;
 import model.DAO.ProdutoDAO;
 
@@ -43,7 +44,6 @@ public class ProdutoController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
 
         Produto produto = dao.readById(id);
-        System.out.println("PRODUTO NOME:" + produto.getNome());
         request.setAttribute("produto", produto);
 
         String imagemBase64 = null; // Defina como null por padrão
@@ -90,31 +90,25 @@ public class ProdutoController extends HttpServlet {
         
         String url = request.getServletPath();
         String nextPage = "/WEB-INF/jsp/carrinho.jsp";
-        
-        Produto produto = new Produto();
-                
+           
         if(url.equals("/inserir")){
             
             Carrinho c = new Carrinho();
             
-            int qtd =Integer.parseInt(request.getParameter("quantidade"));
-                    
+            int qtd = Integer.parseInt(request.getParameter("quantidade"));
+            int id = Integer.parseInt(request.getParameter("idProduto"));
             
-            for (int i = 0; i < produto.size(); i++) {
-            if (produto.get(i).getImagemBytes() != null) {
-                String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagemBytes());
-                produto.get(i).setImagemBase64(imagemBase64);
-            }
-        }
+            c.setQuantidade(qtd);
+            c.setProduto(id);
+            
+            System.out.println("Id: " + c.getProduto());
+            System.out.println("QTD: "+ c.getQuantidade());
+            
+            
+            CarrinhoDAO cd = new CarrinhoDAO();
+            cd.adicionar(c);
         
         }
-   
-        
-        
-        request.setAttribute("produtos", produto);
-        
-        RequestDispatcher d = getServletContext().getRequestDispatcher(url);
-        d.forward(request, response);
     }
 
     /**

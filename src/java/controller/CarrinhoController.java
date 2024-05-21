@@ -14,8 +14,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.BEAN.Carrinho;
 import model.BEAN.Categoria;
 import model.BEAN.Produto;
+import model.DAO.CarrinhoDAO;
 import model.DAO.CategoriaDAO;
 import model.DAO.ProdutoDAO;
 
@@ -39,7 +41,12 @@ public class CarrinhoController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String url = "/WEB-INF/jsp/carrinho.jsp";
-       
+        
+        CarrinhoDAO cd = new CarrinhoDAO();
+        List<Carrinho> carrinho = cd.visualizarCarrinho();
+        
+        request.setAttribute("carrinho", carrinho);
+        
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
 

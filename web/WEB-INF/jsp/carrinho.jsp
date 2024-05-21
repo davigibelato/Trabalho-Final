@@ -27,16 +27,16 @@
 
                         <p>Vendido e entregue por <b>Elite Tech</b></p>
 
-                    <c:forEach items="${produtos}" var="produto">
+                    <c:forEach items="${carrinhos}" var="carrinho">
                         <div class="itens-center">
                             <div class="teste">
                                 <div class="img">
-                                    <img src="data:image/jpeg;base64,${produto.imagemBase64}" class="card-img-top" alt="${produto.nome}">
+                                    <img src="data:image/jpeg;base64,${carrinho.imagemBase64}" class="card-img-top" alt="${carrinho.nome}">
                                 </div>
                                 <div class="infos-produto">
-                                    <h3>${produto.nome}</h3>
+                                    <h3>${carrinho.nome}</h3>
                                     <div class="h3">
-                                        <h3>Preço:</h3> <p class="preco">R$ ${produto.valor}</p>
+                                        <h3>Preço:</h3> <p class="preco">R$ ${carrinho.valor}</p>
                                     </div>
                                     
                                 </div>
@@ -46,7 +46,7 @@
                                     <p>Quant</p> 
                                     <div class="mais-ou-menos">
                                         <button class="btns">+</button>
-                                        <p class="number">1</p>
+                                        <p class="number">${carrinho.quantidade}</p>
                                         <button class="btns">-</button>
                                     </div>
                                 </div>

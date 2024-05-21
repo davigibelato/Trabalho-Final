@@ -37,13 +37,12 @@
                                 <td align="right"><input type="number" id="segundo"></td>
                             </tr>
                         </table>
-                    </form>
-                    <h4>Especificações</h4>
-                    ${produto.descricao}
-                    <br>
-                    <button>Adicionar ao Carrinho</button>
-                    <!-- <p>Para mais informações do produto, entre em contato com a loja. Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus repellat ipsum aperiam minima
-                        facere provident saepe quidem, officia quae iste ad totam autem doloremque perferendis nihil harum dolorem soluta eaque.</p> -->
+                        <input type="hidden" name="idProduto" id="idProduto" value="${produto.idProduto}">
+                        <h4>Especificações</h4>
+                        ${produto.descricao}
+                        <br>
+                        <button type="submit">Adicionar ao Carrinho</button>
+                    </form>                   
                 </div>
 
 

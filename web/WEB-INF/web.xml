@@ -76,6 +76,10 @@
         <servlet-name>ProdutoController</servlet-name>
         <url-pattern>/produtoUnico</url-pattern>
     </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>ProdutoController</servlet-name>
+        <url-pattern>/inserir</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CadastroUsuarioController</servlet-name>
         <url-pattern>/cadastrar</url-pattern>

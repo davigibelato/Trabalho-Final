@@ -30,6 +30,7 @@ public class UsuarioDAO {
                 usuarioValido.setTelefone(rs.getString("telefone"));
                 usuarioValido.setStatus(rs.getString("status"));
                 usuarioValido.setData_registro(rs.getTimestamp("data_registro"));
+                Usuario.setIdUsuario(rs.getInt("idUsuario"));
             }
 
             rs.close();

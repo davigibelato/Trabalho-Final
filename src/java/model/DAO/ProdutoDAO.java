@@ -282,23 +282,18 @@ public class ProdutoDAO {
         try (Connection conexao = Conexao.conectar();
                 PreparedStatement ps = conexao.prepareStatement("INSERT INTO produto (nome, valor, descricao, categoria, subCategoria, imagem,promocao) VALUES (?,?, ?, ?, ?, ?, ?)")) {
 
-            // Defina os parâmetros do PreparedStatement com os valores do produto
             ps.setString(1, produto.getNome());
             ps.setFloat(2, produto.getValor());
             ps.setString(3, produto.getDescricao());
             ps.setInt(4, produto.getCategoria());
             ps.setInt(5, produto.getSubCategoria());
-            ps.setBytes(6, produto.getImagemBytes()); // Defina a imagem como array de bytes
-            ps.setFloat(7, produto.getPromocao()); // Defina a imagem como array de bytes
+            ps.setBytes(6, produto.getImagemBytes()); 
+            ps.setFloat(7, produto.getPromocao()); 
 
-            // Execute o PreparedStatement
             int linhasAfetadas = ps.executeUpdate();
-
-            // Verifique se a inserção foi bem-sucedida (verifique se uma linha foi afetada)
             return linhasAfetadas > 0;
 
         } catch (SQLException e) {
-            // Você pode lidar com a exceção aqui, talvez registrando-a ou lançando-a novamente
             e.printStackTrace();
             return false;
         }
@@ -340,7 +335,6 @@ public class ProdutoDAO {
         ResultSet rs = null;
 
         try {
-            // Consulta para buscar produtos por nome
             stmt = conexao.prepareStatement("SELECT p.*, c.nome as categoria, sc.nome as subCategoria "
                     + "FROM produto p "
                     + "INNER JOIN categoria c ON p.categoria = c.idCategoria "
@@ -369,7 +363,6 @@ public class ProdutoDAO {
                 resultadoBusca.add(p);
             }
 
-            // Se nenhum produto for encontrado pelo nome, tentar buscar por categoria
             if (resultadoBusca.isEmpty()) {
                 PreparedStatement ps = conexao.prepareStatement("SELECT p.*, c.nome as categoria, sc.nome as subCategoria "
                         + "FROM produto p "
@@ -400,7 +393,6 @@ public class ProdutoDAO {
                 }
             }
 
-            // Se nenhum produto for encontrado pela categoria, tentar buscar por subcategoria
             if (resultadoBusca.isEmpty()) {
                 PreparedStatement ps = conexao.prepareStatement("SELECT p.*, c.nome as categoria, sc.nome as subCategoria "
                         + "FROM produto p "

@@ -164,6 +164,7 @@ public class CadastroProdutoController extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/cadastrarProduto.jsp");
     }
 
+    
     /**
      * Returns a short description of the servlet.
      *
