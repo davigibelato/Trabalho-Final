@@ -44,8 +44,13 @@ public class CarrinhoController extends HttpServlet {
         
         CarrinhoDAO cd = new CarrinhoDAO();
         List<Carrinho> carrinho = cd.visualizarCarrinho();
-        
-        request.setAttribute("carrinho", carrinho);
+        for (int i = 0; i < carrinho.size(); i++) {
+            if (carrinho.get(i).getImagemBytes() != null) {
+                String imagemBase64 = Base64.getEncoder().encodeToString(carrinho.get(i).getImagemBytes());
+                carrinho.get(i).setImagemBase64(imagemBase64);
+            }
+        }
+        request.setAttribute("carrinhos", carrinho);
         
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);

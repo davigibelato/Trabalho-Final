@@ -31,12 +31,12 @@
                         <div class="itens-center">
                             <div class="teste">
                                 <div class="img">
-                                    <img src="data:image/jpeg;base64,${carrinho.imagemBase64}" class="card-img-top" alt="${carrinho.nome}">
+                                    <img src="data:image/jpeg;base64,${carrinho.imagemBase64}" class="card-img-top" alt="${carrinho.nomeProduto}">
                                 </div>
                                 <div class="infos-produto">
-                                    <h3>${carrinho.nome}</h3>
+                                    <h3>${carrinho.nomeProduto}</h3>
                                     <div class="h3">
-                                        <h3>Preço:</h3> <p class="preco">R$ ${carrinho.valor}</p>
+                                        <h3>Preço:</h3> <p class="preco">R$ ${carrinho.valorProduto}</p>
                                     </div>
                                     
                                 </div>
