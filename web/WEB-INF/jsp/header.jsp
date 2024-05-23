@@ -52,7 +52,7 @@
                                     <a class="nav-link" href="./carrinho">Carrinho</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./login">Sair</a>
+                                    <a class="nav-link" href="./login?t=i">Sair</a>
                                 </li>
                             </ul>
                             <form class="d-flex" role="search" action="buscar" method="get">

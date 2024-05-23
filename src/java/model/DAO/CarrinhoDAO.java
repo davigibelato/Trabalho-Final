@@ -52,7 +52,7 @@ public class CarrinhoDAO {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement(
-                    "SELECT p.imagem AS imagem_produto ,p.nome AS nome_produto, p.valor AS preco_produto, c.quantidade AS quantidade_pedido\n"
+                    "SELECT p.imagem AS imagem_produto ,p.nome AS nome_produto, p.promocao AS promocao_produto, p.valor AS preco_produto, c.quantidade AS quantidade_pedido\n"
                     + "FROM carrinho c\n"
                     + "INNER JOIN produto p ON c.produto = p.idProduto\n"
                     + "WHERE c.usuario = ?;");
@@ -71,7 +71,7 @@ public class CarrinhoDAO {
                     carrinho.setImagemBytes(imagemBytes);
                 }
                 carrinho.setNomeProduto(rs.getString("nome_produto"));
-                carrinho.setValorProduto(rs.getFloat("preco_produto"));
+                carrinho.setValorProduto(rs.getFloat("preco_produto")  - rs.getInt("promocao_produto"));
                 carrinho.setQuantidade(rs.getInt("quantidade_pedido"));
                 carrinho.setUsuario(Usuario.getIdUsuario());
                 carrinhos.add(carrinho);
