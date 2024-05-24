@@ -20,8 +20,11 @@ import model.BEAN.SubCategoria;
  * @author Senai
  */
 public class SubCategoriaDAO {
+    
     public List<SubCategoria> listarTodos(){
+        
         List<SubCategoria> categorias = new ArrayList();
+        
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
@@ -32,12 +35,15 @@ public class SubCategoriaDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
+                
                 SubCategoria c = new SubCategoria();
+                
                 c.setIdSubCategoria(rs.getInt("idSubCategoria"));
                 c.setNome(rs.getString("nome"));
                 c.setIdCategoria(rs.getInt("idCategoria"));
                 categorias.add(c);
             }
+            
             rs.close();
             stmt.close();
             conexao.close();
@@ -50,7 +56,9 @@ public class SubCategoriaDAO {
     }
     
     private SubCategoria readById(int id) {
+        
         SubCategoria c = new SubCategoria();
+        
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
@@ -70,6 +78,7 @@ public class SubCategoriaDAO {
             rs.close();
             stmt.close();
             conexao.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -78,9 +87,12 @@ public class SubCategoriaDAO {
     }
 
     private SubCategoria readByNome(String nome) {
+        
         SubCategoria c = new SubCategoria();
+        
         try {
-            Connection conexao = Conexao.conectar();
+            Connection conexao = Conexao.
+                    conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;
 
@@ -97,6 +109,7 @@ public class SubCategoriaDAO {
             rs.close();
             stmt.close();
             conexao.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -106,6 +119,7 @@ public class SubCategoriaDAO {
 
     private SubCategoria readByNome(SubCategoria c) {
         try {
+            
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;

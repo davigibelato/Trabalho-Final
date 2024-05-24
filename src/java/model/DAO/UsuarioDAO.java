@@ -17,22 +17,18 @@ public class UsuarioDAO {
             ResultSet rs = null;
 
             stmt = con.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
+            //PEGA O ID DO USUARIO E AS INFORMAÇÕES EMAIL E SENHA
             stmt.setString(1, user.getEmail());
             stmt.setString(2, user.getSenha());
             rs = stmt.executeQuery();
+            //EXECUTE O SELECT
 
             if (rs.next()) {
                 usuarioValido.setIdUsuario(rs.getInt("idUsuario"));
-                usuarioValido.setNome(rs.getString("nome"));
                 usuarioValido.setEmail(rs.getString("email"));
                 usuarioValido.setSenha(rs.getString("senha"));
-                usuarioValido.setCpf(rs.getString("cpf"));
-                usuarioValido.setTelefone(rs.getString("telefone"));
-                usuarioValido.setStatus(rs.getString("status"));
-                usuarioValido.setData_registro(rs.getTimestamp("data_registro"));
-                Usuario.setIdUsuario(rs.getInt("idUsuario"));
             }
-
+            
             rs.close();
             stmt.close();
             con.close();
@@ -40,6 +36,7 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             usuarioValido.setIdUsuario(0);
+            //SE NÃO EXECUTAR DEFINE O ID DO USUARIO COMO 0
         }
         return usuarioValido;
     }
@@ -50,13 +47,15 @@ public class UsuarioDAO {
             PreparedStatement stmt = null;
 
             stmt = conexao.prepareStatement("INSERT INTO usuario (nome, email, senha, cpf, telefone, data_registro) values (?, ?, ?, ?, ?, current_timestamp)");
+            //FAZ UMA CRIAÇÃO DE DADOS NA TABELA USUARIO
             stmt.setString(1, u.getNome());
             stmt.setString(2, u.getEmail());
             stmt.setString(3, u.getSenha());
             stmt.setString(4, u.getCpf());
             stmt.setString(5, u.getTelefone());
-
+            
             stmt.executeUpdate();
+            //EXECUTA A INSERÇÃO
             stmt.close();
             conexao.close();
             
@@ -71,6 +70,7 @@ public class UsuarioDAO {
             PreparedStatement stmt = null;
 
             stmt = conexao.prepareStatement("UPDATE usuario SET nome = ?, email = ?, senha = ?, cpf = ?, telefone = ?, status = ? WHERE idUsuario = ?");
+            //ATUALIZA AS INFORMAÇÕES DO USUARIO COM BASE NO ID DELE
             stmt.setString(1, u.getNome());
             stmt.setString(2, u.getEmail());
             stmt.setString(3, u.getSenha());
@@ -94,6 +94,7 @@ public class UsuarioDAO {
             PreparedStatement stmt = null;
 
             stmt = conexao.prepareStatement("DELETE FROM usuario WHERE idUsuario = ?");
+            //DELETA O USUARIO DE ACORDO COM ID DELE
             stmt.setInt(1, u.getIdUsuario());
 
             stmt.executeUpdate();

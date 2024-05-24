@@ -1,4 +1,4 @@
-drop database eliteTech_ds;
+/*drop database eliteTech_ds;*/
 create database eliteTech_ds;
 
 use eliteTech_ds;
@@ -94,4 +94,5 @@ insert into subCategoria (nome,idCategoria) values ('Teclado', 1);
 
 insert into subCategoria (nome,idCategoria) values ('Mouse', 1);
 
+insert into subCategoria (nome,idCategoria) values ('Fone', 1);
 

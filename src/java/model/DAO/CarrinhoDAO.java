@@ -27,14 +27,17 @@ public class CarrinhoDAO {
 
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement("INSERT INTO carrinho (produto, quantidade, usuario) values (?,?,?)");
+            //FAZENDO INSERT NO CARRINHO          
 
             stmt.setInt(1, c.getProduto());
             System.out.println(c.getProduto());
             stmt.setInt(2, c.getQuantidade());
             stmt.setInt(3, Usuario.getIdUsuario());
             System.out.println(Usuario.getIdUsuario());
+            //PEGANDO INFORMAÇÕES E INSERINDO NO BANCO
 
             stmt.executeUpdate();
+            //EXECUTANDO A AÇÃO
 
             stmt.close();
             conexao.close();
@@ -56,15 +59,18 @@ public class CarrinhoDAO {
                     + "FROM carrinho c\n"
                     + "INNER JOIN produto p ON c.produto = p.idProduto\n"
                     + "WHERE c.usuario = ?;");
-
+            
+            //PEGA AS INFORMAÇÕES NESSESÁRIAS PARA SER MOSTRADAS NA PÁGINA DE CARRINHO
+            
             stmt.setInt(1, Usuario.getIdUsuario());
+            //PEGA AS INFOS COM BASE NO ID DO USUARIO, FAZENDO ASSIM QUE UM CARRINHO FIQUE SOMENTE PARA ELE
 
             ResultSet rs = stmt.executeQuery();
+            //EXECUTA O SELECT
 
             while (rs.next()) {
                 
-                Carrinho carrinho = new Carrinho();
-                
+                Carrinho carrinho = new Carrinho();   
                 Blob imagemBlob = rs.getBlob("imagem_produto");
                 if (imagemBlob != null) {
                     byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
@@ -74,10 +80,12 @@ public class CarrinhoDAO {
                 carrinho.setValorProduto(rs.getFloat("preco_produto")  - rs.getInt("promocao_produto"));
                 carrinho.setQuantidade(rs.getInt("quantidade_pedido"));
                 carrinho.setUsuario(Usuario.getIdUsuario());
+                //PEGA IMAGEM, NOME DO PRODUTO, PREÇO DO PRODUTO, QUANTIDADE E O ID DO USUARIO             
                 carrinhos.add(carrinho);
+                //ADICIONA A LISTA AO CARRINHO
             }
 
-            // Fechar recursos
+            //FECHA OS TERMOS
             rs.close();
             stmt.close();
             conexao.close();

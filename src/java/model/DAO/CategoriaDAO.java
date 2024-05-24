@@ -24,6 +24,7 @@ public class CategoriaDAO {
             ResultSet rs = null;
 
             stmt = conexao.prepareStatement("SELECT * FROM categoria");
+            //PUXA AS INFORMAÇÕES DE CATEGORIA
 
             rs = stmt.executeQuery();
 
@@ -33,6 +34,8 @@ public class CategoriaDAO {
                 c.setNome(rs.getString("nome"));
                 categorias.add(c);
             }
+            //PEGA AS INFORMAÇÕES E INSERE EM UMA LISTA DE CATEGORIA
+            
             rs.close();
             stmt.close();
             conexao.close();
@@ -50,10 +53,11 @@ public class CategoriaDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;
-
+                        
             stmt = conexao.prepareStatement("SELECT * FROM categoria WHERE idCategoria = ?");
             stmt.setInt(1, id);
-
+            //FAZ UMA CHAMADA NO BANCO E MOSTRA O ID E O NOME DA CATEGORIA
+            
             rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -80,6 +84,8 @@ public class CategoriaDAO {
 
             stmt = conexao.prepareStatement("SELECT * FROM categoria WHERE nome = ?");
             stmt.setString(1, c.getNome());
+            
+            //FAZ UMA CHAMADA NO BANCO PARA LER O NOME DA CATEGORIA
 
             rs = stmt.executeQuery();
 
@@ -95,30 +101,6 @@ public class CategoriaDAO {
             e.printStackTrace();
         }
 
-        return c;
-    }
-
-    private Categoria readByNome(Categoria c) {
-        try {
-            Connection conexao = Conexao.conectar();
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-
-            stmt = conexao.prepareStatement("SELECT * FROM categoria WHERE nome = ?");
-            stmt.setString(1, c.getNome());
-
-            rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                c.setIdCategoria(rs.getInt("idCategoria"));
-            }
-
-            rs.close();
-            stmt.close();
-            conexao.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         return c;
     }
 }

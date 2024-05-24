@@ -87,8 +87,9 @@ public class LoginController extends HttpServlet {
 
             String email = request.getParameter("email");
             String password = request.getParameter("senha");
+            // Pega os parametros email e senha
 
-            // Verificar se os campos estão vazios
+            // Verifica se os campos estão vazios
             if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
                 nextPage = "/WEB-INF/jsp/login.jsp";
                 System.out.println("NULL");
@@ -98,7 +99,7 @@ public class LoginController extends HttpServlet {
                 return;
             }
 
-            // Se o usuário e a senha forem "admin", redirecione para outra página
+            // Se o usuário e a senha forem "admin", redireciona para outra página
             if (email.equals("admin@gmail.com") && password.equals("admin")) {
                 response.sendRedirect("./CadastrarProduto"); // Substitua "outraPagina" pelo URL da página desejada
                 return;
@@ -109,13 +110,16 @@ public class LoginController extends HttpServlet {
 
             user.setEmail(email);
             user.setSenha(password);
+            //DEFINE EMAIL E SENHA COM AS STRING DE CIMA
 
             Usuario userAutenticado = valida.login(user);
-
+            
+            //SE AS INFOMAÇÕES ESTIVEREM CERTAS, REDIRECIONA PARA A PAGINA PRINCIPAL
             if (userAutenticado != null && !userAutenticado.getEmail().isEmpty()) {
                 response.sendRedirect("./home");
                 System.out.println("Home");
             } else {
+                //SE ESTIVER ERRADO FICA NA MESMA PAGINA
                 nextPage = "/WEB-INF/jsp/login.jsp";
                 System.out.println("Login");
                 request.setAttribute("errorMessage", "Email ou senha inválidos");
