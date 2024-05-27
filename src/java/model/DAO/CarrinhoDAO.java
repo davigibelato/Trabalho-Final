@@ -53,7 +53,7 @@ public class CarrinhoDAO {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement(
-                    "SELECT p.imagem AS imagem_produto, p.nome AS nome_produto, p.promocao AS promocao_produto, p.valor AS preco_produto, c.quantidade AS quantidade_pedido\n"
+                    "SELECT c.idCarrinho ,p.imagem AS imagem_produto, p.nome AS nome_produto, p.promocao AS promocao_produto, p.valor AS preco_produto, c.quantidade AS quantidade_pedido\n"
                     + "FROM carrinho c\n"
                     + "INNER JOIN produto p ON c.produto = p.idProduto\n"
                     + "WHERE c.usuario = ?;");
@@ -63,8 +63,11 @@ public class CarrinhoDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
+                
                 Carrinho carrinho = new Carrinho();
-
+                
+                carrinho.setIdCarrinho(rs.getInt("idCarrinho"));
+                
                 Blob imagemBlob = rs.getBlob("imagem_produto");
                 if (imagemBlob != null) {
                     byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
@@ -83,6 +86,7 @@ public class CarrinhoDAO {
                 carrinho.setQuantidade(quantidade);
                 carrinho.setSubProduto(subProduto);
                 carrinho.setUsuario(Usuario.getIdUsuario());
+                
 
                 carrinhos.add(carrinho);
             }
@@ -99,14 +103,14 @@ public class CarrinhoDAO {
     }
     
     
-    public void excluirProdutoUnico(Carrinho c){
+    public void excluirProdutoUnico(int idCarrinho){
         
         try{
             
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement("DELETE FROM carrinho WHERE idCarrinho = ?");
             
-            stmt.setInt(1, c.getIdCarrinho());
+            stmt.setInt(1, idCarrinho);
             
             stmt.executeUpdate();
             
@@ -118,5 +122,26 @@ public class CarrinhoDAO {
         }
         
     }
+    
+    public void excluirTodos(int idUsuario){
+        
+        try{
+            
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("DELETE FROM carrinho WHERE usuario = ?");
+            
+            stmt.setInt(1, idUsuario);
+            
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conexao.close();
+            
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+    }
+
 
 }

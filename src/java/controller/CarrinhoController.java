@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.BEAN.Carrinho;
 import model.BEAN.Categoria;
 import model.BEAN.Produto;
+import model.BEAN.Usuario;
 import model.DAO.CarrinhoDAO;
 import model.DAO.CategoriaDAO;
 import model.DAO.ProdutoDAO;
@@ -62,6 +63,8 @@ public class CarrinhoController extends HttpServlet {
         request.setAttribute("total", total);
         
         System.out.println(total);
+        
+        request.setAttribute("idUsuario", Usuario.getIdUsuario());
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
@@ -101,6 +104,20 @@ public class CarrinhoController extends HttpServlet {
 
             int idCarrinho = Integer.parseInt(request.getParameter("idCarrinho"));          
             System.out.println("ID do Carrinho"+idCarrinho);
+            
+            CarrinhoDAO cd = new CarrinhoDAO();
+            cd.excluirProdutoUnico(idCarrinho);
+            
+            response.sendRedirect("./carrinho");
+            
+        }else if(url.equals("/excluirTodos")){
+            
+            int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+            
+            CarrinhoDAO cd = new CarrinhoDAO();
+            cd.excluirTodos(idUsuario);
+            
+            response.sendRedirect("./carrinho");
         }
     }
 

@@ -15,7 +15,13 @@
                     <div class="container-1">
                         <div class="itens-up">
                             <h2><i class="fa-solid fa-bag-shopping"></i>PRODUTOS</h2>
-                            <p><i class="fa-solid fa-trash"></i>Remover todos os itens</p>
+                            <form action="excluirTodos" method="post">
+                                <div class="excluirProduto">
+                                    <button><i class="fa-solid fa-trash"></i>Remover todos os itens</button>
+                                    <input type="hidden" name="idUsuario" id="idUsuario" value="${idUsuario}">
+                                </div>
+                            </form>
+                            
                         </div>
                         <p>Vendido e entregue por <b>Elite Tech</b></p>
                     <c:forEach items="${carrinhos}" var="carrinho">
