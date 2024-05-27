@@ -30,11 +30,8 @@ public class CarrinhoDAO {
             //FAZENDO INSERT NO CARRINHO          
 
             stmt.setInt(1, c.getProduto());
-            System.out.println(c.getProduto());
             stmt.setInt(2, c.getQuantidade());
             stmt.setInt(3, Usuario.getIdUsuario());
-            System.out.println(Usuario.getIdUsuario());
-            //PEGANDO INFORMAÇÕES E INSERINDO NO BANCO
 
             stmt.executeUpdate();
             //EXECUTANDO A AÇÃO
@@ -49,43 +46,47 @@ public class CarrinhoDAO {
         }
     }
 
-    public List<Carrinho> visualizarCarrinho() {
+    public List<Carrinho> visualizarCarrinho() {   
+        
         List<Carrinho> carrinhos = new ArrayList<>();
 
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement(
-                    "SELECT p.imagem AS imagem_produto ,p.nome AS nome_produto, p.promocao AS promocao_produto, p.valor AS preco_produto, c.quantidade AS quantidade_pedido\n"
+                    "SELECT p.imagem AS imagem_produto, p.nome AS nome_produto, p.promocao AS promocao_produto, p.valor AS preco_produto, c.quantidade AS quantidade_pedido\n"
                     + "FROM carrinho c\n"
                     + "INNER JOIN produto p ON c.produto = p.idProduto\n"
                     + "WHERE c.usuario = ?;");
-            
-            //PEGA AS INFORMAÇÕES NESSESÁRIAS PARA SER MOSTRADAS NA PÁGINA DE CARRINHO
-            
+
             stmt.setInt(1, Usuario.getIdUsuario());
-            //PEGA AS INFOS COM BASE NO ID DO USUARIO, FAZENDO ASSIM QUE UM CARRINHO FIQUE SOMENTE PARA ELE
 
             ResultSet rs = stmt.executeQuery();
-            //EXECUTA O SELECT
 
             while (rs.next()) {
-                
-                Carrinho carrinho = new Carrinho();   
+                Carrinho carrinho = new Carrinho();
+
                 Blob imagemBlob = rs.getBlob("imagem_produto");
                 if (imagemBlob != null) {
                     byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
                     carrinho.setImagemBytes(imagemBytes);
                 }
                 carrinho.setNomeProduto(rs.getString("nome_produto"));
-                carrinho.setValorProduto(rs.getFloat("preco_produto")  - rs.getInt("promocao_produto"));
-                carrinho.setQuantidade(rs.getInt("quantidade_pedido"));
+                float precoProduto = rs.getFloat("preco_produto");
+                float promocaoProduto = rs.getFloat("promocao_produto");
+                int quantidade = rs.getInt("quantidade_pedido");
+
+                // Calculando o subtotal
+                float subProduto = (precoProduto - promocaoProduto) * quantidade;
+
+                // Definindo os valores no objeto Carrinho
+                carrinho.setValorProduto(precoProduto - promocaoProduto);
+                carrinho.setQuantidade(quantidade);
+                carrinho.setSubProduto(subProduto);
                 carrinho.setUsuario(Usuario.getIdUsuario());
-                //PEGA IMAGEM, NOME DO PRODUTO, PREÇO DO PRODUTO, QUANTIDADE E O ID DO USUARIO             
+
                 carrinhos.add(carrinho);
-                //ADICIONA A LISTA AO CARRINHO
             }
 
-            //FECHA OS TERMOS
             rs.close();
             stmt.close();
             conexao.close();
@@ -95,6 +96,27 @@ public class CarrinhoDAO {
         }
 
         return carrinhos;
+    }
+    
+    
+    public void excluirProdutoUnico(Carrinho c){
+        
+        try{
+            
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("DELETE FROM carrinho WHERE idCarrinho = ?");
+            
+            stmt.setInt(1, c.getIdCarrinho());
+            
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conexao.close();
+            
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
     }
 
 }

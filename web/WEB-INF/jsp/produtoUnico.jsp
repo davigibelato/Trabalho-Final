@@ -32,10 +32,6 @@
                                 <td><b>Quantidade</b></td>
                                 <td align="right"><input type="number" id="quantidade" name="quantidade"></td>
                             </tr>
-                            <tr>
-                                <td><b>Sub Total</b></td>
-                                <td align="right"><input type="number" id="segundo"></td>
-                            </tr>
                         </table>
                         <input type="hidden" name="idProduto" id="idProduto" value="${produto.idProduto}">
                         <h4>Especificações</h4>

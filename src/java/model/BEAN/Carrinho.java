@@ -14,6 +14,8 @@ public class Carrinho {
    private int usuario;
    private int produto;
    private int quantidade;
+   private float subProduto;
+   private float subTotal;
    private String nomeProduto;
    private Float valorProduto;
    private byte[] imagemBytes;
@@ -22,11 +24,13 @@ public class Carrinho {
     public Carrinho() {
     }
 
-    public Carrinho(int idCarrinho, int usuario, int produto, int quantidade, String nomeProduto, Float valorProduto, byte[] imagemBytes, String imagemBase64) {
+    public Carrinho(int idCarrinho, int usuario, int produto, int quantidade, float subProduto, float subTotal, String nomeProduto, Float valorProduto, byte[] imagemBytes, String imagemBase64) {
         this.idCarrinho = idCarrinho;
         this.usuario = usuario;
         this.produto = produto;
         this.quantidade = quantidade;
+        this.subProduto = subProduto;
+        this.subTotal = subTotal;
         this.nomeProduto = nomeProduto;
         this.valorProduto = valorProduto;
         this.imagemBytes = imagemBytes;
@@ -65,6 +69,22 @@ public class Carrinho {
         this.quantidade = quantidade;
     }
 
+    public float getSubProduto() {
+        return subProduto;
+    }
+
+    public void setSubProduto(float subProduto) {
+        this.subProduto = subProduto;
+    }
+
+    public float getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(float subTotal) {
+        this.subTotal = subTotal;
+    }
+
     public String getNomeProduto() {
         return nomeProduto;
     }
@@ -96,6 +116,7 @@ public class Carrinho {
     public void setImagemBase64(String imagemBase64) {
         this.imagemBase64 = imagemBase64;
     }
-
-    
+   
+   
+   
 }

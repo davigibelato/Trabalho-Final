@@ -41,7 +41,7 @@ public class CarrinhoController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String url = "/WEB-INF/jsp/carrinho.jsp";
-        
+
         CarrinhoDAO cd = new CarrinhoDAO();
         List<Carrinho> carrinho = cd.visualizarCarrinho();
         for (int i = 0; i < carrinho.size(); i++) {
@@ -50,8 +50,19 @@ public class CarrinhoController extends HttpServlet {
                 carrinho.get(i).setImagemBase64(imagemBase64);
             }
         }
+
         request.setAttribute("carrinhos", carrinho);
+
+        float total = 0;
+
+        for (Carrinho c : carrinho) {
+            total += c.getSubProduto();          
+        }
         
+        request.setAttribute("total", total);
+        
+        System.out.println(total);
+
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
 
@@ -83,7 +94,14 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String url = request.getServletPath();
+        
+        if(url.equals("/excluirProdutoUnico")){
+
+            int idCarrinho = Integer.parseInt(request.getParameter("idCarrinho"));          
+            System.out.println("ID do Carrinho"+idCarrinho);
+        }
     }
 
     /**
