@@ -118,6 +118,34 @@ public class CarrinhoController extends HttpServlet {
             cd.excluirTodos(idUsuario);
             
             response.sendRedirect("./carrinho");
+            
+        }else if(url.equals("/aumentarQTD")){
+            
+            int idCarrinho = Integer.parseInt(request.getParameter("idCarrinho"));
+            int qtd = Integer.parseInt(request.getParameter("quantidade"));
+            
+            CarrinhoDAO cdd = new CarrinhoDAO();
+            cdd.mudarQuantidade(qtd, idCarrinho);
+            
+            response.sendRedirect("./carrinho");
+            
+        }else if(url.equals("/diminuirQTD")){
+            
+            int idCarrinho = Integer.parseInt(request.getParameter("idCarrinho"));
+            int qtd = Integer.parseInt(request.getParameter("quantidade"));
+            
+            CarrinhoDAO cdd = new CarrinhoDAO();
+            
+            if(qtd <= 0){
+                
+                cdd.excluirProdutoUnico(idCarrinho);
+                response.sendRedirect("./carrinho");
+                
+            }else{
+                cdd.mudarQuantidade(qtd, idCarrinho);
+                response.sendRedirect("./carrinho");
+            }
+            
         }
     }
 

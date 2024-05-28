@@ -46,8 +46,8 @@ public class CarrinhoDAO {
         }
     }
 
-    public List<Carrinho> visualizarCarrinho() {   
-        
+    public List<Carrinho> visualizarCarrinho() {
+
         List<Carrinho> carrinhos = new ArrayList<>();
 
         try {
@@ -63,11 +63,11 @@ public class CarrinhoDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                
+
                 Carrinho carrinho = new Carrinho();
-                
+
                 carrinho.setIdCarrinho(rs.getInt("idCarrinho"));
-                
+
                 Blob imagemBlob = rs.getBlob("imagem_produto");
                 if (imagemBlob != null) {
                     byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
@@ -86,7 +86,6 @@ public class CarrinhoDAO {
                 carrinho.setQuantidade(quantidade);
                 carrinho.setSubProduto(subProduto);
                 carrinho.setUsuario(Usuario.getIdUsuario());
-                
 
                 carrinhos.add(carrinho);
             }
@@ -101,47 +100,66 @@ public class CarrinhoDAO {
 
         return carrinhos;
     }
-    
-    
-    public void excluirProdutoUnico(int idCarrinho){
-        
-        try{
-            
+
+    public void excluirProdutoUnico(int idCarrinho) {
+
+        try {
+
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement("DELETE FROM carrinho WHERE idCarrinho = ?");
-            
+
             stmt.setInt(1, idCarrinho);
-            
+
             stmt.executeUpdate();
-            
+
             stmt.close();
             conexao.close();
-            
-        }catch(SQLException e){
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-    }
-    
-    public void excluirTodos(int idUsuario){
-        
-        try{
-            
-            Connection conexao = Conexao.conectar();
-            PreparedStatement stmt = conexao.prepareStatement("DELETE FROM carrinho WHERE usuario = ?");
-            
-            stmt.setInt(1, idUsuario);
-            
-            stmt.executeUpdate();
-            
-            stmt.close();
-            conexao.close();
-            
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        
+
     }
 
+    public void excluirTodos(int idUsuario) {
+
+        try {
+
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("DELETE FROM carrinho WHERE usuario = ?");
+
+            stmt.setInt(1, idUsuario);
+
+            stmt.executeUpdate();
+
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void mudarQuantidade(int quantidade, int idCarrinho) {
+
+        try {
+
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("UPDATE carrinho SET quantidade = ? WHERE idCarrinho = ?");
+            
+            stmt.setInt(1, quantidade);
+            stmt.setInt(2, idCarrinho);
+            
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conexao.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }

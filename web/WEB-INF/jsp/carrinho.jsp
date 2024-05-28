@@ -19,11 +19,11 @@
                                 <div class="excluirProduto">
                                     <button><i class="fa-solid fa-trash"></i>Remover todos os itens</button>
                                     <input type="hidden" name="idUsuario" id="idUsuario" value="${idUsuario}">
-                                </div>
-                            </form>
-                            
-                        </div>
-                        <p>Vendido e entregue por <b>Elite Tech</b></p>
+                            </div>
+                        </form>
+
+                    </div>
+                    <p>Vendido e entregue por <b>Elite Tech</b></p>
                     <c:forEach items="${carrinhos}" var="carrinho">
                         <div class="itens-center">
                             <div class="teste">
@@ -41,9 +41,17 @@
                                 <div class="quantidade">
                                     <p>Quant</p> 
                                     <div class="mais-ou-menos">
-                                        <button class="btns">+</button>
+                                        <form action="aumentarQTD" method="post">
+                                            <button class="btns">+</button>
+                                            <input type="hidden" name="idCarrinho" id="idCarrinho" value="${carrinho.idCarrinho}">
+                                            <input type="hidden" name="quantidade" id="quantidade" value="${carrinho.quantidade + 1}">
+                                        </form>    
                                         <p class="number">${carrinho.quantidade}</p>
-                                        <button class="btns">-</button>
+                                        <form action="diminuirQTD" method="post">
+                                            <button class="btns">-</button>
+                                            <input type="hidden" name="idCarrinho" id="idCarrinho" value="${carrinho.idCarrinho}">
+                                            <input type="hidden" name="quantidade" id="quantidade" value="${carrinho.quantidade - 1}">
+                                        </form>    
                                     </div>
                                 </div>
                                 <div class="subtotal">
