@@ -10,90 +10,95 @@ body{
 }
 
 .container-global{
-    height: 100%;
-    width: 100%;
-    border: 1px solid;
-}
-
-
-.container-left {
+    margin-top: 10%;
     display: flex;
-    justify-content: center;
-    width: 70%;
-    margin: 20px;
-    flex-direction: column;
-    align-items: baseline;
-}
-
-.entrega{
-    border-radius: 10px;
-    display: flex;
-    width: 89%;
-    border: 1px solid;
-    margin: 10px;
-}
-
-.text{
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
-}
-
-.icon-en{
-    display: flex;
-    background-color: #FF784E;
     align-items: center;
     justify-content: center;
-    padding: 10px;
-    border-radius: 10px;
+    gap: 30px;
+    margin-bottom: 10%;
 }
 
-.icon-en i{
-    font-size: 40px;
+.container-left{
+    display: flex;
+    flex-direction: column;
+}
+
+.entrega {
+    display: flex;
+    margin-top: 5%;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 110px;
+}
+
+.container-check {
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    background-color: #ff6900;
+}
+
+.text-entrega {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.preco-entrega{
+    margin-left: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.icon{
     color: white;
+    padding: 10px;
 }
 
-.preco {
+.box-inputs {
+    margin-top: 10%;
     display: flex;
-    width: 80%;
-    margin-left: 20px;
-    margin-right: 20px;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.inputs{
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    width: 90%;
+    flex-direction: column;
 }
 
-.normais{
+.inputs-1{
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
-    gap: 5px;
+    gap: 15px;
 }
 
-.normais input{
-    height: 50px;
-    border-radius: 2px;
+.inputs-2{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
 
-.input-entrega{
-    border-radius: 10px;
+.inputs-1 input, .inputs-2 input{
+    height: 40px;
+}
+
+.button {
     display: flex;
-    width: 97%;
-    border: 1px solid;
-    margin: 10px;
+    align-items: center;
+    margin-top: 5%;
+    justify-content: center;
 }
 
-.opcao{
-    margin: 10px;
-}
-
-.opcao input{
-    height: 50px;
+.button button{
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #ff6900;
+    color: white;
+    font-size: 18px;
+    font-weight: 400px;
 }
