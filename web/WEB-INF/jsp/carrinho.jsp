@@ -77,7 +77,10 @@
                         <input type="text" placeholder="CEP">
                         <button class="btns2">OK</button>
                     </div>
-                    <button class="btns2">Continuar Compra</button>
+                    <form action="">
+                        <button class="btns2" >Continuar Compra</button>
+                    </form>
+                    
                     <button class="btn-blue">Continuar Comprando</button>
                 </div>
             </div>

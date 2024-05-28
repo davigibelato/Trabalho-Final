@@ -309,7 +309,7 @@ public class ProdutoDAO {
     public boolean inserirProduto(Produto produto) {
         
         try (Connection conexao = Conexao.conectar();
-                PreparedStatement ps = conexao.prepareStatement("INSERT INTO produto (nome, valor, descricao, categoria, subCategoria, imagem,promocao) VALUES (?,?, ?, ?, ?, ?, ?)")) {
+                PreparedStatement ps = conexao.prepareStatement("INSERT INTO produto (nome, valor, descricao, categoria, subCategoria, imagem,promocao) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
 
             ps.setString(1, produto.getNome());
             ps.setFloat(2, produto.getValor());

@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100%;
+}
+
+.container-global{
+    height: 100%;
+    width: 100%;
+    border: 1px solid;
+}
+
+
+.container-left {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin: 20px;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.entrega{
+    border-radius: 10px;
+    display: flex;
+    width: 89%;
+    border: 1px solid;
+    margin: 10px;
+}
+
+.text{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.icon-en{
+    display: flex;
+    background-color: #FF784E;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.icon-en i{
+    font-size: 40px;
+    color: white;
+}
+
+.preco {
+    display: flex;
+    width: 80%;
+    margin-left: 20px;
+    margin-right: 20px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+}
+
+.normais{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    gap: 5px;
+}
+
+.normais input{
+    height: 50px;
+    border-radius: 2px;
+}
+
+.input-entrega{
+    border-radius: 10px;
+    display: flex;
+    width: 97%;
+    border: 1px solid;
+    margin: 10px;
+}
+
+.opcao{
+    margin: 10px;
+}
+
+.opcao input{
+    height: 50px;
+}
