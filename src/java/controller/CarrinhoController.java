@@ -57,13 +57,13 @@ public class CarrinhoController extends HttpServlet {
         float total = 0;
 
         for (Carrinho c : carrinho) {
-            total += c.getSubProduto();          
+            total += c.getSubProduto();
         }
-        
+
         request.setAttribute("total", total);
-        
+
         System.out.println(total);
-        
+
         request.setAttribute("idUsuario", Usuario.getIdUsuario());
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
@@ -97,55 +97,62 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String url = request.getServletPath();
-        
-        if(url.equals("/excluirProdutoUnico")){
 
-            int idCarrinho = Integer.parseInt(request.getParameter("idCarrinho"));          
-            System.out.println("ID do Carrinho"+idCarrinho);
-            
+        String url = request.getServletPath();
+
+        if (url.equals("/excluirProdutoUnico")) {
+
+            int idCarrinho = Integer.parseInt(request.getParameter("idCarrinho"));
+            System.out.println("ID do Carrinho" + idCarrinho);
+
             CarrinhoDAO cd = new CarrinhoDAO();
             cd.excluirProdutoUnico(idCarrinho);
-            
+
             response.sendRedirect("./carrinho");
-            
-        }else if(url.equals("/excluirTodos")){
-            
+
+        } else if (url.equals("/excluirTodos")) {
+
             int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
-            
+
             CarrinhoDAO cd = new CarrinhoDAO();
             cd.excluirTodos(idUsuario);
-            
+
             response.sendRedirect("./carrinho");
-            
-        }else if(url.equals("/aumentarQTD")){
-            
+
+        } else if (url.equals("/aumentarQTD")) {
+
             int idCarrinho = Integer.parseInt(request.getParameter("idCarrinho"));
             int qtd = Integer.parseInt(request.getParameter("quantidade"));
-            
+
             CarrinhoDAO cdd = new CarrinhoDAO();
             cdd.mudarQuantidade(qtd, idCarrinho);
-            
+
             response.sendRedirect("./carrinho");
-            
-        }else if(url.equals("/diminuirQTD")){
-            
+
+        } else if (url.equals("/diminuirQTD")) {
+
             int idCarrinho = Integer.parseInt(request.getParameter("idCarrinho"));
             int qtd = Integer.parseInt(request.getParameter("quantidade"));
-            
+
             CarrinhoDAO cdd = new CarrinhoDAO();
-            
-            if(qtd <= 0){
-                
+
+            if (qtd <= 0) {
+
                 cdd.excluirProdutoUnico(idCarrinho);
                 response.sendRedirect("./carrinho");
-                
-            }else{
+
+            } else {
                 cdd.mudarQuantidade(qtd, idCarrinho);
                 response.sendRedirect("./carrinho");
             }
+
+        } else if (url.equals("/continuarCompra")) {
+
+            url = "/WEB-INF/jsp/checkout.jsp";
             
+
+            RequestDispatcher d = getServletContext().getRequestDispatcher(url);
+            d.forward(request, response);
         }
     }
 

@@ -77,8 +77,8 @@
                         <input type="text" placeholder="CEP">
                         <button class="btns2">OK</button>
                     </div>
-                    <form action="">
-                        <button class="btns2" >Continuar Compra</button>
+                    <form action="continuarCompra" method="post">
+                        <button class="btns2" type ="submit" >Continuar Compra</button>
                     </form>
                     
                     <button class="btn-blue">Continuar Comprando</button>

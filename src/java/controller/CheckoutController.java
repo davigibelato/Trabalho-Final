@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.BEAN.Endereco;
+import model.DAO.EnderecoDAO;
 
 /**
  *
@@ -64,7 +66,36 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String url = request.getServletPath();
+        
+        if(url.equals("/inserirEndereco")){
+        
+            String estado = request.getParameter("estado");
+            String cidade = request.getParameter("cidade");
+            System.out.println(estado);
+            System.out.println(cidade);
+            
+            int cep  = Integer.parseInt(request.getParameter("cep"));
+            String nomeRua = request.getParameter("nomeRua");
+
+            int numeroCasa = Integer.parseInt(request.getParameter("numeroCasa"));
+            String complemento = request.getParameter("complemento");
+
+            Endereco e = new Endereco();        
+            e.setEstado(estado);
+            e.setCidade(cidade);
+            e.setCep(cep);
+            e.setRua(nomeRua);
+            e.setNumeroCasa(numeroCasa);
+            e.setComplemento(complemento);
+            
+            EnderecoDAO ed = new EnderecoDAO();
+            ed.inserirEndereco(e);            
+        }
+        
+        RequestDispatcher d = getServletContext().getRequestDispatcher(url);
+        d.forward(request, response);
     }
 
     /**
