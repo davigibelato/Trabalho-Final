@@ -24,7 +24,6 @@ public class EnderecoDAO {
         try{            
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement("INSERT INTO endereco (estado, cidade, cep, rua, numero, complemento) VALUES (?,?,?,?,?,?)");
-            ResultSet rs = null;
             
             stmt.setString(1, e.getEstado());
             stmt.setString(2, e.getCidade());
@@ -35,7 +34,6 @@ public class EnderecoDAO {
             
             stmt.executeUpdate();
                                     
-            rs.close();
             stmt.close();
             conexao.close();
             
