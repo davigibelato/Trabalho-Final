@@ -65,6 +65,8 @@ public class HomeController extends HttpServlet {
             }
         }
         request.setAttribute("produtosPromo", produtoPromo);
+        System.out.println("Tamanho da lista de produtosPromo: " + produtoPromo.size());
+
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);

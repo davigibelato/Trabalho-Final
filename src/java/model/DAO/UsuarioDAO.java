@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import model.BEAN.Usuario;
 
 public class UsuarioDAO {
@@ -104,5 +106,46 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public List<Usuario> getUsuarioById(int idUsuario) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Usuario usuario = null;
+        List<Usuario> usuarios = new ArrayList<>();
+        try {
+
+            conn = Conexao.conectar(); 
+            String sql = "SELECT * FROM usuario WHERE idUsuario = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idUsuario);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("idUsuario"));
+                usuario.setNome(rs.getString("nome"));
+                usuarios.add(usuario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(); 
+            }
+        }
+
+        return usuarios;
     }
 }

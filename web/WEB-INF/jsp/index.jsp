@@ -73,7 +73,17 @@
 
             <div class="back-cards">
                 <div class="cards">
-                     
+                    <c:forEach items="${produtos}" var="produto">
+                        <div class="card" style="width: 18rem;">
+                            <img src="data:image/jpeg;base64,${produto.imagemBase64}" class="card-img-top" alt="${produto.nome}">
+                            <div class="card-body">
+                              <h5 class="card-title">${produto.nome}</h5>
+                              <p class="card-text">R$ ${produto.valor}</p>
+                              <a href="./produtoUnico?id=${produto.idProduto}" id="btn-card" class="btn btn-primary">
+                                <i class="fa-solid fa-cart-shopping"></i>Comprar</a>
+                            </div>
+                          </div>
+                    </c:forEach>
                 </div>
             </div>
         </main>

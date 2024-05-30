@@ -119,7 +119,7 @@ public class ProdutoDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            String query = "SELECT * FROM produto where promocao != 0";
+            String query = "SELECT * FROM produto where promocao > 0";
 
             stmt = conexao.prepareStatement(query);
             rs = stmt.executeQuery();

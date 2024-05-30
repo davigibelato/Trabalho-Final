@@ -21,6 +21,7 @@ import model.BEAN.Usuario;
 import model.DAO.CarrinhoDAO;
 import model.DAO.CategoriaDAO;
 import model.DAO.ProdutoDAO;
+import model.DAO.UsuarioDAO;
 
 /**
  *
@@ -65,6 +66,13 @@ public class CarrinhoController extends HttpServlet {
         System.out.println(total);
 
         request.setAttribute("idUsuario", Usuario.getIdUsuario());
+        
+        if(Usuario.getIdUsuario() != 0) {
+            UsuarioDAO u = new UsuarioDAO();
+            List<Usuario> usuarios = u.getUsuarioById(2);
+            request.setAttribute("usuarios", usuarios);
+            System.out.println("Usuario Lista:"+usuarios);
+        }
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
