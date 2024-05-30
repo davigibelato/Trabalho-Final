@@ -7,19 +7,24 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Base64;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.BEAN.Endereco;
-import model.DAO.EnderecoDAO;
+import model.BEAN.Carrinho;
+import model.BEAN.Produto;
+import model.BEAN.Usuario;
+import model.DAO.CarrinhoDAO;
+import model.DAO.ProdutoDAO;
 
 /**
  *
  * @author Senai
  */
-public class CheckoutController extends HttpServlet {
+public class FormaDePagamentoController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,22 +38,25 @@ public class CheckoutController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        String url = "/WEB-INF/jsp/formaDePagamento.jsp";
+
+        CarrinhoDAO cd = new CarrinhoDAO();
+        List<Carrinho> carrinho = cd.visualizarCarrinho();
         
-        String url = "/WEB-INF/jsp/checkout.jsp";
-        
+        for (int i = 0; i < carrinho.size(); i++) {
+            if (carrinho.get(i).getImagemBytes() != null) {
+                String imagemBase64 = Base64.getEncoder().encodeToString(carrinho.get(i).getImagemBytes());
+                carrinho.get(i).setImagemBase64(imagemBase64);
+            }
+        }
+
+        request.setAttribute("carrinhos", carrinho);
+
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -66,34 +74,7 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String url = request.getServletPath();
-        
-        if(url.equals("/inserirEndereco")){
-        
-            String estado = request.getParameter("estado");
-            String cidade = request.getParameter("cidade");
-            System.out.println(estado);
-            System.out.println(cidade);
-            
-            int cep  = Integer.parseInt(request.getParameter("cep"));
-            String nomeRua = request.getParameter("nomeRua");
-
-            int numeroCasa = Integer.parseInt(request.getParameter("numeroCasa"));
-            String complemento = request.getParameter("complemento");
-
-            Endereco e = new Endereco();        
-            e.setEstado(estado);
-            e.setCidade(cidade);
-            e.setCep(cep);
-            e.setRua(nomeRua);
-            e.setNumeroCasa(numeroCasa);
-            e.setComplemento(complemento);
-            
-            EnderecoDAO ed = new EnderecoDAO();
-            ed.inserirEndereco(e);        
-           response.sendRedirect( "./formaDePagamento");
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -11,6 +11,7 @@ package model.BEAN;
  */
 public class Endereco {
     private int idEndereço;
+    private static int idEndereçoAtual;
     private String estado;
     private String cidade;
     private int cep;
@@ -31,6 +32,15 @@ public class Endereco {
         this.complemento = complemento;
     }
 
+    public static int getIdEndereçoAtual() {
+        return idEndereçoAtual;
+    }
+
+    public static void setIdEndereçoAtual(int idEndereçoAtual) {
+        Endereco.idEndereçoAtual = idEndereçoAtual;
+    }
+
+    
     public int getIdEndereço() {
         return idEndereço;
     }
