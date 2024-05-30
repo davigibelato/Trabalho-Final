@@ -52,13 +52,11 @@ body{
 }
 
 .box-left{
-    box-shadow: 1px 1px 5px 6px rgba(0,0,0,0.21);
     margin-right: 10%;
     display: flex;
     width: 40%;
     flex-direction: column;
     border-radius: 10px;
-    padding: 20px;
 }
 
 .itens{
@@ -102,6 +100,16 @@ body{
     flex-direction: column;
 }
 
+.itens{
+    margin: 0;
+    padding: 0;
+}
+
+.itens i{
+    align-items: center;
+    justify-content: center;
+}
+
 .low-infos{
     margin-left: 10px;
 }
@@ -134,15 +142,22 @@ body{
 }
 
 .cartao{
+    margin-top: 10%;
     padding: 20px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-left: 19%;
-    width: 38%;
+    width: 100%;
     border-radius: 10px;
     box-shadow: 1px 1px 5px 6px rgba(0, 0, 0, 0.21);
 }
+
+.teste {
+    padding: 10px;
+    box-shadow: 1px 1px 5px 6px rgba(0, 0, 0, 0.21);
+    border-radius: 10px;
+}
+
 
 .box-geral{
     display: flex;
@@ -162,4 +177,8 @@ body{
 
 .cartao .infos-cartao .box-credit p{
     margin-top: 20px;
+}
+
+.box-credit i{
+    color: #ff6900;
 }

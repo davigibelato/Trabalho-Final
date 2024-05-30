@@ -21,45 +21,57 @@
                 <div class="box-geral">
                     <div class="box-global">
                         <div class="box-left">
-                            <div class="itens">
-                                <div class="icon">
-                                    <i class="fa-solid fa-envelope"></i>
-                                </div>                        
-                                <p>Email</p>
-                            </div>
-                            <div class="itens">
-                                <div class="icon">
-                                    <i class="fa-solid fa-user"></i>
-                                </div>                        
-                                <p>Nome do Usuario</p>
-                            </div>
-                            <div class="itens">                        
-                                <div class="icon">
-                                    <i class="fa-solid fa-house"></i>
-                                </div>                        
-                                <p>Endereço</p>
-                            </div>
-                            <div class="itens">
-                                <div class="icon">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>                        
-                                <p>Cep</p>
-                            </div>
-                            <div class="itens">
-                                <div class="icon">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>                        
-                                <p>Telefone</p>
-                            </div>
-                            <div class="itens">
-                                <div class="icon">
-                                    <i class="fa-solid fa-truck-fast"></i>                            
+                            <div class="teste">
+                                <div class="itens">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>                        
+                                    <p>Email</p>
                                 </div>
-                                <p>Chega entre 1 e 15 dias</p>
+                                <div class="itens">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>                        
+                                    <p>Nome do Usuario</p>
+                                </div>
+                                <div class="itens">                        
+                                    <div class="icon">
+                                        <i class="fa-solid fa-house"></i>
+                                    </div>                        
+                                    <p>Endereço</p>
+                                </div>
+                                <div class="itens">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>                        
+                                    <p>Cep</p>
+                                </div>
+                                <div class="itens">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>                        
+                                    <p>Telefone</p>
+                                </div>
+                                <div class="itens">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-truck-fast"></i>                            
+                                    </div>
+                                    <p>Chega entre 1 e 15 dias</p>
+                                </div>          
                             </div>
-
+                            <div class="cartao">
+                                <div class="infos-cartao">
+                                    <h3>Formas de Pagamento</h3>
+                                    <div class="box-credit">
+                                        <div class="icon">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </div>                            
+                                        <p>Cartão de Credito</p>
+                                    </div>  
+                                </div>                                              
+                            </div>                                          
                         </div>
-                        <div class="box-right">
+                        <div class="box-right">                                            
                             <div class="infos-container">
                                 <div class="infos">
                                 <c:forEach items="${carrinhos}" var="carrinho">
@@ -75,7 +87,6 @@
                                     </div>
                                 </c:forEach>
                             </div>
-
                         </div>
 
                         <div class="low-infos">
@@ -84,20 +95,9 @@
                         </div>
                         <div class="box-btn">
                             <button>Fazer Pedido</button>
-                        </div>
-                    </div>                
-                </div>
-                <div class="cartao">
-                    <div class="infos-cartao">
-                        <h3>Formas de Pagamento</h3>
-                        <div class="box-credit">
-                            <div class="icon">
-                                <i class="fa-solid fa-credit-card"></i>
-                            </div>                            
-                            <p>Cartão de Credito</p>
-                        </div>  
-                    </div>                                              
-                </div>
+                        </div>                    
+                    </div>                      
+                </div>                
             </div>            
         </main>
 
