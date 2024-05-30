@@ -1,4 +1,3 @@
-<%-- Document : produtoUnico Created on : 06/05/2024, 14:07:11 Author : Senai --%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,12 +19,18 @@
                     </div>
                 </div>
 
-
                 <div class="detalhes-box">
-
                     <h1>${produto.nome}</h1>  <span>${produto.idProduto}</span>
                     <p>Avaliação (Em estoque)</p>
-                    <h2>R$ ${produto.valor}</h2>
+                    <c:choose>
+                        <c:when test="${produto.promocao > 0}">
+                            <h2>R$ ${produto.valor - produto.promocao}</h2>
+                            <p class="text-muted"><del>R$ ${produto.valor}</del></p>
+                        </c:when>
+                        <c:otherwise>
+                            <h2>R$ ${produto.valor}</h2>
+                        </c:otherwise>
+                    </c:choose>
                     <form action="inserir" method="post">
                         <table cellspacing="0" class="inputs">
                             <tr>
@@ -40,8 +45,6 @@
                         <button type="submit">Adicionar ao Carrinho</button>
                     </form>                   
                 </div>
-
-
             </div>
         </main>
         <jsp:include page="footer.jsp"></jsp:include> 

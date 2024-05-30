@@ -69,7 +69,8 @@
                                         </div>
                                         <div class="text">
                                             <p>${carrinho.nomeProduto}</p>
-                                            <p>R$: ${carrinho.valorProduto}</p>
+                                            <p>Quantidade: ${carrinho.quantidade}</p>
+                                            <p>R$: ${carrinho.subProduto}</p>
                                         </div>                                
                                     </div>
                                 </c:forEach>

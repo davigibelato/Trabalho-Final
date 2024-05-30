@@ -330,38 +330,36 @@ public class ProdutoDAO {
     }
 
     public Produto readById(int id) {
-        
-        Produto p = null;
-        
-        try (Connection conexao = Conexao.conectar();
-                PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM produto WHERE idProduto = ?")) {
+    Produto p = null;
 
-            stmt.setInt(1, id);
-            
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    
-                    p = new Produto();
-                    
-                    p.setIdProduto(rs.getInt("idProduto"));
-                    p.setNome(rs.getString("nome"));
-                    p.setValor(rs.getFloat("valor"));
-                    p.setDescricao(rs.getString("descricao"));                   
-                    p.setCategoria(rs.getInt("categoria"));
-                    p.setSubCategoria(rs.getInt("subCategoria"));
-                    
-                    Blob imagemBlob = rs.getBlob("imagem");
-                    if (imagemBlob != null) {
-                        byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
-                        p.setImagemBytes(imagemBytes);
-                    }
+    try (Connection conexao = Conexao.conectar();
+         PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM produto WHERE idProduto = ?")) {
+
+        stmt.setInt(1, id);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                p = new Produto();
+                p.setIdProduto(rs.getInt("idProduto"));
+                p.setNome(rs.getString("nome"));
+                p.setValor(rs.getFloat("valor"));
+                p.setPromocao(rs.getFloat("promocao")); // Adicionar esta linha para pegar o valor da promoção
+                p.setDescricao(rs.getString("descricao"));
+                p.setCategoria(rs.getInt("categoria"));
+                p.setSubCategoria(rs.getInt("subCategoria"));
+                
+                Blob imagemBlob = rs.getBlob("imagem");
+                if (imagemBlob != null) {
+                    byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
+                    p.setImagemBytes(imagemBytes);
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-        return p;
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    return p;
+}
+
 
     public List<Produto> buscarProdutos(String busca) {
         

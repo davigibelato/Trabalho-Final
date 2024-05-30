@@ -44,23 +44,19 @@ public class ProdutoController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
 
         Produto produto = dao.readById(id);
-        request.setAttribute("produto", produto);
-
-        String imagemBase64 = null; // Defina como null por padrão
-        if (produto.getImagemBytes() != null) {
-            imagemBase64 = Base64.getEncoder().encodeToString(produto.getImagemBytes());
-        }
-        produto.setImagemBase64(imagemBase64);
         
-        CategoriaDAO cat = new CategoriaDAO();
-        List<Categoria> categoria = cat.listarTodos();
-        request.setAttribute("categorias", categoria);
+        if (produto.getImagemBytes() != null) {
+            String imagemBase64 = Base64.getEncoder().encodeToString(produto.getImagemBytes());
+            produto.setImagemBase64(imagemBase64);
+        }
+
+        // Adicione o produto na requisição
+        request.setAttribute("produto", produto);
 
         String url = "/WEB-INF/jsp/produtoUnico.jsp";
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
