@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import model.BEAN.Endereco;
+import model.BEAN.Usuario;
 
 /**
  *
@@ -21,7 +22,7 @@ import model.BEAN.Endereco;
 public class EnderecoDAO {
 
     public boolean inserirEndereco(Endereco e) {
-        String sql = "INSERT INTO endereco (estado, cidade, cep, rua, numero, complemento) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO endereco (estado, cidade, cep, rua, numero, complemento,usuario) VALUES (?,?,?,?,?,?,?)";
 
         try (Connection conexao = Conexao.conectar();
                 PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -32,7 +33,8 @@ public class EnderecoDAO {
             stmt.setString(4, e.getRua());
             stmt.setInt(5, e.getNumeroCasa());
             stmt.setString(6, e.getComplemento());
-
+            stmt.setInt(7, e.getUsuario());
+            
             int aR = stmt.executeUpdate();
 
             //Verifica se tem algum insert no banco
@@ -47,7 +49,8 @@ public class EnderecoDAO {
                         int id = pegarChave.getInt(1);
 
                         // Define o ID atual do endereço usando o valor obtido.
-                        Endereco.setIdEndereçoAtual(id);
+                        Endereco.setIdEnderecoAtual(id);
+                        System.out.println("Id do endereço: "+id);
                     }
                 }
             }
@@ -58,6 +61,37 @@ public class EnderecoDAO {
             ed.printStackTrace();
             return false;
         }
+    }
+    
+    public Endereco mostrarCheckout(){
+        
+        Endereco e = new Endereco();        
+        
+        try{
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("SELECT rua, cep, idEndereco FROM endereco WHERE usuario = ?");
+            ResultSet rs = null;
+            
+            stmt.setInt(1, Usuario.getIdUsuario());
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                e.setRua(rs.getString("rua"));
+                e.setCep(rs.getInt("cep"));
+                Endereco.setIdEnderecoAtual(rs.getInt("idEndereco"));
+            }
+            
+            rs.close();
+            stmt.close();
+            conexao.close();           
+            
+            }catch(SQLException ed){
+                ed.printStackTrace();
+            
+        }
+        
+        return e;
     }
 
 }

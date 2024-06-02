@@ -1,9 +1,3 @@
-<%-- 
-    Document   : formaDePagamento
-    Created on : 29/05/2024, 14:08:38
-    Author     : Senai
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,65 +13,65 @@
 
             <main>
                 <div class="box-geral">
-                    <div class="box-global">
+                    <div class="box-global">                        
                         <div class="box-left">
                             <div class="teste">
                                 <div class="itens">
                                     <div class="icon">
                                         <i class="fa-solid fa-envelope"></i>
                                     </div>                        
-                                    <p>Email</p>
-                                </div>
-                                <div class="itens">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-user"></i>
-                                    </div>                        
-                                    <p>Nome do Usuario</p>
-                                </div>
-                                <div class="itens">                        
-                                    <div class="icon">
-                                        <i class="fa-solid fa-house"></i>
-                                    </div>                        
-                                    <p>Endereço</p>
-                                </div>
-                                <div class="itens">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-location-dot"></i>
-                                    </div>                        
-                                    <p>Cep</p>
-                                </div>
-                                <div class="itens">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-phone"></i>
-                                    </div>                        
-                                    <p>Telefone</p>
-                                </div>
-                                <div class="itens">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-truck-fast"></i>                            
-                                    </div>
-                                    <p>Chega entre 1 e 15 dias</p>
-                                </div>          
+                                    <p>Email: <span>${usuario.email}</span></p>
                             </div>
-                            <div class="cartao">
-                                <div class="infos-cartao">
-                                    <h3>Formas de Pagamento</h3>
-                                    <div class="box-credit">
-                                        <div class="icon">
-                                            <i class="fa-solid fa-credit-card"></i>
-                                        </div>                            
-                                        <p>Cartão de Credito</p>
-                                    </div>  
-                                </div>                                              
-                            </div>                                          
+                            <div class="itens">
+                                <div class="icon">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>                        
+                                <p>Nome: <span>${usuario.nome}</span></p>
+                            </div>
+                            <div class="itens">                        
+                                <div class="icon">
+                                    <i class="fa-solid fa-house"></i>
+                                </div>                        
+                                <p>Endereço: <span>${endereco.rua}</span></p>
+                            </div>
+                            <div class="itens">
+                                <div class="icon">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>                        
+                                <p>Cep: <span>${endereco.cep}</span></p>
+                            </div>
+                            <div class="itens">
+                                <div class="icon">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>                        
+                                <p>Telefone: <span>${usuario.telefone}</span></p>
+                            </div>
+                            <div class="itens">
+                                <div class="icon">
+                                    <i class="fa-solid fa-truck-fast"></i>                            
+                                </div>
+                                <p>Chega entre 1 e 15 dias</p>
+                            </div>          
                         </div>
-                        <div class="box-right">                                            
-                            <div class="infos-container">
-                                <div class="infos">
+                        <div class="cartao">
+                            <div class="infos-cartao">
+                                <h3>Formas de Pagamento</h3>
+                                <div class="box-credit">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                    </div>                            
+                                    <p>Cartão de Crédito</p>
+                                </div>  
+                            </div>                                              
+                        </div>                                          
+                    </div>
+                    <div class="box-right">                                            
+                        <div class="infos-container">
+                            <div class="infos">
                                 <c:forEach items="${carrinhos}" var="carrinho">
                                     <div class="top-infos">
                                         <div class="box-img">
-                                             <img src="data:image/jpeg;base64,${carrinho.imagemBase64}" class="card-img-top" alt="${carrinho.nomeProduto}">
+                                            <img src="data:image/jpeg;base64,${carrinho.imagemBase64}" class="card-img-top" alt="${carrinho.nomeProduto}">
                                         </div>
                                         <div class="text">
                                             <p>${carrinho.nomeProduto}</p>
@@ -91,11 +85,13 @@
 
                         <div class="low-infos">
                             <p>Frete: R$</p>
-                            <p class="laranja">Total: </p>
+                            <p class="laranja">Total: ${total}</p>
                         </div>
-                        <div class="box-btn">
-                            <button>Fazer Pedido</button>
-                        </div>                    
+                        <form action="fazerPedido" method="post">
+                            <div class="box-btn">
+                                <button type="submit">Fazer Pedido</button>
+                            </div>
+                        </form>                                            
                     </div>                      
                 </div>                
             </div>            

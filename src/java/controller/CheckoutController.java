@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.BEAN.Endereco;
+import model.BEAN.Usuario;
 import model.DAO.EnderecoDAO;
 
 /**
@@ -35,6 +36,8 @@ public class CheckoutController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String url = "/WEB-INF/jsp/checkout.jsp";
+        
+        request.setAttribute("idUsuario", Usuario.getIdUsuario());
         
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
@@ -78,7 +81,9 @@ public class CheckoutController extends HttpServlet {
             
             int cep  = Integer.parseInt(request.getParameter("cep"));
             String nomeRua = request.getParameter("nomeRua");
-
+            
+            int idUsuario = Usuario.getIdUsuario();
+            
             int numeroCasa = Integer.parseInt(request.getParameter("numeroCasa"));
             String complemento = request.getParameter("complemento");
 
@@ -89,6 +94,7 @@ public class CheckoutController extends HttpServlet {
             e.setRua(nomeRua);
             e.setNumeroCasa(numeroCasa);
             e.setComplemento(complemento);
+            e.setUsuario(idUsuario);
             
             EnderecoDAO ed = new EnderecoDAO();
             ed.inserirEndereco(e);        

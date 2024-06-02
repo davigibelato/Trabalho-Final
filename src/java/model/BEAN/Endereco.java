@@ -1,52 +1,44 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.BEAN;
 
-/**
- *
- * @author Davi
- */
 public class Endereco {
-    private int idEndereço;
-    private static int idEndereçoAtual;
+    private int idEndereco;  // Corrigido para evitar caracteres especiais
+    private static int idEnderecoAtual;  // Corrigido para evitar caracteres especiais
     private String estado;
     private String cidade;
     private int cep;
     private String rua;
     private int numeroCasa;
     private String complemento;
+    private int usuario;
 
     public Endereco() {
     }
 
-    public Endereco(int idEndereço, String estado, String cidade, int cep, String rua, int numeroCasa, String complemento) {
-        this.idEndereço = idEndereço;
+    public Endereco(int idEndereco, String estado, String cidade, int cep, String rua, int numeroCasa, String complemento, int usuario) {
+        this.idEndereco = idEndereco;
         this.estado = estado;
         this.cidade = cidade;
         this.cep = cep;
         this.rua = rua;
         this.numeroCasa = numeroCasa;
         this.complemento = complemento;
+        this.usuario = usuario;
     }
 
-    public static int getIdEndereçoAtual() {
-        return idEndereçoAtual;
+    public int getIdEndereco() {
+        return idEndereco;
     }
 
-    public static void setIdEndereçoAtual(int idEndereçoAtual) {
-        Endereco.idEndereçoAtual = idEndereçoAtual;
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
-    
-    public int getIdEndereço() {
-        return idEndereço;
+    public static int getIdEnderecoAtual() {
+        return idEnderecoAtual;
     }
 
-    public void setIdEndereço(int idEndereço) {
-        this.idEndereço = idEndereço;
+    public static void setIdEnderecoAtual(int idEnderecoAtual) {
+        Endereco.idEnderecoAtual = idEnderecoAtual;
     }
 
     public String getEstado() {
@@ -96,6 +88,12 @@ public class Endereco {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-    
-    
+
+    public int getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
+    }
 }

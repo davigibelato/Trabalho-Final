@@ -109,10 +109,12 @@ public class UsuarioDAO {
     }
     
     public List<Usuario> getUsuarioById(int idUsuario) {
+        
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Usuario usuario = null;
+        
         List<Usuario> usuarios = new ArrayList<>();
         try {
 
@@ -147,5 +149,39 @@ public class UsuarioDAO {
         }
 
         return usuarios;
+    }
+    
+    
+    public Usuario pushCheckout(){    
+        
+        Usuario u = new Usuario();
+        
+        try{            
+            
+            
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("SELECT email, nome, telefone FROM usuario WHERE idUsuario = ?");
+            ResultSet rs = null;
+            
+            stmt.setInt(1, Usuario.getIdUsuario());
+            
+            rs=stmt.executeQuery();
+            
+            while(rs.next()){                
+                u.setEmail(rs.getString("email"));
+                u.setNome(rs.getString("nome"));
+                u.setTelefone(rs.getString("telefone"));           
+            }
+            
+            rs.close();
+            stmt.close();
+            conexao.close();
+
+        }catch(SQLException e){      
+            
+            e.printStackTrace();
+        }
+        
+        return u;
     }
 }

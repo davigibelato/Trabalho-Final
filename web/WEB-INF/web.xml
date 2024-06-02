@@ -136,6 +136,10 @@
         <servlet-name>FormaDePagamentoController</servlet-name>
         <url-pattern>/formaDePagamento</url-pattern>
     </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>FormaDePagamentoController</servlet-name>
+        <url-pattern>/fazerPedido</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

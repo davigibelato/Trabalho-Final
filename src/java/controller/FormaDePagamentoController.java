@@ -15,17 +15,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.BEAN.Carrinho;
+import model.BEAN.Endereco;
+import model.BEAN.Pedido;
 import model.BEAN.Produto;
 import model.BEAN.Usuario;
 import model.DAO.CarrinhoDAO;
+import model.DAO.EnderecoDAO;
+import model.DAO.PedidoDAO;
 import model.DAO.ProdutoDAO;
+import model.DAO.UsuarioDAO;
 
 /**
  *
  * @author Senai
  */
 public class FormaDePagamentoController extends HttpServlet {
-
+    
+    float total = 0;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,9 +56,27 @@ public class FormaDePagamentoController extends HttpServlet {
                 String imagemBase64 = Base64.getEncoder().encodeToString(carrinho.get(i).getImagemBytes());
                 carrinho.get(i).setImagemBase64(imagemBase64);
             }
-        }
+        }        
 
         request.setAttribute("carrinhos", carrinho);
+        
+        
+        UsuarioDAO ud = new UsuarioDAO();
+        Usuario u = ud.pushCheckout();
+        request.setAttribute("usuario", u);
+        
+        EnderecoDAO ed = new EnderecoDAO();
+        Endereco e = ed.mostrarCheckout();
+        request.setAttribute("endereco", e);
+        
+        Pedido p = new Pedido();       
+        
+        for (Carrinho c : carrinho) {
+            total += c.getSubProduto();
+        }        
+        
+
+        request.setAttribute("total", total);
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
@@ -75,13 +100,30 @@ public class FormaDePagamentoController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        
+        String url = request.getServletPath();
+        
+        if(url.equals("/fazerPedido")){
+            
+            Pedido p = new Pedido();
+            
+            int idUsuario = Usuario.getIdUsuario();            
+            System.out.println("O id do usuario é: "+idUsuario);
+            p.setUsuario(Usuario.getIdUsuario());
+            
+            System.out.println("o id do endereço é: "+Endereco.getIdEnderecoAtual());
+            p.setEndereco_entrega(Endereco.getIdEnderecoAtual());            
+            
+            p.setValorTotal(total);
+            p.getData_registro();
+            PedidoDAO pd = new PedidoDAO();
+            
+            pd.inserir(p);
+        }    
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
+    
     @Override
     public String getServletInfo() {
         return "Short description";
