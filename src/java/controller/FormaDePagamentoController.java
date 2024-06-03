@@ -44,8 +44,11 @@ public class FormaDePagamentoController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
-
+        
+        total = 0;
+        
         String url = "/WEB-INF/jsp/formaDePagamento.jsp";
 
         CarrinhoDAO cd = new CarrinhoDAO();
@@ -73,9 +76,7 @@ public class FormaDePagamentoController extends HttpServlet {
         
         for (Carrinho c : carrinho) {
             total += c.getSubProduto();
-        }        
-        
-
+        }               
         request.setAttribute("total", total);
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
