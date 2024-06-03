@@ -21,7 +21,9 @@ create table endereco (
     cep int not null,
     rua varchar(100) not null,
     numero int not null,
-    complemento varchar(100)
+    complemento varchar(100),
+    usuario int,
+    foreign key (usuario) references usuario(idUsuario)
 );
 
 create table categoria (
@@ -64,6 +66,7 @@ create table pedido (
     data_pedido timestamp default current_timestamp,
     valorTotal float,
     status_pedido ENUM ('pendente', 'processando','enviado','entregue') DEFAULT 'pendente',
+    formaDePagamento varchar(100),
     foreign key (endereco_entrega) references endereco(idEndereco),
     foreign key (usuario) references usuario(idUsuario)
 );
@@ -90,11 +93,13 @@ create table produto_pedido (
 insert into categoria (nome) values ('Periféricos');
 
 insert into usuario (nome, email, senha, cpf, telefone, status) 
-values ('davi', 'davi@gmail.com', 'a', '11937613943', '4399402591', 'cliente');
+values ('davi', 'davi@gmail.com', '123', '11937613943', '4399402591', 'cliente');
+
+insert into usuario (nome, email, senha, cpf, telefone, status) 
+values ('admin', 'admin@gmail.com', 'admin', '11937613943', '4399402591', 'admin');
 
 insert into subCategoria (nome,idCategoria) values ('Teclado', 1);
 
 insert into subCategoria (nome,idCategoria) values ('Mouse', 1);
 
 insert into subCategoria (nome,idCategoria) values ('Fone', 1);
-
