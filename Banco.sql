@@ -93,9 +93,6 @@ create table produto_pedido (
 insert into categoria (nome) values ('Periféricos');
 
 insert into usuario (nome, email, senha, cpf, telefone, status) 
-values ('davi', 'davi@gmail.com', '123', '11937613943', '4399402591', 'cliente');
-
-insert into usuario (nome, email, senha, cpf, telefone, status) 
 values ('admin', 'admin@gmail.com', 'admin', '11937613943', '4399402591', 'admin');
 
 insert into subCategoria (nome,idCategoria) values ('Teclado', 1);

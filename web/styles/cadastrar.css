@@ -51,3 +51,41 @@
 
     border-radius: 10px;
 }
+
+.btn:hover {
+    background-color: #000000;
+}
+
+.btn{
+    --mdb-btn-box-shadow-state: 0 8px 9px -4px rgba(82, 82, 82, 0.3), 0 4px 18px 0 rgba(85, 85, 85, 0.2);
+}
+
+.btn-success {
+    color: white;
+    --mdb-btn-box-shadow-state: 0 8px 9px -4px rgba(82, 82, 82, 0.3), 0 4px 18px 0 rgba(85, 85, 85, 0.2);
+}
+.text-body {
+    --bs-text-opacity: 1;
+    color: rgb(255 255 255) !important;
+}
+
+.btn-success {
+    --mdb-btn-bg: #14a44d;
+    --mdb-btn-color: #fff;
+    --mdb-btn-box-shadow: 0 0px 0px 0px #ffffff;
+    --mdb-btn-hover-bg: #139c49;
+    --mdb-btn-hover-color: #fff;
+    --mdb-btn-focus-bg: #139c49;
+    --mdb-btn-focus-color: #fff;
+    --mdb-btn-active-bg: #129445;
+    --mdb-btn-active-color: #fff;
+    --mdb-btn-box-shadow-state: 0 8px 9px -4px rgba(19, 156, 73, 0.3), 0 4px 18px 0 rgba(19, 156, 73, 0.2);
+}
+
+:not(.btn-check)+.btn-success:hover, .btn-success:first-child:hover, .btn-success:focus-visible, .btn-success:hover {
+    box-shadow: none;
+}
+
+u{
+    color: black;
+}

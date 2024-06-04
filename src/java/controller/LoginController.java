@@ -38,12 +38,7 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String url = "/WEB-INF/jsp/login.jsp";
-        if (Usuario.getIdUsuario() != 0) {
-            if (request.getParameter("t").equals("i")) {
-                Usuario.setIdUsuario(0);
-            }
-        }
-
+        System.out.println("Id Usuario: " + Usuario.getIdUsuario());
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);

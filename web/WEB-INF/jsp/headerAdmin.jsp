@@ -35,7 +35,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="./cadastrarProduto">Cadastrar Produtos</a>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./login?idUsuario=0">Log-Out</a>
+                                    <form action="deslogar" method="post">
+                                        <button type="submit" class="nav-link" > Log-Out </button>
+                                    </form>
+                                    
                                 </li>
                             </ul>
                             <form class="d-flex" role="search" action="buscar" method="get">

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.BEAN.Categoria;
 import model.BEAN.Produto;
 import model.BEAN.SubCategoria;
+import model.BEAN.Usuario;
 import model.DAO.CategoriaDAO;
 import model.DAO.ProdutoDAO;
 import model.DAO.SubCategoriaDAO;
@@ -143,6 +144,9 @@ public class CadastroProdutoController extends HttpServlet {
             } catch (FileUploadException e) {
                 throw new ServletException("Cannot parse multipart request.", e);
             }
+        } else if(url.equals("/deslogar")){
+            Usuario.setIdUsuario(0);
+            response.sendRedirect("./login");
         } else {
             // Se a requisição não for multipart, redireciona para a página inicial
             redirectToIndexPage(request, response);

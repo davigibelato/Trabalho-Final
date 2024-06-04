@@ -56,6 +56,10 @@
         <servlet-name>FormaDePagamentoController</servlet-name>
         <servlet-class>controller.FormaDePagamentoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartaoController</servlet-name>
+        <servlet-class>controller.CartaoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -67,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>CadastroProdutoController</servlet-name>
         <url-pattern>/CadastrarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroProdutoController</servlet-name>
+        <url-pattern>/deslogar</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CadastroProdutoController</servlet-name>
@@ -136,9 +144,17 @@
         <servlet-name>FormaDePagamentoController</servlet-name>
         <url-pattern>/formaDePagamento</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>FormaDePagamentoController</servlet-name>
         <url-pattern>/fazerPedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartaoController</servlet-name>
+        <url-pattern>/cartaoController</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>CartaoController</servlet-name>
+        <url-pattern>/terminarCompra</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
