@@ -35,7 +35,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="./cadastrarProduto">Cadastrar Produtos</a>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./login">Log-Out</a>
+                                    <a class="nav-link" href="./login?idUsuario=0">Log-Out</a>
                                 </li>
                             </ul>
                             <form class="d-flex" role="search" action="buscar" method="get">
