@@ -3,37 +3,72 @@ body{
     padding: 0;
 }
 
-main .container-produto {
-    padding: 50px 0;
-    margin: 0 150px;
+main{
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-main .right-box {
-    padding: 0;
-    margin: 0;
-    border: hidden;
+main .container-produto {
+    padding: 10px 0;
+    margin: 0 150px;
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    /* border: 3px solid deeppink; */
+    align-items: center;
+    justify-content: center;
+    width: 1100px;
+    height: 800px;
+}
+
+
+main .image-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+main .image-box .img-produto{
+    /* border: 1px solid rgb(0, 0, 0); */
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    padding: 15px;
     border-radius: 10px;
 }
 
-main .image-box {
-    width: 450px;
-    height: 320px;
-}
-
 main .image-box img {
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 60%;
 }
 
+main .detalhes-box{
+    display: flex;
+    align-items: center;
+}
 
-main .detalhes-box {
-    width: 50%;
-    padding-left: 50px;
+main .detalhes-box .lenssol{
+    width: 100%;
+    margin-left: 12% ;
+    
+}
+
+main .detalhes-box p{
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0;
+    margin-bottom: 0px;
+}
+
+main .detalhes-box .lenssol p{
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0;
 }
 
 main .detalhes-box h1 {
-    color: #00326D;
+    color: #000000;
+    font-size: 60px;
+    font-weight: 600;
 }
 
 main .detalhes-box h2 {
@@ -45,11 +80,12 @@ main .detalhes-box table {
 }
 
 main .detalhes-box table td {
-    padding: 10px 10px 10px 0;
+    padding: 10px 10px 0 0;
     font-size: 23px;
 }
 
 main .detalhes-box input {
+    width: 50px;
     height: 30px;
     padding: 0 5px;
 }
@@ -62,13 +98,19 @@ button {
     border: none;
     border-radius: 5px;
     padding: 10px 15px;
-    background-color: #FF3D00;
+    background-color: #ff9100;
     color: white;
-    margin-top: 14px;
+    margin-top: 1px;
     cursor: pointer;
-    margin-top: 20px;
+    transition: 0.5s;
 }
 
 button:hover {
-    background-color: #ff3c00af;
+    background-color: #ff0800cb;
+}
+
+.descricao-prod{
+    color: #c3c3c3;
+    font-size: medium;
+    margin-bottom: 40px;
 }
