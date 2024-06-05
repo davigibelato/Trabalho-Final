@@ -41,6 +41,7 @@ public class HomeController extends HttpServlet {
         
         String url = "/WEB-INF/jsp/index.jsp";
         System.out.println("Id Usuario: " + Usuario.getIdUsuario());
+        
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);

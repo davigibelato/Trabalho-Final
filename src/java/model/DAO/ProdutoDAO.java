@@ -200,49 +200,46 @@ public class ProdutoDAO {
         }
         return produtos;
     }
-    public List<Produto> listarPorCategoria(Categoria c) {
-        
-        List<Produto> produtos = new ArrayList();
-        try {
-            
-            Connection conexao = Conexao.conectar();
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-            
-            String query = "SELECT * FROM produto AS p INNER JOIN categoria AS c ON p.categoria = c.idCategoria WHERE c.nome = ?";
+    
+    public List<Produto> listarPorCategoria(int categoriaId) {
+    List<Produto> produtos = new ArrayList<>();
+    try {
+        Connection conexao = Conexao.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
 
-            stmt = conexao.prepareStatement(query);
-            stmt.setString(1, c.getNome());
+        String query = "SELECT * FROM produto WHERE categoria = 1";
 
-            rs = stmt.executeQuery();
+        stmt = conexao.prepareStatement(query);
+        stmt.setInt(1, categoriaId);
 
-            while (rs.next()) {
-                
-                Produto p = new Produto();
-                
-                p.setIdProduto(rs.getInt("idProduto"));
-                p.setNome(rs.getString("nome"));
-                p.setValor(rs.getFloat("valor"));
-                p.setDescricao(rs.getString("descricao"));
-                p.setCategoria(rs.getInt("categoria"));
-                p.setSubCategoria(rs.getInt("subCategoria"));
-                
-                Blob imagemBlob = rs.getBlob("imagem");
-                if (imagemBlob != null) {
-                    byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
-                    p.setImagemBytes(imagemBytes);
-                }
-                produtos.add(p);
+        rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Produto p = new Produto();
+            p.setIdProduto(rs.getInt("idProduto"));
+            p.setNome(rs.getString("nome"));
+            p.setValor(rs.getFloat("valor"));
+            p.setDescricao(rs.getString("descricao"));
+            p.setCategoria(rs.getInt("categoria"));
+            p.setSubCategoria(rs.getInt("subCategoria"));
+
+            Blob imagemBlob = rs.getBlob("imagem");
+            if (imagemBlob != null) {
+                byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
+                p.setImagemBytes(imagemBytes);
             }
-            rs.close();
-            stmt.close();
-            conexao.close();
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
+            produtos.add(p);
         }
-        return produtos;
+        rs.close();
+        stmt.close();
+        conexao.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    return produtos;
+}
+
 
     public List<Produto> listarPorPesquisa(String search) {
         

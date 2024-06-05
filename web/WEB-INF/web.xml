@@ -60,6 +60,10 @@
         <servlet-name>CartaoController</servlet-name>
         <servlet-class>controller.CartaoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CategoriaUnicaController</servlet-name>
+        <servlet-class>controller.CategoriaUnicaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -152,9 +156,13 @@
         <servlet-name>CartaoController</servlet-name>
         <url-pattern>/cartaoController</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CartaoController</servlet-name>
         <url-pattern>/terminarCompra</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoriaUnicaController</servlet-name>
+        <url-pattern>/CategoriaUnica</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
