@@ -145,6 +145,7 @@ body{
     margin-top: 10%;
     padding: 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     width: 100%;
@@ -167,7 +168,6 @@ body{
 
 .infos-cartao{
     display: flex;
-    flex-direction: column;
     margin-left: 10px;
 }
 
@@ -181,4 +181,27 @@ body{
 
 .box-credit i{
     color: #ff6900;
+}
+
+.btn-add-payment{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    background-color: #dadada;
+    border-color: #dadada;
+    transition: .5s;
+    margin: 10px;
+}
+
+.btn-add-payment:hover{
+    background-color: #ff9b49c9;
+    border-color: #ff9b49c9;
+}
+
+
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+    color: #ffffff;
+    background-color: #dadada;
+    border-color: #dadada;
 }

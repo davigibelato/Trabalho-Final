@@ -54,14 +54,80 @@
                             </div>          
                         </div>
                         <div class="cartao">
+                            <h3>Formas de Pagamento</h3>
                             <div class="infos-cartao">
-                                <h3>Formas de Pagamento</h3>
-                                <div class="box-credit">
+                                
+                                <!-- <div class="box-credit">
                                     <div class="icon">
                                         <i class="fa-solid fa-credit-card"></i>
                                     </div>                            
                                     <p>Cartão de Crédito</p>
-                                </div>  
+                                </div> -->
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-primary dropdown-toggle btn-add-payment" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"><div class="box-credit">
+                                        <div class="icon">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </div>                            
+                                        <p>Cartão de Crédito</p>
+                                    </div>
+                                    </button>
+                                    <form class="dropdown-menu p-4">
+                                        <!-- <input type="text" placeholder="Numero do Cartão" id="numeroCartao"
+                                                name="numeroCartao">
+                                        <input type="text" placeholder="Nome do Titular" id="nomeTitular"
+                                                name="nomeTitular"> -->
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Numero do Cartão</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Nome do Titular</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">CVV</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Data de validade</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                                    </form>
+                                  </div>  
+
+                                  <div class="dropdown">
+                                    <button type="button" class="btn btn-primary dropdown-toggle btn-add-payment" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"><div class="box-credit">
+                                        <div class="icon">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </div>                            
+                                        <p>Cartão de Debito</p>
+                                    </div>
+                                    </button>
+                                    <form class="dropdown-menu p-4">
+                                        <!-- <input type="text" placeholder="Numero do Cartão" id="numeroCartao"
+                                                name="numeroCartao">
+                                        <input type="text" placeholder="Nome do Titular" id="nomeTitular"
+                                                name="nomeTitular"> -->
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Numero do Cartão</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Nome do Titular</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">CVV</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-default">Data de validade</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                                    </form>
+                                  </div>  
                             </div>                                              
                         </div>                                          
                     </div>
