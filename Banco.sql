@@ -101,3 +101,5 @@ insert into subCategoria (nome,idCategoria) values ('Teclado', 1);
 insert into subCategoria (nome,idCategoria) values ('Mouse', 1);
 
 insert into subCategoria (nome,idCategoria) values ('Fone', 1);
+
+insert into subCategoria (nome,idCategoria) values ('Microfone', 1);
