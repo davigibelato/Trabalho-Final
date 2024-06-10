@@ -23,6 +23,7 @@ create table endereco (
     numero int not null,
     complemento varchar(100),
     usuario int,
+    enderecoPadrao boolean,
     foreign key (usuario) references usuario(idUsuario)
 );
 
