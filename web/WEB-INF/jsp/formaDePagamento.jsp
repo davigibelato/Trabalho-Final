@@ -51,12 +51,30 @@
                                     <i class="fa-solid fa-truck-fast"></i>                            
                                 </div>
                                 <p>Chega entre 1 e 15 dias</p>
-                            </div>          
+                            </div>  
+                            <div class="itens">
+                                <div class="icon">
+                                    <i class="fa-solid fa-retweet"></i>
+                                </div>                                
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Trocar Endereço
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <c:forEach items="${enderecos}" var="endereco">
+                                            <form method="post" action="mudarEndereco">
+                                                <input type="hidden" name="idEndereco" id="idEndereco" value="${endereco.idEndereco}">
+                                                <li><button type="submit" class="dropdown-item">${endereco.rua}</button>
+                                            </form>                                            
+                                        </c:forEach>                                       
+                                    </ul>
+                                </div>
+                            </div>        
                         </div>
                         <div class="cartao">
                             <h3>Formas de Pagamento</h3>
                             <div class="infos-cartao">
-                                
+
                                 <!-- <div class="box-credit">
                                     <div class="icon">
                                         <i class="fa-solid fa-credit-card"></i>
@@ -65,11 +83,11 @@
                                 </div> -->
                                 <div class="dropdown">
                                     <button type="button" class="btn btn-primary dropdown-toggle btn-add-payment" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"><div class="box-credit">
-                                        <div class="icon">
-                                            <i class="fa-solid fa-credit-card"></i>
-                                        </div>                            
-                                        <p>Cartão de Crédito</p>
-                                    </div>
+                                            <div class="icon">
+                                                <i class="fa-solid fa-credit-card"></i>
+                                            </div>                            
+                                            <p>Cartão de Crédito</p>
+                                        </div>
                                     </button>
                                     <form class="dropdown-menu p-4">
                                         <!-- <input type="text" placeholder="Numero do Cartão" id="numeroCartao"
@@ -94,15 +112,15 @@
                                         </div>
                                         <button type="submit" class="btn btn-primary">Confirmar</button>
                                     </form>
-                                  </div>  
+                                </div>  
 
-                                  <div class="dropdown">
+                                <div class="dropdown">
                                     <button type="button" class="btn btn-primary dropdown-toggle btn-add-payment" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"><div class="box-credit">
-                                        <div class="icon">
-                                            <i class="fa-solid fa-credit-card"></i>
-                                        </div>                            
-                                        <p>Cartão de Debito</p>
-                                    </div>
+                                            <div class="icon">
+                                                <i class="fa-solid fa-credit-card"></i>
+                                            </div>                            
+                                            <p>Cartão de Debito</p>
+                                        </div>
                                     </button>
                                     <form class="dropdown-menu p-4">
                                         <!-- <input type="text" placeholder="Numero do Cartão" id="numeroCartao"
@@ -127,7 +145,7 @@
                                         </div>
                                         <button type="submit" class="btn btn-primary">Confirmar</button>
                                     </form>
-                                  </div>  
+                                </div>  
                             </div>                                              
                         </div>                                          
                     </div>

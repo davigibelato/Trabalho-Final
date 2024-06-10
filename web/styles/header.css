@@ -1,10 +1,10 @@
 .bg-body-tertiary {
     --bs-bg-opacity: 1;
-    background-color: #000 !important;
+    background-color: rgb(0, 0, 0)000 !important;
 }
 
 .bg-body-tertiary {
-    background-color: #000 !important;
+    background-color: #000000 !important;
     height: 120px;
 }
 
@@ -52,11 +52,11 @@
 }
 
 .offcanvas-body {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
 }
 
 .offcanvas-header {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     color: white;
 }
 
@@ -68,3 +68,8 @@
     color: white;
 }
 
+.btn-dd-cat{
+    border: none;
+    background: none;
+    width: 100%;
+}

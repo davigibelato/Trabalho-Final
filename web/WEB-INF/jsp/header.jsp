@@ -41,9 +41,13 @@
                                         Categorias
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <c:forEach items="${categorias}" var="categoria">
-                                            <li><a class="dropdown-item" href="">${categoria.nome}</a></li>
+                                        <form action="irCategoria" method="post">                                      
+                                            <c:forEach items="${categorias}" var="categoria">                          
+                                                <input type="hidden" name="idCategoria" id="idCategoria" value="${categoria.idCategoria}">
+                                                <li><button class="btn-dd-cat" type="submit">${categoria.nome}</button></li>
                                             </c:forEach>
+                                        </form>
+
                                     </ul>
                                 </li>
                                 <li class="nav-item">

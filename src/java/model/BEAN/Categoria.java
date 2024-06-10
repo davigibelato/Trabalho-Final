@@ -9,6 +9,7 @@ package model.BEAN;
 public class Categoria {
     private int idCategoria;
     private String nome;
+    private static int idStaticoCategoria;
 
     public Categoria() {
     }
@@ -16,8 +17,17 @@ public class Categoria {
     public Categoria(int idCategoria, String nome) {
         this.idCategoria = idCategoria;
         this.nome = nome;
+        
     }
 
+    public static int getIdStaticoCategoria() {
+        return idStaticoCategoria;
+    }
+
+    public static void setIdStaticoCategoria(int idStaticoCategoria) {
+        Categoria.idStaticoCategoria = idStaticoCategoria;
+    }
+    
     public int getIdCategoria() {
         return idCategoria;
     }

@@ -9,12 +9,13 @@ public class Endereco {
     private String rua;
     private int numeroCasa;
     private String complemento;
+    private boolean enderecoAtual;
     private int usuario;
 
     public Endereco() {
     }
 
-    public Endereco(int idEndereco, String estado, String cidade, int cep, String rua, int numeroCasa, String complemento, int usuario) {
+    public Endereco(int idEndereco, String estado, String cidade, int cep, String rua, int numeroCasa, String complemento, boolean enderecoAtual, int usuario) {
         this.idEndereco = idEndereco;
         this.estado = estado;
         this.cidade = cidade;
@@ -22,7 +23,20 @@ public class Endereco {
         this.rua = rua;
         this.numeroCasa = numeroCasa;
         this.complemento = complemento;
+        this.enderecoAtual = enderecoAtual;
         this.usuario = usuario;
+    }    
+
+    public Endereco(boolean enderecoAtual) {
+        this.enderecoAtual = enderecoAtual;
+    }
+
+    public boolean isEnderecoAtual() {
+        return enderecoAtual;
+    }
+
+    public void setEnderecoAtual(boolean enderecoAtual) {
+        this.enderecoAtual = enderecoAtual;
     }
 
     public int getIdEndereco() {

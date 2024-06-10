@@ -81,7 +81,7 @@ public class CheckoutController extends HttpServlet {
             EnderecoDAO ed = new EnderecoDAO();
             ed.inserirEndereco(e);        
             System.out.println("Id Usuario Check: " + Usuario.getIdUsuario());
-           response.sendRedirect( "./cartaoController");
+           response.sendRedirect( "./formaDePagamento");
         }
     }
 

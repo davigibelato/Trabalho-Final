@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.BEAN.Endereco;
 import model.BEAN.Usuario;
@@ -22,7 +24,7 @@ import model.BEAN.Usuario;
 public class EnderecoDAO {
 
     public boolean inserirEndereco(Endereco e) {
-        String sql = "INSERT INTO endereco (estado, cidade, cep, rua, numero, complemento,usuario) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO endereco (estado, cidade, cep, rua, numero, complemento,usuario, enderecoPadrao) VALUES (?,?,?,?,?,?,?,?)";
 
         try (Connection conexao = Conexao.conectar();
                 PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -34,6 +36,11 @@ public class EnderecoDAO {
             stmt.setInt(5, e.getNumeroCasa());
             stmt.setString(6, e.getComplemento());
             stmt.setInt(7, e.getUsuario());
+            if(validaEnderecoPadrao()){
+                stmt.setBoolean(8, false);
+            } else {
+                stmt.setBoolean(8, true);
+            }
             
             int aR = stmt.executeUpdate();
 
@@ -63,13 +70,76 @@ public class EnderecoDAO {
         }
     }
     
+    
+    
+    public boolean validaEnderecoPadrao(){
+        
+        boolean retorno = false;       
+        
+        try{
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("SELECT * from  endereco WHERE usuario = ?");
+            ResultSet rs = null;
+            
+            stmt.setInt(1, Usuario.getIdUsuario());
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                if(rs.getBoolean("enderecoPadrao"))retorno = true;
+            }
+            
+            rs.close();
+            stmt.close();
+            conexao.close();           
+            
+            }catch(SQLException ed){
+                ed.printStackTrace();
+            
+        }
+        
+        return retorno;
+    }
+    
+    
+     public boolean mudarEnderecoPadrao(int id){
+        
+        boolean retorno = false;       
+        
+        try{
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("update endereco set enderecoPadrao = false WHERE usuario = ? AND enderecoPadrao = true");            
+
+            stmt.setInt(1, Usuario.getIdUsuario());
+            
+            stmt.executeUpdate();
+            stmt.close();
+            
+            stmt = conexao.prepareStatement("update endereco set enderecoPadrao = true WHERE idEndereco = ?");
+            stmt.setInt(1, id);
+            
+            stmt.executeUpdate();
+            
+         
+            stmt.close();
+            conexao.close();           
+            
+            }catch(SQLException ed){
+                ed.printStackTrace();
+            
+        }
+        
+        return retorno;
+    }
+    
+    
     public Endereco mostrarCheckout(){
         
         Endereco e = new Endereco();        
         
         try{
             Connection conexao = Conexao.conectar();
-            PreparedStatement stmt = conexao.prepareStatement("SELECT rua, cep, idEndereco FROM endereco WHERE usuario = ?");
+            PreparedStatement stmt = conexao.prepareStatement("SELECT rua, cep, idEndereco FROM endereco WHERE usuario = ? AND enderecoPadrao = true");
             ResultSet rs = null;
             
             stmt.setInt(1, Usuario.getIdUsuario());
@@ -93,5 +163,40 @@ public class EnderecoDAO {
         
         return e;
     }
-
+    
+    
+    
+    
+    public List<Endereco> visualizarEnderecos(){
+        
+        List<Endereco> e = new ArrayList();
+        
+        try{
+            
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM endereco WHERE usuario = ?");
+            ResultSet rs = null;
+            
+            stmt.setInt(1,Usuario.getIdUsuario());
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Endereco endereco = new Endereco();
+                
+                endereco.setIdEndereco(rs.getInt("idEndereco"));
+                endereco.setRua(rs.getString("rua"));
+                endereco.setCep(rs.getInt("cep"));
+                e.add(endereco);
+                
+            }
+            rs.close();
+            stmt.close();
+            conexao.close();
+            
+        }catch(SQLException ed){
+            ed.printStackTrace();
+        }
+        return e;
+    }
 }

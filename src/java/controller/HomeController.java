@@ -38,14 +38,14 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String url = "/WEB-INF/jsp/index.jsp";
         System.out.println("Id Usuario: " + Usuario.getIdUsuario());
-        
+
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);
-        
+
         ProdutoDAO dao = new ProdutoDAO();
 
         List<Produto> produto = dao.listarSemPromo();
@@ -57,8 +57,7 @@ public class HomeController extends HttpServlet {
 
         }
         request.setAttribute("produtos", produto);
-        
-        
+
         List<Produto> produtoPromo = dao.listarPromo();
         for (int i = 0; i < produtoPromo.size(); i++) {
             if (produtoPromo.get(i).getImagemBytes() != null) {
@@ -68,7 +67,6 @@ public class HomeController extends HttpServlet {
         }
         request.setAttribute("produtosPromo", produtoPromo);
         System.out.println("Tamanho da lista de produtosPromo: " + produtoPromo.size());
-
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
@@ -100,7 +98,14 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String url = request.getServletPath();
+        if (url.equals("/irCategoria")) {
+            Categoria.setIdStaticoCategoria(Integer.parseInt(request.getParameter("idCategoria")));
+            response.sendRedirect("./CategoriaUnica");
+
+        } else {
+            processRequest(request, response);
+        }
     }
 
     /**

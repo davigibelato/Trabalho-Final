@@ -50,7 +50,7 @@
                             <div class="button">
                                 <button type="submit">Continuar Para Pagamento</button>
                             </div>
-                                <p id="texto-seila">Ja possui endereço? Se sim <a href="./cartaoController">Clique aqui</a></p>
+                                <p id="texto-seila">Ja possui endereço? Se sim <a href="./formaDePagamento">Clique aqui</a></p>
                         </form>
 
                     </div>

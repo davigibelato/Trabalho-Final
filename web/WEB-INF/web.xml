@@ -69,6 +69,10 @@
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/irCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CadastroProdutoController</servlet-name>
         <url-pattern>/CadastrarProduto</url-pattern>
     </servlet-mapping>
@@ -148,9 +152,17 @@
         <servlet-name>FormaDePagamentoController</servlet-name>
         <url-pattern>/fazerPedido</url-pattern>
     </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>FormaDePagamentoController</servlet-name>
+        <url-pattern>/mudarEndereco</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CategoriaUnicaController</servlet-name>
         <url-pattern>/CategoriaUnica</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoriaUnicaController</servlet-name>
+        <url-pattern>/irParaCategoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

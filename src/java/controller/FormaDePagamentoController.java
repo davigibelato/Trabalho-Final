@@ -67,6 +67,10 @@ public class FormaDePagamentoController extends HttpServlet {
             total += c.getSubProduto();
         }               
         request.setAttribute("total", total);
+        
+        
+       List<Endereco> end = ed.visualizarEnderecos();
+       request.setAttribute("enderecos", end);
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
@@ -89,7 +93,7 @@ public class FormaDePagamentoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
         
         
         String url = request.getServletPath();
@@ -110,6 +114,17 @@ public class FormaDePagamentoController extends HttpServlet {
             PedidoDAO pd = new PedidoDAO();
             
             pd.inserir(p);
+        }else if(url.equals("/mudarEndereco")){
+            
+            EnderecoDAO edao = new EnderecoDAO();
+            
+            Endereco.setIdEnderecoAtual(Integer.parseInt(request.getParameter("idEndereco")));
+            edao.mudarEnderecoPadrao(Integer.parseInt(request.getParameter("idEndereco")));
+            System.out.println("O id do endereco é: "+Endereco.getIdEnderecoAtual());
+            response.sendRedirect("./formaDePagamento");
+            
+        } else{
+            processRequest(request, response);
         }    
     }
     

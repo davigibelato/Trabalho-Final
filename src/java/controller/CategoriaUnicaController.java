@@ -21,42 +21,17 @@ public class CategoriaUnicaController extends HttpServlet {
             throws ServletException, IOException {
         
         String url = "/WEB-INF/jsp/categoriaUnica.jsp";
-        String categoriaIdParam = request.getParameter("categoriaId");
-        int categoriaId = 0;
         
-        try {
-            if (categoriaIdParam != null && !categoriaIdParam.isEmpty()) {
-                categoriaId = Integer.parseInt(categoriaIdParam);
-            } else {
-                throw new NumberFormatException("ID da categoria não informado.");
+        ProdutoDAO pd = new ProdutoDAO();
+        List<Produto> produto = pd.listarTodos();
+        for (int i = 0; i < produto.size(); i++) {
+            if (produto.get(i).getImagemBytes() != null) {
+                String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagemBytes());
+                produto.get(i).setImagemBase64(imagemBase64);
             }
-        } catch (NumberFormatException e) {
-            request.setAttribute("error", "ID da categoria inválido: " + e.getMessage());
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-            dispatcher.forward(request, response);
-            return;
         }
-
-        CategoriaDAO categoriaDAO = new CategoriaDAO();
-        Categoria categoria = categoriaDAO.readById(categoriaId);
+        request.setAttribute("produtos", produto);          
         
-        if (categoria != null) {
-            ProdutoDAO produtoDAO = new ProdutoDAO();
-            List<Produto> produtos = produtoDAO.listarPorCategoria(categoriaId);
-
-            for (Produto produto : produtos) {
-                if (produto.getImagemBytes() != null) {
-                    String imagemBase64 = Base64.getEncoder().encodeToString(produto.getImagemBytes());
-                    produto.setImagemBase64(imagemBase64);
-                }
-            }
-
-            request.setAttribute("categoria", categoria);
-            request.setAttribute("produtos", produtos);
-        } else {
-            request.setAttribute("error", "Categoria não encontrada.");
-        }
-
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
@@ -70,7 +45,21 @@ public class CategoriaUnicaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String url = request.getServletPath();
+        
+        if(url.equals("/irParaCategoria")){
+            
+            CategoriaDAO cd = new CategoriaDAO();
+            
+            Categoria c = new Categoria();
+            Categoria.setIdStaticoCategoria(Integer.parseInt(request.getParameter("idCategoria")));
+            response.sendRedirect("./CategoriaUnica");
+            
+            
+        } else {
+            processRequest(request, response);
+        }
     }
 
     @Override
