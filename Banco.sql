@@ -18,7 +18,7 @@ create table endereco (
 	idEndereco int primary key auto_increment,
     estado varchar(50) not null,
     cidade varchar(50) not null,
-    cep int not null,
+    cep VARCHAR(45) not null,
     rua varchar(100) not null,
     numero int not null,
     complemento varchar(100),
