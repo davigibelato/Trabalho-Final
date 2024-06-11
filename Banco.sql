@@ -6,10 +6,10 @@ use eliteTech_ds;
 create table usuario (
     idUsuario int primary key auto_increment,
     nome varchar(100) not null,
-    email varchar(100) not null,
+    email varchar(100) not null unique,
     senha varchar(100) not null,
-    cpf char(11) not null,
-    telefone varchar(13),
+    cpf char(11) not null unique,
+    telefone varchar(13) unique,
     status varchar(50) default 'cliente',
     data_registro timestamp default current_timestamp
 );
