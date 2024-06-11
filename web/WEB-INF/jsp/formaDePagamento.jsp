@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="styles/formaDePagamento.css" rel="stylesheet" type="text/css"/>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <title>Forma de Pagamento</title>
     </head>
     <body>
@@ -82,21 +84,18 @@
                                     <p>Cartão de Crédito</p>
                                 </div> -->
                                 <div class="dropdown">
-                                    <button type="button" class="btn btn-primary dropdown-toggle btn-add-payment" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"><div class="box-credit">
+                                    <button type="button" class="btn btn-primary dropdown-toggle btn-add-payment" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                        <div class="box-credit">
                                             <div class="icon">
                                                 <i class="fa-solid fa-credit-card"></i>
                                             </div>                            
                                             <p>Cartão de Crédito</p>
                                         </div>
                                     </button>
-                                    <form class="dropdown-menu p-4">
-                                        <!-- <input type="text" placeholder="Numero do Cartão" id="numeroCartao"
-                                                name="numeroCartao">
-                                        <input type="text" placeholder="Nome do Titular" id="nomeTitular"
-                                                name="nomeTitular"> -->
+                                    <form class="dropdown-menu p-4" onsubmit="return validarCartaoCredito()">
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Numero do Cartão</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control numero-cartao" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Nome do Titular</span>
@@ -104,32 +103,29 @@
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">CVV</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control cvv" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Data de validade</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control data-validade" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Confirmar</button>
                                     </form>
-                                </div>  
+                                </div>                                
 
                                 <div class="dropdown">
-                                    <button type="button" class="btn btn-primary dropdown-toggle btn-add-payment" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"><div class="box-credit">
+                                    <button type="button" class="btn btn-primary dropdown-toggle btn-add-payment" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                        <div class="box-credit">
                                             <div class="icon">
                                                 <i class="fa-solid fa-credit-card"></i>
                                             </div>                            
-                                            <p>Cartão de Debito</p>
+                                            <p>Cartão de Débito</p>
                                         </div>
                                     </button>
-                                    <form class="dropdown-menu p-4">
-                                        <!-- <input type="text" placeholder="Numero do Cartão" id="numeroCartao"
-                                                name="numeroCartao">
-                                        <input type="text" placeholder="Nome do Titular" id="nomeTitular"
-                                                name="nomeTitular"> -->
+                                    <form class="dropdown-menu p-4" onsubmit="return validarCartaoDebito()">
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Numero do Cartão</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control numero-cartao" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Nome do Titular</span>
@@ -137,15 +133,16 @@
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">CVV</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control cvv" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Data de validade</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control data-validade" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Confirmar</button>
                                     </form>
-                                </div>  
+                                </div>
+                                 
                             </div>                                              
                         </div>                                          
                     </div>
@@ -186,4 +183,6 @@
         <script src="https://kit.fontawesome.com/35f5de594d.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
+
+    <script src="scripts/cartao.js" type="text/javascript"></script>
 </html>

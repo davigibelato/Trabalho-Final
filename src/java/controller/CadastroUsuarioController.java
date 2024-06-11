@@ -35,14 +35,14 @@ public class CadastroUsuarioController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8"); 
+        response.setContentType("text/html;charset=UTF-8");
 
         String url = "/WEB-INF/jsp/cadastrarUsuario.jsp";
-        
+
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);
-        
+
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
 
@@ -89,31 +89,17 @@ public class CadastroUsuarioController extends HttpServlet {
         String telefone = request.getParameter("telefone");
         String cpf = request.getParameter("cpf");
 
-        if (nome == null || nome.trim().isEmpty()
-                || email == null || email.trim().isEmpty()
-                || senha == null || senha.trim().isEmpty()
-                || confirmarSenha == null || confirmarSenha.trim().isEmpty()
-                || telefone == null || telefone.trim().isEmpty()
-                || cpf == null || cpf.trim().isEmpty()) {
-            errorMessage = "Todos os campos são obrigatórios.";
+        Usuario usuario = new Usuario();
+        usuario.setNome(nome);
+        usuario.setEmail(email);
+        usuario.setSenha(senha);
+        usuario.setTelefone(telefone);
+        usuario.setCpf(cpf);
 
-        } else {
-            if (senha.equals(confirmarSenha)) {
-                telefone = telefone.replaceAll("[^0-9]", "");
-                cpf = cpf.replaceAll("[^0-9]", "");
+        dao.create(usuario);
 
-                Usuario usuario = new Usuario();
-                usuario.setNome(nome);
-                usuario.setEmail(email);
-                usuario.setSenha(senha);
-                usuario.setTelefone(telefone);
-                usuario.setCpf(cpf);
+        nextPage = "/login";
 
-                dao.create(usuario);
-
-                nextPage = "/login";
-            }
-        }
         request.setAttribute("successMessage", "Cadastro realizado com sucesso!");
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(nextPage);

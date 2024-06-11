@@ -184,4 +184,37 @@ public class UsuarioDAO {
         
         return u;
     }
+    
+    public int verificarUnicidade(Usuario usuario){
+        int retorno = 0;
+        
+        try{
+            
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("SELECT email, cpf, telefone FROM usuario");
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                if(rs.getString("email").equals(usuario.getEmail())){
+                    retorno = 1;
+                }
+                if(rs.getString("cpf").equals(usuario.getCpf())){
+                    retorno = 2;
+                }
+                if(rs.getString("telefone").equals(usuario.getTelefone())){
+                    retorno = 3;
+                }
+            }
+            
+            rs.close();
+            stmt.close();
+            conexao.close();
+            
+        }catch(SQLException e){      
+            
+            e.printStackTrace();
+        }
+        
+        return retorno;
+    }
 }
