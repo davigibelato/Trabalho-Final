@@ -61,7 +61,7 @@ public class CheckoutController extends HttpServlet {
             System.out.println(estado);
             System.out.println(cidade);
             
-            int cep  = Integer.parseInt(request.getParameter("cep"));
+            String cep = (request.getParameter("cep"));
             String nomeRua = request.getParameter("nomeRua");
             
             int idUsuario = Usuario.getIdUsuario();

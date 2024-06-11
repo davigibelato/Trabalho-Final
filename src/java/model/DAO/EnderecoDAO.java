@@ -31,7 +31,7 @@ public class EnderecoDAO {
 
             stmt.setString(1, e.getEstado());
             stmt.setString(2, e.getCidade());
-            stmt.setInt(3, e.getCep());
+            stmt.setString(3, e.getCep());
             stmt.setString(4, e.getRua());
             stmt.setInt(5, e.getNumeroCasa());
             stmt.setString(6, e.getComplemento());
@@ -148,7 +148,7 @@ public class EnderecoDAO {
             
             while(rs.next()){
                 e.setRua(rs.getString("rua"));
-                e.setCep(rs.getInt("cep"));
+                e.setCep(rs.getString("cep"));
                 Endereco.setIdEnderecoAtual(rs.getInt("idEndereco"));
             }
             
@@ -186,7 +186,7 @@ public class EnderecoDAO {
                 
                 endereco.setIdEndereco(rs.getInt("idEndereco"));
                 endereco.setRua(rs.getString("rua"));
-                endereco.setCep(rs.getInt("cep"));
+                endereco.setCep(rs.getString("cep"));
                 e.add(endereco);
                 
             }

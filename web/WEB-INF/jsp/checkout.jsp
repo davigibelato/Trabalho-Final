@@ -32,7 +32,7 @@
                 </div>
                 <div class="box-inputs">
                     <h3>Dados para Entrega</h3>
-                    <form onsubmit="return validarFormulario()" action="inserirEndereco" method="post">
+                    <form action="inserirEndereco" method="post" onsubmit="return validarFormulario()"> 
                         <div class="inputs-1">
                             <input type="hidden" name="idUsuario" id="idUsuario" value="${idUsuario}">
                             <input type="text" id="estado" name="estado" placeholder="Estado">

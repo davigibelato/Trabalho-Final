@@ -5,7 +5,7 @@ public class Endereco {
     private static int idEnderecoAtual;  // Corrigido para evitar caracteres especiais
     private String estado;
     private String cidade;
-    private int cep;
+    private String cep;
     private String rua;
     private int numeroCasa;
     private String complemento;
@@ -15,7 +15,7 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(int idEndereco, String estado, String cidade, int cep, String rua, int numeroCasa, String complemento, boolean enderecoAtual, int usuario) {
+    public Endereco(int idEndereco, String estado, String cidade, String cep, String rua, int numeroCasa, String complemento, boolean enderecoAtual, int usuario) {
         this.idEndereco = idEndereco;
         this.estado = estado;
         this.cidade = cidade;
@@ -25,18 +25,6 @@ public class Endereco {
         this.complemento = complemento;
         this.enderecoAtual = enderecoAtual;
         this.usuario = usuario;
-    }    
-
-    public Endereco(boolean enderecoAtual) {
-        this.enderecoAtual = enderecoAtual;
-    }
-
-    public boolean isEnderecoAtual() {
-        return enderecoAtual;
-    }
-
-    public void setEnderecoAtual(boolean enderecoAtual) {
-        this.enderecoAtual = enderecoAtual;
     }
 
     public int getIdEndereco() {
@@ -71,11 +59,11 @@ public class Endereco {
         this.cidade = cidade;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
@@ -103,6 +91,14 @@ public class Endereco {
         this.complemento = complemento;
     }
 
+    public boolean isEnderecoAtual() {
+        return enderecoAtual;
+    }
+
+    public void setEnderecoAtual(boolean enderecoAtual) {
+        this.enderecoAtual = enderecoAtual;
+    }
+
     public int getUsuario() {
         return usuario;
     }
@@ -110,4 +106,6 @@ public class Endereco {
     public void setUsuario(int usuario) {
         this.usuario = usuario;
     }
+
+    
 }
