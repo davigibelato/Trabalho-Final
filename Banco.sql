@@ -43,7 +43,7 @@ create table produto (
 	idProduto int primary key auto_increment,
     nome varchar(100) not null,
     valor float(10,2) not null,
-    descricao varchar(100) not null,
+    descricao text not null,
     categoria int not null,
     promocao int not null,
     subCategoria int not null,
