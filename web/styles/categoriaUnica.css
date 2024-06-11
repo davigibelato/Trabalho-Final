@@ -18,6 +18,17 @@ main{
     background-color: #5065b3;
 }
 
+main .title {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+main .title h1 {
+    color: #fff;
+}
+
+
 .box-products{
     display: flex;
     flex-direction: column;
@@ -27,6 +38,7 @@ main{
 }
 
 .cards{
+    gap: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
@@ -42,7 +54,7 @@ main{
     text-align: center;
     /* margin: 70px; */
     width: 300px;
-    height: 350px;
+    height: 320px;
 }
 
 .card img {

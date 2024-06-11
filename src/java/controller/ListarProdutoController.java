@@ -89,7 +89,7 @@ public class ListarProdutoController extends HttpServlet {
             request.setAttribute("produtos", produtos);
 
             // Redirecione de volta para a página principal
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/listarProdutosAdmin.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/produtosGerais.jsp");
             dispatcher.forward(request, response);
         } else {
             // Listar todos os produtos quando a URL não for "/buscar"

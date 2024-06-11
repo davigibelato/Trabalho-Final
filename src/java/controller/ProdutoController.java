@@ -95,11 +95,15 @@ public class ProdutoController extends HttpServlet {
             
             Carrinho c = new Carrinho();
             
-            int qtd = Integer.parseInt(request.getParameter("quantidade"));
             int id = Integer.parseInt(request.getParameter("idProduto"));
             
-            c.setQuantidade(qtd);
+            String testeQTD = request.getParameter("quantidade");
+            
+            int qtd = (testeQTD == null || testeQTD.isEmpty()) ? 1 : Integer.parseInt(testeQTD);                       
+                        
             c.setProduto(id);
+            c.setQuantidade(qtd);
+            
             
             System.out.println("Id: " + c.getProduto());
             System.out.println("QTD: "+ c.getQuantidade());

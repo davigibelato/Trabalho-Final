@@ -60,6 +60,10 @@
         <servlet-name>CategoriaUnicaController</servlet-name>
         <servlet-class>controller.CategoriaUnicaController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProdutosGeraisController</servlet-name>
+        <servlet-class>controller.ProdutosGeraisController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -152,7 +156,7 @@
         <servlet-name>FormaDePagamentoController</servlet-name>
         <url-pattern>/fazerPedido</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>FormaDePagamentoController</servlet-name>
         <url-pattern>/mudarEndereco</url-pattern>
     </servlet-mapping>
@@ -163,6 +167,10 @@
     <servlet-mapping>
         <servlet-name>CategoriaUnicaController</servlet-name>
         <url-pattern>/irParaCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProdutosGeraisController</servlet-name>
+        <url-pattern>/produtos-gerais</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -47,8 +47,8 @@ public class CategoriaDAO {
         return categorias;
     }
 
-    public Categoria readById(int id) {
-        Categoria c = new Categoria();
+    public String readById(int id) {
+        String c= "";
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
@@ -61,8 +61,8 @@ public class CategoriaDAO {
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                c.setIdCategoria(id);
-                c.setNome(rs.getString("nome"));
+              
+                c =rs.getString("nome");
             }
 
             rs.close();

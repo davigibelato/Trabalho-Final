@@ -74,7 +74,7 @@ public class ProdutoDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            String query = "SELECT * FROM produto ";
+            String query = "SELECT * FROM produto";
 
             stmt = conexao.prepareStatement(query);
             rs = stmt.executeQuery();

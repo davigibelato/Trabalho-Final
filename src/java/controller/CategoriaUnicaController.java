@@ -30,7 +30,10 @@ public class CategoriaUnicaController extends HttpServlet {
                 produto.get(i).setImagemBase64(imagemBase64);
             }
         }
-        request.setAttribute("produtos", produto);          
+        request.setAttribute("produtos", produto); 
+        
+        CategoriaDAO categoriaDao = new CategoriaDAO(); 
+        request.setAttribute("categoriaNome", categoriaDao.readById(Categoria.getIdStaticoCategoria()));
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
@@ -54,7 +57,8 @@ public class CategoriaUnicaController extends HttpServlet {
             
             Categoria c = new Categoria();
             Categoria.setIdStaticoCategoria(Integer.parseInt(request.getParameter("idCategoria")));
-            response.sendRedirect("./CategoriaUnica");
+             response.sendRedirect("./CategoriaUnica");
+          
             
             
         } else {

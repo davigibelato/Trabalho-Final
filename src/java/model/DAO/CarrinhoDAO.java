@@ -26,9 +26,15 @@ public class CarrinhoDAO {
         try {
 
             Connection conexao = Conexao.conectar();
+            
+            if(produtoJaAddCarrinho(c.getProduto(), Usuario.getIdUsuario())){
+                return false;
+            }
+            
             PreparedStatement stmt = conexao.prepareStatement("INSERT INTO carrinho (produto, quantidade, usuario) values (?,?,?)");
             //FAZENDO INSERT NO CARRINHO          
-
+            
+            
             stmt.setInt(1, c.getProduto());
             stmt.setInt(2, c.getQuantidade());
             stmt.setInt(3, Usuario.getIdUsuario());
@@ -160,6 +166,34 @@ public class CarrinhoDAO {
             e.printStackTrace();
         }
 
+    }
+    
+    private boolean produtoJaAddCarrinho(int idProduto, int idUsuario){
+        
+        boolean produtoAdd = false;
+        
+        try{
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("SELECT COUNT(*) FROM carrinho WHERE produto = ? AND usuario = ?");
+            
+            stmt.setInt(1, idProduto);
+            stmt.setInt(2, idUsuario);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next() && rs.getInt(1) > 0){
+                produtoAdd = true;
+            }
+            
+            rs.close();
+            stmt.close();
+            conexao.close();            
+            
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return produtoAdd;
     }
 
 }
