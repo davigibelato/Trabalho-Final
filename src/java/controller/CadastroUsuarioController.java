@@ -88,6 +88,32 @@ public class CadastroUsuarioController extends HttpServlet {
         String confirmarSenha = request.getParameter("confirmarSenha");
         String telefone = request.getParameter("telefone");
         String cpf = request.getParameter("cpf");
+        
+        if (nome == null || nome.trim().isEmpty()
+                || email == null || email.trim().isEmpty()
+                || senha == null || senha.trim().isEmpty()
+                || confirmarSenha == null || confirmarSenha.trim().isEmpty()
+                || telefone == null || telefone.trim().isEmpty()
+                || cpf == null || cpf.trim().isEmpty()) {
+            errorMessage = "Todos os campos são obrigatórios.";
+
+        } else {
+            if (senha.equals(confirmarSenha)) {
+                telefone = telefone.replaceAll("[^0-9]", "");
+                cpf = cpf.replaceAll("[^0-9]", "");
+
+                Usuario usuario = new Usuario();
+                usuario.setNome(nome);
+                usuario.setEmail(email);
+                usuario.setSenha(senha);
+                usuario.setTelefone(telefone);
+                usuario.setCpf(cpf);
+
+                dao.create(usuario);
+
+                nextPage = "/login";
+            }
+        }
 
         Usuario usuario = new Usuario();
         usuario.setNome(nome);

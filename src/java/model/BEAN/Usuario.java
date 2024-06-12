@@ -10,7 +10,7 @@ public class Usuario {
     private String cpf;
     private String telefone;
     private String status;
-    private Timestamp data_registro; // Adicionando campo data_registro
+    private Timestamp data_registro; // Adicionando campo data_registro 
 
     public Usuario() {
     }
