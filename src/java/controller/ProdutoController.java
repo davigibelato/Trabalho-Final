@@ -45,6 +45,7 @@ public class ProdutoController extends HttpServlet {
 
         Produto produto = dao.readById(id);
         request.setAttribute("produto", produto);
+        
 
         String imagemBase64 = null; // Defina como null por padrão
         if (produto.getImagemBytes() != null) {
@@ -55,6 +56,13 @@ public class ProdutoController extends HttpServlet {
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);
+        
+        CarrinhoDAO carrinho = new CarrinhoDAO();
+        if(carrinho.validaCarrinho(id)){
+            request.setAttribute("erroMsg", "Você já possui este produto em seu carrinho, por favor acesse a página!");
+        } else {
+            request.setAttribute("erroMsg", null);
+        }
 
         String url = "/WEB-INF/jsp/produtoUnico.jsp";
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);

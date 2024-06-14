@@ -16,12 +16,23 @@ public class Pedido {
     private int usuario;
     private int endereco_entrega;
     private String formaDePagamento;
+    private static String formaDePagamentoStatic;
     private String status_pedido;
     private Timestamp data_registro; // Adicionando campo data_registro
     private float valorTotal;
 
     public Pedido() {
     }
+
+    public static String getFormaDePagamentoStatic() {
+        return formaDePagamentoStatic;
+    }
+
+    public static void setFormaDePagamentoStatic(String formaDePagamentoStatic) {
+        Pedido.formaDePagamentoStatic = formaDePagamentoStatic;
+    }
+    
+    
 
     public Pedido(int idPedido, int usuario, int endereco_entrega, String formaDePagamento, String status_pedido) {
         this.idPedido = idPedido;

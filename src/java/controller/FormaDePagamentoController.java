@@ -18,11 +18,13 @@ import model.BEAN.Carrinho;
 import model.BEAN.Endereco;
 import model.BEAN.Pedido;
 import model.BEAN.Produto;
+import model.BEAN.ProdutoPedido;
 import model.BEAN.Usuario;
 import model.DAO.CarrinhoDAO;
 import model.DAO.EnderecoDAO;
 import model.DAO.PedidoDAO;
 import model.DAO.ProdutoDAO;
+import model.DAO.ProdutoPedidoDAO;
 import model.DAO.UsuarioDAO;
 
 /**
@@ -111,21 +113,42 @@ public class FormaDePagamentoController extends HttpServlet {
             
             p.setValorTotal(total);
             p.getData_registro();
+            p.setFormaDePagamento(Pedido.getFormaDePagamentoStatic());
+
             PedidoDAO pd = new PedidoDAO();
+            ProdutoPedidoDAO pdd = new ProdutoPedidoDAO();
             
-            pd.inserir(p);
+            int idProduto = pd.inserir(p);
+            pdd.inserirProduto(idProduto);
+        } else if(url.equals("/validarCartaoCredito")){
+            //Metodo escolhido cartao credito
+            
+ 
+            Pedido.setFormaDePagamentoStatic("Cartão de Crédito");
+            response.sendRedirect("./formaDePagamento");
+            
+            
+        }else if(url.equals("/validarCartaoDebito")){
+            //Metodo escolhido cartao Debito
+
+            Pedido.setFormaDePagamentoStatic("Cartão de Débito");
+            response.sendRedirect("./formaDePagamento");
+            
         }else if(url.equals("/mudarEndereco")){
             
             EnderecoDAO edao = new EnderecoDAO();
             
             Endereco.setIdEnderecoAtual(Integer.parseInt(request.getParameter("idEndereco")));
             edao.mudarEnderecoPadrao(Integer.parseInt(request.getParameter("idEndereco")));
+            
             System.out.println("O id do endereco é: "+Endereco.getIdEnderecoAtual());
             response.sendRedirect("./formaDePagamento");
             
         } else{
             processRequest(request, response);
-        }    
+        }            
+        
+        
     }
     
     
