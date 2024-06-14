@@ -161,6 +161,14 @@
         <url-pattern>/mudarEndereco</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>FormaDePagamentoController</servlet-name>
+        <url-pattern>/validarCartaoCredito</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FormaDePagamentoController</servlet-name>
+        <url-pattern>/validarCartaoDebito</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CategoriaUnicaController</servlet-name>
         <url-pattern>/CategoriaUnica</url-pattern>
     </servlet-mapping>

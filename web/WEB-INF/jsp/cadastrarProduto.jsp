@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
 
@@ -42,7 +43,7 @@
                                                 </div>
 
                                                 <div data-mdb-input-init class="form-outline mb-4">
-                                                    <input type="number" id="valor" name="valor"
+                                                    <input type="number" min="1" id="valor" name="valor"
                                                            class="form-control form-control-lg" />
                                                     <label class="form-label" for="form3Example3cg">Valor</label>
                                                 </div>

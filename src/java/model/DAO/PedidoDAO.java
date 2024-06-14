@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,24 +14,32 @@ import model.BEAN.Usuario;
 
 public class PedidoDAO {
 
-    public boolean inserir(Pedido pedido) {
-        String sql = "INSERT INTO pedido (usuario, endereco_entrega, valorTotal, data_pedido) VALUES (?, ?, ?, current_timestamp)";
-        try (Connection conn = Conexao.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+    public int inserir(Pedido pedido) {
+    String sql = "INSERT INTO pedido (usuario, endereco_entrega, valorTotal, data_pedido, formaDePagamento) VALUES (?, ?, ?, current_timestamp, ?)";
+    try (Connection conn = Conexao.conectar();
+         PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setInt(1, pedido.getUsuario());
-            stmt.setInt(2, pedido.getEndereco_entrega());
-            stmt.setFloat(3, pedido.getValorTotal());
-            
-            stmt.executeUpdate();
-            
-            return true;
+        stmt.setInt(1, pedido.getUsuario());
+        stmt.setInt(2, pedido.getEndereco_entrega());
+        stmt.setFloat(3, pedido.getValorTotal());
+        stmt.setString(4, pedido.getFormaDePagamento());
+        stmt.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+        // Obtém o último ID inserido
+        try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new SQLException("Falha ao inserir o pedido, nenhum ID obtido.");
+            }
         }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return -1;  // Retorna -1 em caso de erro
     }
+}
+
 
     public boolean atualizar(Pedido pedido) {
         String sql = "UPDATE pedido SET usuario = ?, endereco_entrega = ?, formaDePagamento = ?, status_pedido = ? WHERE idPedido = ?";
@@ -113,5 +122,5 @@ public class PedidoDAO {
             e.printStackTrace();
         }
         return pedidos;
-    }
+    }   
 }

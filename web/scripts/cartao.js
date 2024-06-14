@@ -2,7 +2,7 @@ window.onload = function() {
     var numeroCartaoInputs = document.querySelectorAll('.form-control.numero-cartao');
     var cvvInputs = document.querySelectorAll('.form-control.cvv');
     var dataValidadeInputs = document.querySelectorAll('.form-control.data-validade');
-    var nomeTitularInputs = document.querySelectorAll('.form-control.nome-titular');
+    var nomeTitularInput = document.querySelector('.input-group .form-control[aria-label="Sizing example input"]');
 
     // Função para limitar o número de caracteres
     function limitarCaracteres(input, maxLength) {
@@ -51,11 +51,9 @@ window.onload = function() {
             }
         });
 
-        nomeTitularInputs.forEach(function(input) {
-            if (!/^[a-zA-Z0-9\s]*$/.test(input.value.trim())) { // Verifica se há apenas letras, números e espaços
-                camposPreenchidos = false;
-            }
-        });
+        if (nomeTitularInput.value.trim() === '' || /[^a-zA-Z\s]/.test(nomeTitularInput.value.trim())) {
+            camposPreenchidos = false;
+        }
 
         return camposPreenchidos;
     }
@@ -79,6 +77,11 @@ window.onload = function() {
             limitarCaracteres(input, 5); // Limita a 5 caracteres (MM/AA)
             formatarDataValidade(input); // Formata a data de validade
         });
+    });
+
+    // Adiciona evento de entrada para validar o nome do titular
+    nomeTitularInput.addEventListener('input', function() {
+        validarNomeTitular(nomeTitularInput); // Remove caracteres inválidos
     });
 
     // Adiciona evento de envio do formulário

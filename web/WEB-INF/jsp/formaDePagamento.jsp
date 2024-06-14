@@ -92,14 +92,14 @@
                                             <p>Cartão de Crédito</p>
                                         </div>
                                     </button>
-                                    <form class="dropdown-menu p-4" onsubmit="return validarCartaoCredito()">
+                                    <form class="dropdown-menu p-4" method="post" action="validarCartaoCredito" onsubmit="return validarCartaoCredito()">
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Numero do Cartão</span>
                                             <input type="text" class="form-control numero-cartao" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Nome do Titular</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" onkeypress="validateInput(event)">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">CVV</span>
@@ -109,7 +109,7 @@
                                             <span class="input-group-text" id="inputGroup-sizing-default">Data de validade</span>
                                             <input type="text" class="form-control data-validade" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                                        <button type="submit" id="CartaoDeCredito" class="btn btn-primary">Confirmar</button>
                                     </form>
                                 </div>                                
 
@@ -122,14 +122,14 @@
                                             <p>Cartão de Débito</p>
                                         </div>
                                     </button>
-                                    <form class="dropdown-menu p-4" onsubmit="return validarCartaoDebito()">
+                                    <form class="dropdown-menu p-4" method="post" action="validarCartaoDebito" onsubmit="return validarCartaoDebito()">
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Numero do Cartão</span>
                                             <input type="text" class="form-control numero-cartao" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Nome do Titular</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" onkeypress="validateInput(event)">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">CVV</span>
@@ -142,7 +142,16 @@
                                         <button type="submit" class="btn btn-primary">Confirmar</button>
                                     </form>
                                 </div>
-                                 
+
+                                <script>
+                                    function validateInput(event) {
+                                        const char = String.fromCharCode(event.which);
+                                        if (!/[a-zA-Z]/.test(char)) {
+                                            event.preventDefault();
+                                        }
+                                    }
+                                </script>
+
                             </div>                                              
                         </div>                                          
                     </div>

@@ -195,5 +195,28 @@ public class CarrinhoDAO {
         
         return produtoAdd;
     }
+    
+    public boolean validaCarrinho(int idProduto) {
+        boolean retorno = false;
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM carrinho where usuario = ? and produto = ?");
+            stmt.setInt(1, Usuario.getIdUsuario());
+            stmt.setInt(2, idProduto);
+            ResultSet rs = stmt.executeQuery();
 
+            if (rs.next()) {
+                retorno = true;
+            }
+
+            rs.close();
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return retorno;
+    }
 }

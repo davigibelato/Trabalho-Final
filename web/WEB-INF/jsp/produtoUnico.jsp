@@ -43,11 +43,14 @@
                                 <table cellspacing="0" class="inputs">
                                     <tr>
                                         <td><b>Qtd</b></td>
-                                        <td align="right"><input type="number" id="quantidade" name="quantidade"></td>
+                                        <td align="right"><input type="number" min="1"  id="quantidade" name="quantidade"></td>
                                     </tr>
                                 </table>
                                 <input type="hidden" name="idProduto" id="idProduto" value="${produto.idProduto}">
                                 <br>
+                                <c:if test="${erroMsg != null}">
+                                    <p>${erroMsg}</p>
+                                </c:if>
                                 <button type="submit">Adicionar ao Carrinho</button>
                             </form>
                         </div>
