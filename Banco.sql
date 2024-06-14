@@ -1,4 +1,4 @@
-/*drop database eliteTech_ds;*/
+/*drop database eliteTech_ds;*/	
 create database eliteTech_ds;
 
 use eliteTech_ds;
@@ -72,7 +72,6 @@ create table pedido (
     foreign key (usuario) references usuario(idUsuario)
 );
 
-
 create table carrinho (
 	idCarrinho int primary key auto_increment,
     usuario int not null,
@@ -94,7 +93,7 @@ create table produto_pedido (
 insert into categoria (nome) values ('Periféricos');
 
 insert into usuario (nome, email, senha, cpf, telefone, status) 
-values ('admin', 'admin@gmail.com', 'admin', '11937613943', '4399402591', 'admin');
+values ('admin', 'admin@gmail.com', 'admin', '00000000000', '0000000000', 'admin');
 
 insert into subCategoria (nome,idCategoria) values ('Teclado', 1);
 
