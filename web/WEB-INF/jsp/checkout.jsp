@@ -24,10 +24,10 @@
                     </div>
                     <div class="text-entrega">
                         <p>Entrega feita por Jad Log</p> 
-                        <p>O produto será entregue entre 1 e 15 dias</p>
+                        <p>O produto serÃ¡ entregue entre 1 e 15 dias</p>
                     </div>
                     <div class="preco-entrega">
-                        <p>R$: Preço</p>
+                        <p>R$: 20</p>
                     </div> 
                 </div>
                 <div class="box-inputs">
@@ -47,7 +47,7 @@
                         <div class="button">
                             <button type="submit">Continuar Para Pagamento</button>
                         </div>
-                        <p id="texto-seila">Ja possui endereço? Se sim <a href="./formaDePagamento">Clique aqui</a></p>
+                        <p id="texto-seila">Ja possui endereÃ§o? Se sim <a href="./formaDePagamento">Clique aqui</a></p>
                     </form>
                 </div>
             </div>

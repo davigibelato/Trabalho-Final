@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.BEAN.Carrinho;
 import model.BEAN.Categoria;
+import model.BEAN.Pedido;
 import model.BEAN.Produto;
 import model.BEAN.Usuario;
 import model.DAO.CarrinhoDAO;
@@ -165,6 +166,13 @@ public class CarrinhoController extends HttpServlet {
 
             RequestDispatcher d = getServletContext().getRequestDispatcher(url);
             d.forward(request, response);
+            
+        }else if(url.equals("/calcularFrete")){
+            
+            
+            Pedido p = new Pedido();
+            p.getValorFrete();
+            
         }
     }
 

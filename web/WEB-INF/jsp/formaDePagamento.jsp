@@ -6,7 +6,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="styles/formaDePagamento.css" rel="stylesheet" type="text/css"/>
-
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <title>Forma de Pagamento</title>
     </head>
@@ -174,14 +173,25 @@
                         </div>
 
                         <div class="low-infos">
-                            <p>Frete: R$</p>
-                            <p class="laranja">Total: ${total}</p>
+                            <p>Frete: R$ 20</p>
+                            <p class="laranja">Total: ${total + 20}</p>
                         </div>
                         <form action="fazerPedido" method="post">
                             <div class="box-btn">
-                                <button type="submit">Fazer Pedido</button>
+                                <button type="submit" onclick="showAlert(event)">Fazer Pedido</button>
                             </div>
-                        </form>                                            
+                        </form>
+                        <script>
+                            function showAlert(event){
+                                event.preventDefault();
+                                Swal.fire('Pedido Feito com Sucesso','','success').then(() => {
+                                    event.target.closest('form').submit();
+                                });
+                            }
+                            function submitForm(form){
+                                form.submit();
+                            }
+                        </script>
                     </div>                      
                 </div>                
             </div>            

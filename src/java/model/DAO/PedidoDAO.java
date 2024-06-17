@@ -15,7 +15,7 @@ import model.BEAN.Usuario;
 public class PedidoDAO {
 
     public int inserir(Pedido pedido) {
-    String sql = "INSERT INTO pedido (usuario, endereco_entrega, valorTotal, data_pedido, formaDePagamento) VALUES (?, ?, ?, current_timestamp, ?)";
+    String sql = "INSERT INTO pedido (usuario, endereco_entrega, valorTotal, data_pedido, formaDePagamento,valorFrete) VALUES (?, ?, ?, current_timestamp, ?,?)";
     try (Connection conn = Conexao.conectar();
          PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -23,6 +23,7 @@ public class PedidoDAO {
         stmt.setInt(2, pedido.getEndereco_entrega());
         stmt.setFloat(3, pedido.getValorTotal());
         stmt.setString(4, pedido.getFormaDePagamento());
+        stmt.setInt(5,pedido.getValorFrete());
         stmt.executeUpdate();
 
         // Obtém o último ID inserido

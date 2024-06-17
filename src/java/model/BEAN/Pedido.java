@@ -20,7 +20,8 @@ public class Pedido {
     private String status_pedido;
     private Timestamp data_registro; // Adicionando campo data_registro
     private float valorTotal;
-
+    private int valorFrete;
+    
     public Pedido() {
     }
 
@@ -41,6 +42,14 @@ public class Pedido {
         this.formaDePagamento = formaDePagamento;
         this.status_pedido = status_pedido;
         
+    }
+
+    public int getValorFrete() {
+        return valorFrete;
+    }
+
+    public void setValorFrete(int valorFrete) {
+        this.valorFrete = valorFrete;
     }
 
     public Pedido(float valorTotal) {
