@@ -45,7 +45,28 @@ footer .cop p {
     justify-content: center;
 }
 
+
+
 main .detalhes-box {
     height: 75vh;
     padding-left: 50px;
+}
+
+@media screen and (max-width: 768px) and (min-width:320px){
+
+    footer{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .elements{
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+
+    .cop{
+        text-align: center;
+    }
 }

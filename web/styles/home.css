@@ -79,7 +79,6 @@ body{
 #b1, #b2{
     margin: 10px;
     width: 48%;
-    height: 300px;
     border-radius: 20px;
 }
 
@@ -100,3 +99,64 @@ body{
     padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
     color: var(--bs-card-color);
 }
+
+@media screen and (max-width: 1024px) and (min-width:320px) {
+
+    .orange-bar{
+        height: 80px;
+    }
+
+    #b1, #b2{
+        border-radius: 0px;
+        width: 100%;
+    }
+
+    #b2{
+        width: 90%;
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 1024px) and (min-width:1001px){
+    .cards{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 531px) {
+    
+    .cards{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 530px) and (min-width: 320px) {
+    .back-cards {
+        padding: 10px;
+    }
+
+    .cards {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+    }
+
+    .card {
+        margin: 20px;
+        width: 80%;
+        padding: 30px;
+    }
+
+    .bannersSecundario {
+        display: flex;
+        justify-content: center;
+        /* margin: 40px; */
+        margin: 0;
+        width: 100%;
+        padding: 10px;
+    }
+}
+
