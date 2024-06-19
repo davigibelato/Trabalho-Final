@@ -6,7 +6,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="styles/formaDePagamento.css" rel="stylesheet" type="text/css"/>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <script src="http://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
         <title>Forma de Pagamento</title>
     </head>
     <body>
@@ -91,22 +95,22 @@
                                             <p>Cartão de Crédito</p>
                                         </div>
                                     </button>
-                                    <form class="dropdown-menu p-4" method="post" action="validarCartaoCredito" onsubmit="return validarCartaoCredito()">
+                                    <form class="dropdown-menu p-4" method="post" action="validarCartaoCredito">
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Numero do Cartão</span>
-                                            <input type="text" class="form-control numero-cartao" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control numero-cartao" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="numeroCartaoCredito">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Nome do Titular</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" onkeypress="validateInput(event)">
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">CVV</span>
-                                            <input type="text" class="form-control cvv" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control cvv" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" max="3" min="3">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Data de validade</span>
-                                            <input type="text" class="form-control data-validade" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control data-validade" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="dataValidadeCredito" max="5">
                                         </div>
                                         <button type="submit" id="CartaoDeCredito" class="btn btn-primary">Confirmar</button>
                                     </form>
@@ -121,35 +125,26 @@
                                             <p>Cartão de Débito</p>
                                         </div>
                                     </button>
-                                    <form class="dropdown-menu p-4" method="post" action="validarCartaoDebito" onsubmit="return validarCartaoDebito()">
+                                    <form class="dropdown-menu p-4" method="post" action="validarCartaoDebito">
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Numero do Cartão</span>
-                                            <input type="text" class="form-control numero-cartao" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control numero-cartao" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="numeroCartaoDebito">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Nome do Titular</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" onkeypress="validateInput(event)">
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">CVV</span>
-                                            <input type="text" class="form-control cvv" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control cvv" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" max="3" min="3">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Data de validade</span>
-                                            <input type="text" class="form-control data-validade" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" class="form-control data-validade" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="dataValidadeDebito" max="5">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Confirmar</button>
                                     </form>
                                 </div>
-
-                                <script>
-                                    function validateInput(event) {
-                                        const char = String.fromCharCode(event.which);
-                                        if (!/[a-zA-Z]/.test(char)) {
-                                            event.preventDefault();
-                                        }
-                                    }
-                                </script>
 
                             </div>                                              
                         </div>                                          
@@ -181,17 +176,6 @@
                                 <button type="submit" onclick="showAlert(event)">Fazer Pedido</button>
                             </div>
                         </form>
-                        <script>
-                            function showAlert(event){
-                                event.preventDefault();
-                                Swal.fire('Pedido Feito com Sucesso','','success').then(() => {
-                                    event.target.closest('form').submit();
-                                });
-                            }
-                            function submitForm(form){
-                                form.submit();
-                            }
-                        </script>
                     </div>                      
                 </div>                
             </div>            
@@ -199,6 +183,7 @@
 
         <jsp:include page="footer.jsp"></jsp:include>
 
+        <script src="scripts/cartao.js" type="text/javascript"></script>
         <script src="https://kit.fontawesome.com/35f5de594d.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
