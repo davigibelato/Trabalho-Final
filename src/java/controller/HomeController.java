@@ -33,7 +33,7 @@ public class HomeController extends HttpServlet {
 
         ProdutoDAO dao = new ProdutoDAO();
 
-        List<Produto> produto = dao.listarSemPromo();
+        List<Produto> produto = dao.listarSemPromo8();
         for (int i = 0; i < produto.size(); i++) {
             if (produto.get(i).getImagemBytes() != null) {
                 String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagemBytes());
@@ -43,7 +43,7 @@ public class HomeController extends HttpServlet {
         }
         request.setAttribute("produtos", produto);
 
-        List<Produto> produtoPromo = dao.listarPromo();
+        List<Produto> produtoPromo = dao.listarPromo8();
         for (int i = 0; i < produtoPromo.size(); i++) {
             if (produtoPromo.get(i).getImagemBytes() != null) {
                 String imagemBase64 = Base64.getEncoder().encodeToString(produtoPromo.get(i).getImagemBytes());

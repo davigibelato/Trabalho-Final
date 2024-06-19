@@ -17,27 +17,7 @@ import model.BEAN.Usuario;
  * @author Senai
  */
 public class ProdutoPedidoDAO {
-    
-
-    public boolean inserir(ProdutoPedido produtoPedido) {
-        String sql = "INSERT INTO produto_pedido (pedido,produto,quantidade) VALUES (?, ?, ?)";
-        try (Connection conn = Conexao.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, produtoPedido.getPedido());
-            stmt.setInt(2, produtoPedido.getProduto());
-            stmt.setInt(3, produtoPedido.getQuantidade());
-            
-            stmt.executeUpdate();
-            
-            return true;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-    
+        
    public boolean inserirProduto(int idPedido) {
     String insertSql = "INSERT INTO produto_pedido (pedido, produto, quantidade) " +
                        "SELECT ?, produto, quantidade " +

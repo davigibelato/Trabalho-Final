@@ -6,10 +6,10 @@ use eliteTech_ds;
 create table usuario (
     idUsuario int primary key auto_increment,
     nome varchar(100) not null,
-    email varchar(100) not null,
-    senha varchar(100) not null,
-    cpf char(11) not null,
-    telefone varchar(13),
+    email varchar(100) not null unique,
+    senha varchar(100) not null unique,
+    cpf varchar(14) not null unique,
+    telefone varchar(14) unique,
     status varchar(50) default 'cliente',
     data_registro timestamp default current_timestamp
 );
@@ -50,14 +50,6 @@ create table produto (
     imagem longblob,
     foreign key (categoria) references categoria(idCategoria),
     foreign key (subCategoria) references subCategoria(idSubCategoria)
-);
-
-create table estoque (
-	idEstoque int primary key auto_increment,
-    produto int not null,
-    quantidade int not null,
-    custo float(10,2) not null,
-    foreign key (produto) references produto(idProduto)
 );
 
 create table pedido (
