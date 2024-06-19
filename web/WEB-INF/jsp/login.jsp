@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +8,7 @@
 
         <!-- Font Awesome -->    
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"rel="stylesheet"/>
-            
+
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"rel="stylesheet"/>
 
@@ -19,58 +21,64 @@
         <!-- Cadastrar Css -->
         <link href="styles/cadastrar.css" rel="stylesheet" type="text/css"/>     
 
-        <!-- Sweet Alert -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        
+
         <title>Elite Tech</title>
     </head>
     <body>
         <jsp:include page="header.jsp"></jsp:include>
 
-            <section class="vh-100 bg-image">
+            <section class="vh-100 bg-image">               
                 <div class="mask d-flex align-items-center h-100 gradient-custom-3">
                     <div class="container h-100">
                         <div class="row d-flex justify-content-center align-items-center h-100">
                             <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                                 <div class="card" style="border-radius: 15px;">
+                                    
                                     <div class="card-body p-5">
                                         <h2 class="text-uppercase text-center mb-5">Fazer Login</h2>
-                                        <form id="loginForm" action="logar" method="post" onsubmit="return verificarCampos()">
-                                            <div data-mdb-input-init class="form-outline mb-4">
-                                                <input type="text" id="email" name="email" class="form-control form-control-lg"/>
-                                                <label class="form-label" for="form3Example1cg">Email</label>
-                                            </div>
-                                            <div data-mdb-input-init class="form-outline mb-4">
-                                                <input type="password" id="senha" name="senha" class="form-control form-control-lg"/>
-                                                <label class="form-label" for="form3Example4cg">Senha</label>
-                                            </div>
-                                            <div class="form-check d-flex justify-content-center mb-5">
-                                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg"/>
-                                                <label class="form-check-label" for="form2Example3g">
-                                                    Eu aceito os <a href="#!" class="text-body"><u>Termos de serviço</u></a>
-                                                </label>
-                                            </div>
-                                            <div class="d-flex justify-content-center">
-                                                <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">login</button>
-                                            </div>
-                                            <p class="text-center text-muted mt-5 mb-0">Não possui uma conta? <a href="./cadastrar"
-                                                                                                                 class="fw-bold text-body"><u>Cadastrar </u></a></p>
-                                        </form>
-                                    </div>
+
+                                    <%-- Mostrar mensagem de erro --%>
+                                    <c:if test="${not empty errorMessage}">
+                                        <div class="alert alert-danger" role="alert">
+                                            ${errorMessage}
+                                        </div>
+                                    </c:if>
+
+
+                                    <form id="loginForm" action="logar" method="post">
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="text" id="email" name="email" class="form-control form-control-lg"/>
+                                            <label class="form-label" for="form3Example1cg">Email</label>
+                                        </div>
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="password" id="senha" name="senha" class="form-control form-control-lg"/>
+                                            <label class="form-label" for="form3Example4cg">Senha</label>
+                                        </div>
+                                        <div class="form-check d-flex justify-content-center mb-5">
+                                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg"/>
+                                            <label class="form-check-label" for="form2Example3g">
+                                                Eu aceito os <a href="#!" class="text-body"><u>Termos de serviço</u></a>
+                                            </label>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">login</button>
+                                        </div>
+                                        <p class="text-center text-muted mt-5 mb-0">Não possui uma conta? <a href="./cadastrar"
+                                                                                                             class="fw-bold text-body"><u>Cadastrar </u></a></p>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+                                        
         <jsp:include page="footer.jsp"></jsp:include>
+        
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-        <!-- Sweet Alert -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        
-        <!-- Funções JS -->
-        <script src="scripts/login.js" type="text/javascript"></script>
+
     </body>
 </html>

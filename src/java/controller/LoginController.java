@@ -39,6 +39,8 @@ public class LoginController extends HttpServlet {
 
         String url = "/WEB-INF/jsp/login.jsp";
         System.out.println("Id Usuario: " + Usuario.getIdUsuario());
+
+        //serve para pegar as categorias no dropbutton do header
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);
@@ -77,54 +79,59 @@ public class LoginController extends HttpServlet {
 
         String url = request.getServletPath();
 
-        if (url.equals("/logar")) {
-            String nextPage = "/WEB-INF/jsp/login.jsp";
+        if ("/logar".equals(url)) {
 
             String email = request.getParameter("email");
             String password = request.getParameter("senha");
-            // Pega os parametros email e senha
+            String errorMessage = "";
 
-            // Verifica se os campos estão vazios
-            if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
-                nextPage = "/WEB-INF/jsp/login.jsp";
-                System.out.println("NULL");
-                request.setAttribute("errorMessage", "Por favor, preencha todos os campos.");
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-                dispatcher.forward(request, response);
+            if (isEmpty(email) || isEmpty(password)) {
+                
+                errorMessage = "Por favor, preencha todos os campos.";
+                
+            } else if ("admin@gmail.com".equals(email) && "admin".equals(password)) {
+                
+                response.sendRedirect("./CadastrarProduto");                
                 return;
-            }
-
-            // Se o usuário e a senha forem "admin", redireciona para outra página
-            if (email.equals("admin@gmail.com") && password.equals("admin")) {
-                response.sendRedirect("./CadastrarProduto"); // Substitua "outraPagina" pelo URL da página desejada
-                return;
-            }
-
-            Usuario user = new Usuario();
-            UsuarioDAO valida = new UsuarioDAO();
-
-            user.setEmail(email);
-            user.setSenha(password);
-            //DEFINE EMAIL E SENHA COM AS STRING DE CIMA
-
-            Usuario userAutenticado = valida.login(user);
-            
-            //SE AS INFOMAÇÕES ESTIVEREM CERTAS, REDIRECIONA PARA A PAGINA PRINCIPAL
-            if (userAutenticado != null && !userAutenticado.getEmail().isEmpty()) {
-                response.sendRedirect("./home");
-                System.out.println("Home");
+                
             } else {
-                //SE ESTIVER ERRADO FICA NA MESMA PAGINA
-                nextPage = "/WEB-INF/jsp/login.jsp";
-                System.out.println("Login");
-                request.setAttribute("errorMessage", "Email ou senha inválidos");
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-                dispatcher.forward(request, response);
+                
+                Usuario user = new Usuario();
+                user.setEmail(email);
+                user.setSenha(password);
+
+                UsuarioDAO usuarioDAO = new UsuarioDAO();
+                Usuario userAutenticado = usuarioDAO.login(user);
+
+                if (userAutenticado != null && !isEmpty(userAutenticado.getEmail())) {
+                    
+                    response.sendRedirect("./home");                    
+                    return;
+                    
+                } else {
+                    errorMessage = "Email ou senha inválidos";
+                }
             }
+
+            if (errorMessage != null) {
+                request.setAttribute("errorMessage", errorMessage);
+            }
+
+            forwardToPage(request, response, "/WEB-INF/jsp/login.jsp");
 
         } else {
             processRequest(request, response);
         }
+    }
+
+    private void forwardToPage(HttpServletRequest request, HttpServletResponse response, String page)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+        dispatcher.forward(request, response);
+    }
+
+    private boolean isEmpty(String value) {
+        return value == null || value.trim().isEmpty();
     }
 
     /**

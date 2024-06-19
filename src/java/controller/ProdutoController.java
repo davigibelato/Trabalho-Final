@@ -53,10 +53,11 @@ public class ProdutoController extends HttpServlet {
         }
         produto.setImagemBase64(imagemBase64);
         
+        //serve para pegar as categorias no dropbutton do header
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);
-        
+
         CarrinhoDAO carrinho = new CarrinhoDAO();
         if(carrinho.validaCarrinho(id)){
             request.setAttribute("erroMsg", "Você já possui este produto em seu carrinho, por favor acesse a página!");

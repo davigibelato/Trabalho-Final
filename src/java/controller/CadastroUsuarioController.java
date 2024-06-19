@@ -39,6 +39,7 @@ public class CadastroUsuarioController extends HttpServlet {
 
         String url = "/WEB-INF/jsp/cadastrarUsuario.jsp";
 
+        //serve para pegar as categorias no dropbutton do header
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);
@@ -80,7 +81,6 @@ public class CadastroUsuarioController extends HttpServlet {
         UsuarioDAO dao = new UsuarioDAO();
 
         String errorMessage = "";
-        System.out.println("Enrae");
 
         String nome = request.getParameter("nome");
         String email = request.getParameter("email");
@@ -88,7 +88,8 @@ public class CadastroUsuarioController extends HttpServlet {
         String confirmarSenha = request.getParameter("confirmarSenha");
         String telefone = request.getParameter("telefone");
         String cpf = request.getParameter("cpf");
-        
+
+
         if (nome == null || nome.trim().isEmpty()
                 || email == null || email.trim().isEmpty()
                 || senha == null || senha.trim().isEmpty()
@@ -97,36 +98,33 @@ public class CadastroUsuarioController extends HttpServlet {
                 || cpf == null || cpf.trim().isEmpty()) {
             errorMessage = "Todos os campos são obrigatórios.";
 
+        } else if (!senha.equals(confirmarSenha)) {
+            errorMessage = "As senhas devem ser iguais";
+
+        } else if (cpf.length() != 14) {
+            errorMessage = "Digite o CPF corretamente";
+
+        } else if (telefone.length() != 14) {
+            errorMessage = "Digite o telefone corretamente";
+
         } else {
-            if (senha.equals(confirmarSenha)) {
-                telefone = telefone.replaceAll("[^0-9]", "");
-                cpf = cpf.replaceAll("[^0-9]", "");
 
-                Usuario usuario = new Usuario();
-                usuario.setNome(nome);
-                usuario.setEmail(email);
-                usuario.setSenha(senha);
-                usuario.setTelefone(telefone);
-                usuario.setCpf(cpf);
+            Usuario usuario = new Usuario();
+            usuario.setNome(nome);
+            usuario.setEmail(email);
+            usuario.setSenha(senha);
+            usuario.setTelefone(telefone);
+            usuario.setCpf(cpf); 
+            
+            dao.create(usuario);
 
-                dao.create(usuario);
-
-                nextPage = "/login";
-            }
+            nextPage = "/login";
+            request.setAttribute("successMessage", "Cadastro realizado com sucesso!");
         }
 
-        Usuario usuario = new Usuario();
-        usuario.setNome(nome);
-        usuario.setEmail(email);
-        usuario.setSenha(senha);
-        usuario.setTelefone(telefone);
-        usuario.setCpf(cpf);
-
-        dao.create(usuario);
-
-        nextPage = "/login";
-
-        request.setAttribute("successMessage", "Cadastro realizado com sucesso!");
+        if (!errorMessage.isEmpty()) {
+            request.setAttribute("errorMessage", errorMessage);
+        }
 
         RequestDispatcher d = getServletContext().getRequestDispatcher(nextPage);
         d.forward(request, response);

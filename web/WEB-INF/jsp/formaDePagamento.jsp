@@ -203,5 +203,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 
-    <script src="scripts/cartao.js" type="text/javascript"></script>
+    <!-- Inclusão do jQuery-->
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<!-- Inclusão do Plugin jQuery Validation-->
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
 </html>

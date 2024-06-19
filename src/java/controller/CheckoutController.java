@@ -7,13 +7,16 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.BEAN.Categoria;
 import model.BEAN.Endereco;
 import model.BEAN.Usuario;
+import model.DAO.CategoriaDAO;
 import model.DAO.EnderecoDAO;
 
 /**
@@ -29,6 +32,12 @@ public class CheckoutController extends HttpServlet {
         String url = "/WEB-INF/jsp/checkout.jsp";
         System.out.println("Id Usuario Chekc: " + Usuario.getIdUsuario());
         request.setAttribute("idUsuario", Usuario.getIdUsuario());
+        
+        //serve para pegar as categorias no dropbutton do header
+        CategoriaDAO cat = new CategoriaDAO();
+        List<Categoria> categoria = cat.listarTodos();
+        request.setAttribute("categorias", categoria);
+
         
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);

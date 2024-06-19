@@ -9,7 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.BEAN.Categoria;
 import model.BEAN.Produto;
+import model.DAO.CategoriaDAO;
 import model.DAO.ProdutoDAO;
 
 
@@ -21,6 +23,12 @@ public class ProdutosGeraisController extends HttpServlet {
         String url = "/WEB-INF/jsp/produtosGerais.jsp";
         
         ProdutoDAO dao = new ProdutoDAO();
+        
+        //serve para pegar as categorias no dropbutton do header
+        CategoriaDAO cat = new CategoriaDAO();
+        List<Categoria> categoria = cat.listarTodos();
+        request.setAttribute("categorias", categoria);
+
 
         List<Produto> produto = dao.listarTodos();
         for (int i = 0; i < produto.size(); i++) {

@@ -22,6 +22,12 @@ public class CategoriaUnicaController extends HttpServlet {
         
         String url = "/WEB-INF/jsp/categoriaUnica.jsp";
         
+        //serve para pegar as categorias no dropbutton do header
+        CategoriaDAO cat = new CategoriaDAO();
+        List<Categoria> categoria = cat.listarTodos();
+        request.setAttribute("categorias", categoria);
+
+        
         ProdutoDAO pd = new ProdutoDAO();
         List<Produto> produto = pd.listarTodos();
         for (int i = 0; i < produto.size(); i++) {

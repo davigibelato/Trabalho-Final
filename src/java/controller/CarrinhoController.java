@@ -43,9 +43,11 @@ public class CarrinhoController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        //serve para pegar as categorias no dropbutton do header
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);
+
 
         String url = "/WEB-INF/jsp/carrinho.jsp";
 

@@ -15,12 +15,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.BEAN.Carrinho;
+import model.BEAN.Categoria;
 import model.BEAN.Endereco;
 import model.BEAN.Pedido;
 import model.BEAN.Produto;
 import model.BEAN.ProdutoPedido;
 import model.BEAN.Usuario;
 import model.DAO.CarrinhoDAO;
+import model.DAO.CategoriaDAO;
 import model.DAO.EnderecoDAO;
 import model.DAO.PedidoDAO;
 import model.DAO.ProdutoDAO;
@@ -44,6 +46,12 @@ public class FormaDePagamentoController extends HttpServlet {
 
         CarrinhoDAO cd = new CarrinhoDAO();
         List<Carrinho> carrinho = cd.visualizarCarrinho();
+        
+        //serve para pegar as categorias no dropbutton do header
+        CategoriaDAO cat = new CategoriaDAO();
+        List<Categoria> categoria = cat.listarTodos();
+        request.setAttribute("categorias", categoria);
+
 
         for (int i = 0; i < carrinho.size(); i++) {
             if (carrinho.get(i).getImagemBytes() != null) {
