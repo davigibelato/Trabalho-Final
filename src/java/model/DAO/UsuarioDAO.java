@@ -66,6 +66,74 @@ public class UsuarioDAO {
         }
     }
     
+    
+    public boolean verificaCPF(String cpf) {
+        boolean r = false;
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+
+            stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE cpf = ?");
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+               r = true;
+            }
+            rs.close();
+            stmt.close();
+            conexao.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return r;
+    }
+    
+    public boolean verificaEmail(String email) {
+        boolean r = false;
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+
+            stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE email = ?");
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+               r = true;
+            }
+            rs.close();
+            stmt.close();
+            conexao.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return r;
+    }
+    
+     public boolean verificaTelefone(String telefone) {
+        boolean r = false;
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+
+            stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE telefone = ?");
+            stmt.setString(1, telefone);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+               r = true;
+            }
+            rs.close();
+            stmt.close();
+            conexao.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return r;
+    }
+    
+    
     public void update(Usuario u) {
         try {
             Connection conexao = Conexao.conectar();

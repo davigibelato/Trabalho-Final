@@ -118,45 +118,30 @@ body{
 
 }
 
-@media screen and (max-width: 1024px) and (min-width:1001px){
+@media screen and (min-width:1801px){
     .cards{
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
 
-@media screen and (max-width: 1000px) and (min-width: 531px) {
-    
+@media screen and (max-width:1850px) and (min-width:1400px){
     .cards{
-        display: flex;
-        flex-direction: column;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
-@media screen and (max-width: 530px) and (min-width: 320px) {
-    .back-cards {
-        padding: 10px;
-    }
-
-    .cards {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        margin: 0;
-    }
-
-    .card {
-        margin: 20px;
-        width: 80%;
-        padding: 30px;
-    }
-
-    .bannersSecundario {
-        display: flex;
-        justify-content: center;
-        /* margin: 40px; */
-        margin: 0;
-        width: 100%;
-        padding: 10px;
+@media screen and (max-width:1499px) and (min-width:1000px){
+    .cards{
+        grid-template-columns: 1fr 1fr;
     }
 }
 
+    @media screen and (max-width: 1000px) and (min-width: 531px) {
+        
+        .cards{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+ 

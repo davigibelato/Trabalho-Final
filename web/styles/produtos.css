@@ -24,10 +24,12 @@ main{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    /* margin: 40px 0; */
+    margin: 20px;
     /* margin-top: 30%; */
     margin-bottom: 10%; 
     grid-template-columns: 1fr 1fr 1fr 1fr;
+	min-height: 600px;
+	max-height: auto;
 }
 
 .container .card {

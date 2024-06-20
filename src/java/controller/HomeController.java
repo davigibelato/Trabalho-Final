@@ -14,6 +14,7 @@ import model.BEAN.Produto;
 import model.BEAN.Usuario;
 import model.DAO.CategoriaDAO;
 import model.DAO.ProdutoDAO;
+import model.DAO.UsuarioDAO;
 
 public class HomeController extends HttpServlet {
 
@@ -24,6 +25,12 @@ public class HomeController extends HttpServlet {
 
         String url = "/WEB-INF/jsp/index.jsp";
         System.out.println("Id Usuario: " + Usuario.getIdUsuario());
+        
+        if(Usuario.getIdUsuario() != 0){
+            UsuarioDAO dao = new UsuarioDAO();
+            List<Usuario> users = dao.getUsuarioById(Usuario.getIdUsuario());
+            request.setAttribute("usuario", users);
+        }
         
         
         //serve para pegar as categorias no dropbutton do header

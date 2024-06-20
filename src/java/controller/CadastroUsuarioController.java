@@ -38,6 +38,13 @@ public class CadastroUsuarioController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String url = "/WEB-INF/jsp/cadastrarUsuario.jsp";
+        
+        
+        if(Usuario.getIdUsuario() != 0){
+            UsuarioDAO dao = new UsuarioDAO();
+            List<Usuario> users = dao.getUsuarioById(Usuario.getIdUsuario());
+            request.setAttribute("usuario", users);
+        }
 
         //serve para pegar as categorias no dropbutton do header
         CategoriaDAO cat = new CategoriaDAO();
@@ -107,7 +114,17 @@ public class CadastroUsuarioController extends HttpServlet {
         } else if (telefone.length() != 14) {
             errorMessage = "Digite o telefone corretamente";
 
-        } else {
+        } else if(dao.verificaCPF(cpf)){
+            errorMessage = "Ja existe um usuario com esse CPF!";    
+            
+        }else if(dao.verificaEmail(email)){
+            errorMessage = "Ja existe um usuario com esse Email!"; 
+            
+        }else if(dao.verificaTelefone(telefone)){
+            errorMessage = "Ja existe um usuario com esse Telefone!";        
+        }
+        
+            else {
 
             Usuario usuario = new Usuario();
             usuario.setNome(nome);
