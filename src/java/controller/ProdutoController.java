@@ -17,9 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import model.BEAN.Carrinho;
 import model.BEAN.Categoria;
 import model.BEAN.Produto;
+import model.BEAN.Usuario;
 import model.DAO.CarrinhoDAO;
 import model.DAO.CategoriaDAO;
 import model.DAO.ProdutoDAO;
+import model.DAO.UsuarioDAO;
 
 /**
  *
@@ -42,6 +44,12 @@ public class ProdutoController extends HttpServlet {
 
         ProdutoDAO dao = new ProdutoDAO();
         int id = Integer.parseInt(request.getParameter("id"));
+        
+        if(Usuario.getIdUsuario() != 0){
+            UsuarioDAO dao1 = new UsuarioDAO();
+            List<Usuario> users = dao1.getUsuarioById(Usuario.getIdUsuario());
+            request.setAttribute("usuario", users);
+        }
 
         Produto produto = dao.readById(id);
         request.setAttribute("produto", produto);

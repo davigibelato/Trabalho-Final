@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.BEAN.Categoria;
 import model.BEAN.Produto;
+import model.BEAN.Usuario;
 import model.DAO.CategoriaDAO;
 import model.DAO.ProdutoDAO;
+import model.DAO.UsuarioDAO;
 
 
 public class ProdutosGeraisController extends HttpServlet {
@@ -28,6 +30,12 @@ public class ProdutosGeraisController extends HttpServlet {
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);
+        
+        if(Usuario.getIdUsuario() != 0){
+            UsuarioDAO dao1 = new UsuarioDAO();
+            List<Usuario> users = dao1.getUsuarioById(Usuario.getIdUsuario());
+            request.setAttribute("usuario", users);
+        }
 
 
         List<Produto> produto = dao.listarTodos();

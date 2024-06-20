@@ -41,6 +41,7 @@ public class ProdutoDAO {
                 p.setIdProduto(rs.getInt("idProduto"));
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
+                p.setQuantidade(rs.getInt("quantidade"));
                 p.setDescricao(rs.getString("descricao"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));
@@ -86,6 +87,7 @@ public class ProdutoDAO {
                 p.setIdProduto(rs.getInt("idProduto"));
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
+                p.setQuantidade(rs.getInt("quantidade"));
                 p.setDescricao(rs.getString("descricao"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));
@@ -132,6 +134,7 @@ public class ProdutoDAO {
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
                 p.setPromocao(rs.getFloat("promocao"));
+                p.setQuantidade(rs.getInt("quantidade"));
                 p.setDescricao(rs.getString("descricao"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));
@@ -179,6 +182,7 @@ public class ProdutoDAO {
                 p.setValor(rs.getFloat("valor"));
                 p.setPromocao(rs.getFloat("promocao"));
                 p.setDescricao(rs.getString("descricao"));
+                p.setQuantidade(rs.getInt("quantidade"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));
                 Blob imagemBlob = rs.getBlob("imagem");
@@ -224,6 +228,7 @@ public class ProdutoDAO {
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
                 p.setPromocao(rs.getFloat("promocao"));
+                p.setQuantidade(rs.getInt("quantidade"));
                 p.setDescricao(rs.getString("descricao"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));
@@ -271,6 +276,7 @@ public class ProdutoDAO {
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
                 p.setPromocao(rs.getFloat("promocao"));
+                p.setQuantidade(rs.getInt("quantidade"));
                 p.setDescricao(rs.getString("descricao"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));
@@ -314,6 +320,7 @@ public class ProdutoDAO {
             p.setIdProduto(rs.getInt("idProduto"));
             p.setNome(rs.getString("nome"));
             p.setValor(rs.getFloat("valor"));
+            p.setQuantidade(rs.getInt("quantidade"));
             p.setDescricao(rs.getString("descricao"));
             p.setCategoria(rs.getInt("categoria"));
             p.setSubCategoria(rs.getInt("subCategoria"));
@@ -358,6 +365,7 @@ public class ProdutoDAO {
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
                 p.setDescricao(rs.getString("descricao"));
+                p.setQuantidade(rs.getInt("quantidade"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));
                 
@@ -400,7 +408,7 @@ public class ProdutoDAO {
     public boolean inserirProduto(Produto produto) {
         
         try (Connection conexao = Conexao.conectar();
-                PreparedStatement ps = conexao.prepareStatement("INSERT INTO produto (nome, valor, descricao, categoria, subCategoria, imagem,promocao) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+                PreparedStatement ps = conexao.prepareStatement("INSERT INTO produto (nome, valor, descricao, categoria, subCategoria, imagem,promocao, quantidade) VALUES (?, ?, ?, ?, ?, ?, ?,?)")) {
 
             ps.setString(1, produto.getNome());
             ps.setFloat(2, produto.getValor());
@@ -409,6 +417,7 @@ public class ProdutoDAO {
             ps.setInt(5, produto.getSubCategoria());
             ps.setBytes(6, produto.getImagemBytes()); 
             ps.setFloat(7, produto.getPromocao()); 
+            ps.setInt(8, produto.getQuantidade());
 
             int linhasAfetadas = ps.executeUpdate();
             
@@ -433,6 +442,7 @@ public class ProdutoDAO {
                 p.setIdProduto(rs.getInt("idProduto"));
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
+                p.setQuantidade(rs.getInt("quantidade"));
                 p.setPromocao(rs.getFloat("promocao")); // Adicionar esta linha para pegar o valor da promoção
                 p.setDescricao(rs.getString("descricao"));
                 p.setCategoria(rs.getInt("categoria"));
@@ -478,6 +488,7 @@ public class ProdutoDAO {
                 p.setIdProduto(rs.getInt("idProduto"));
                 p.setNome(rs.getString("nome"));
                 p.setValor(rs.getFloat("valor"));
+                p.setQuantidade(rs.getInt("quantidade"));
                 p.setDescricao(rs.getString("descricao"));
                 p.setCategoria(rs.getInt("categoria"));
                 p.setSubCategoria(rs.getInt("subCategoria"));

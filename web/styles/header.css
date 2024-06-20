@@ -75,6 +75,7 @@
     width: 100%;
 }
 
-.dropdown-menu a{
+.nav-item .dropdown-menu a{
     color: #000000;
+    font-size: 16px;
 }

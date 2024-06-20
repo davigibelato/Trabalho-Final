@@ -18,6 +18,7 @@ import model.BEAN.Endereco;
 import model.BEAN.Usuario;
 import model.DAO.CategoriaDAO;
 import model.DAO.EnderecoDAO;
+import model.DAO.UsuarioDAO;
 
 /**
  *
@@ -37,6 +38,12 @@ public class CheckoutController extends HttpServlet {
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);
+        
+        if(Usuario.getIdUsuario() != 0){
+            UsuarioDAO dao = new UsuarioDAO();
+            List<Usuario> users = dao.getUsuarioById(Usuario.getIdUsuario());
+            request.setAttribute("usuario", users);
+        }
 
         
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);

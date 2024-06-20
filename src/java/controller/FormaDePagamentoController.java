@@ -47,6 +47,12 @@ public class FormaDePagamentoController extends HttpServlet {
         CarrinhoDAO cd = new CarrinhoDAO();
         List<Carrinho> carrinho = cd.visualizarCarrinho();
         
+        if(Usuario.getIdUsuario() != 0){
+            UsuarioDAO dao = new UsuarioDAO();
+            List<Usuario> users = dao.getUsuarioById(Usuario.getIdUsuario());
+            request.setAttribute("usuario", users);
+        }
+        
         //serve para pegar as categorias no dropbutton do header
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();

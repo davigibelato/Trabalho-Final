@@ -49,6 +49,12 @@
                                                 </div>
 
                                                 <div data-mdb-input-init class="form-outline mb-4">
+                                                    <input type="number" min="1" id="quantidade" name="quantidade"
+                                                           class="form-control form-control-lg" />
+                                                    <label class="form-label" for="form3Example3cg">Quantidade de Produtos</label>
+                                                </div>
+
+                                                <div data-mdb-input-init class="form-outline mb-4">
                                                     <input type="number" id="promocao" name="promocao"
                                                            class="form-control form-control-lg" />
                                                     <label class="form-label" for="form3Example3cg">Promocao</label>

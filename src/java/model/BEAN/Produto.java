@@ -15,6 +15,7 @@ public class Produto {
     private float valor;
     private String descricao;
     private int categoria;
+    private int quantidade;
     private int subCategoria;
     private byte[] imagemBytes;
     private String imagemBase64;
@@ -32,6 +33,19 @@ public class Produto {
         this.imagemBytes = imagemBytes;
         this.imagemBase64 = imagemBase64;
         this.promocao = promocao;
+        
+    }
+
+    public Produto(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
     public int getIdProduto() {

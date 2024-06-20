@@ -59,6 +59,12 @@ public class CarrinhoController extends HttpServlet {
                 carrinho.get(i).setImagemBase64(imagemBase64);
             }
         }
+        
+        if(Usuario.getIdUsuario() != 0){
+            UsuarioDAO dao = new UsuarioDAO();
+            List<Usuario> users = dao.getUsuarioById(Usuario.getIdUsuario());
+            request.setAttribute("usuario", users);
+        }
 
         request.setAttribute("carrinhos", carrinho);
 
