@@ -17,10 +17,12 @@
             <jsp:include page="header.jsp" />
             <main>
                 <div class="container-produto">
-
-                    <div class="image-box">
-                        <img class="img-produto" src="data:image/jpeg;base64,${produto.imagemBase64}"
-                            alt="${produto.nome}">
+                    
+                    <div class="coberta-img">
+                        <div class="image-box">
+                            <img class="img-produto" src="data:image/jpeg;base64,${produto.imagemBase64}"
+                                alt="${produto.nome}">
+                        </div>
                     </div>
 
                     <div class="detalhes-box">
@@ -39,11 +41,12 @@
                                     <h2>R$ ${produto.valor}</h2>
                                 </c:otherwise>
                             </c:choose>
-                            <form action="inserir" method="post">
-                                <table cellspacing="0" class="inputs">
+                            <form class="add-produto-carrinho" action="inserir" method="post">
+                                <table cellspacing="0" class="inputs-produto-unico">
                                     <tr>
                                         <td><b>Qtd</b></td>
-                                        <td align="right"><input type="number" min="1"  id="quantidade" name="quantidade"></td>
+                                        <td align="right"><input type="number" min="1" id="quantidade"
+                                                name="quantidade"></td>
                                     </tr>
                                 </table>
                                 <input type="hidden" name="idProduto" id="idProduto" value="${produto.idProduto}">

@@ -21,13 +21,13 @@
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="images/banner_img.png" class="d-block w-100" alt="...">
+                            <img src="images/banner1.png" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
                             <img src="images/banner_img2.png" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/banner_img3.png" class="d-block w-100" alt="...">
+                            <img src="images/banner3.png" class="d-block w-100" alt="...">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -65,7 +65,7 @@
 
             <div class="bannersSecundario">
                 <img id="b1" src="images/teste.png" alt=""/>
-                <img id="b2" src="images/1813.png" alt=""/>
+                <img id="b2" src="images/bannerSec.jpg" alt=""/>
             </div>
 
             <h1 class="title-h1">Outros Produtos</h1>
