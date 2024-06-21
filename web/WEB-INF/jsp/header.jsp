@@ -58,7 +58,7 @@
                                                         <li><button class="btn-dd-cat" type="submit">${categoria.nome}</button></li>
                                                         </c:forEach>
                                                 </form>
-    
+
                                             </ul>
                                         </li>                                                                              
                                     </ul>
@@ -104,15 +104,17 @@
                                                         <li><button class="btn-dd-cat" type="submit">${categoria.nome}</button></li>
                                                         </c:forEach>
                                                 </form>
-    
+
                                             </ul>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="./carrinho">Carrinho</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="./login?t=i">Sair</a>
-                                        </li>                                                                              
+                                        <form method="post" action="sair">
+                                            <li class="nav-item">
+                                                <button class="nav-link" type="submit">Sair</button>
+                                            </li>                                                                              
+                                        </form>
                                     </ul>
                                     <form class="d-flex" role="search" action="buscar" method="get">
                                         <input class="form-control me-2" id="searcInput" name="termo" type="search" placeholder="Search" aria-label="Search">

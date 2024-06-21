@@ -39,7 +39,9 @@ public class LoginController extends HttpServlet {
 
         String url = "/WEB-INF/jsp/login.jsp";
         System.out.println("Id Usuario: " + Usuario.getIdUsuario());
+        
 
+        
         //serve para pegar as categorias no dropbutton do header
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
@@ -118,8 +120,14 @@ public class LoginController extends HttpServlet {
             }
 
             forwardToPage(request, response, "/WEB-INF/jsp/login.jsp");
-
-        } else {
+            
+            
+        }else if(url.equals("/sair")){
+            Usuario.setIdUsuario(0);
+            response.sendRedirect(request.getContextPath() + "/login");
+        }
+        else {
+            
             processRequest(request, response);
         }
     }

@@ -23,7 +23,6 @@
                         </form>
                     </div>
                     <p>Vendido e entregue por <b>Elite Tech</b></p>
-                    <!-- Chos -->
                     <c:choose>
                         <c:when test="${empty usuarios}">
                             <p>O Usuario não está logado</p>
@@ -83,37 +82,40 @@
                         </c:otherwise>
                     </c:choose>
                 </div>
-                <div class="container-2">
-                    <h3><i class="fa-solid fa-clipboard-check"></i>Resumo</h3>
-                    <p>Total: ${total}</p>
-                    <div class="entrega">
-                        <p><i class="fa-solid fa-truck"></i>Entrega</p>
-                        <input type="text" placeholder="CEP" id="cepInput">
-                        <button class="btns2" id="okButton" onclick="showAlert(event)">OK</button>
-                    </div>
-                    <form action="continuarCompra" method="post">
-                        <button class="btns2" type ="submit">Continuar Compra</button>
-                    </form>
-                    <button class="btn-blue"><a href="./home">Continuar Comprando</a></button>
+                <c:if test="${not empty usuarios}">
+                    <div class="container-2">
+                        <h3><i class="fa-solid fa-clipboard-check"></i>Resumo</h3>
+                        <p>Total: ${total}</p>
+                        
+                        <div class="entrega">
+                            <p><i class="fa-solid fa-truck"></i>Entrega</p>
+                            <input type="text" placeholder="CEP" id="cepInput">
+                            <button class="btns2" id="okButton" onclick="showAlert(event)">OK</button>
+                        </div>
+                            <form action="continuarCompra" method="post">
+                                <button class="btns2" type ="submit">Continuar Compra</button>
+                            </form>
+                            <button class="btn-blue"><a href="./home">Continuar Comprando</a></button>
+
+                        </div>
+                    </c:if>        
+
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                    <script>
+                                function showAlert(event) {
+                                    event.preventDefault();
+                                    Swal.fire('O valor do seu frete é de 20 reais', '', 'success').then(() => {
+                                        event.target.closest('form').submit();
+                                    });
+                                }
+                                function submitForm(form) {
+                                    form.submit();
+                                }
+                    </script>
                 </div>
-
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-                <script>
-                            function showAlert(event) {
-                                event.preventDefault();
-                                Swal.fire('O valor do seu frete é de 20 reais', '', 'success').then(() => {
-                                    event.target.closest('form').submit();
-                                });
-                            }
-                            function submitForm(form) {
-                                form.submit();
-                            }
-                </script>
-            </div>
-        </main>
-        <jsp:include page="footer.jsp"></jsp:include>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/35f5de594d.js" crossorigin="anonymous"></script>
-    </body>
-</html>
+            </main>
+            <jsp:include page="footer.jsp"></jsp:include>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            <script src="https://kit.fontawesome.com/35f5de594d.js" crossorigin="anonymous"></script>
+        </body>
+    </html>
