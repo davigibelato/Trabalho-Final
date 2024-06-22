@@ -22,7 +22,7 @@
                             </div>
                         </form>
                     </div>
-                    <p>Vendido e entregue por <b>Elite Tech</b></p>
+                    <p class="elite">Vendido e entregue por <b>Elite Tech</b></p>
                     <c:choose>
                         <c:when test="${empty usuarios}">
                             <p>O Usuario não está logado</p>
