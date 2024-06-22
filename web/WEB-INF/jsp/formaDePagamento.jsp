@@ -21,17 +21,23 @@
                     <div class="box-global">                        
                         <div class="box-left">
                             <div class="teste">
-                                <div class="itens">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-envelope"></i>
-                                    </div>                        
-                                    <p>Email: <span>${usuario.email}</span></p>
+                            <%-- Mostrar mensagem de erro --%>
+                            <c:if test="${not empty errorMessage}">
+                                <div class="alert alert-danger" role="alert">
+                                    ${errorMessage}
+                                </div>
+                            </c:if>
+                            <div class="itens">
+                                <div class="icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>                        
+                                <p>Email: <span>${usuarios.email}</span></p>
                             </div>
                             <div class="itens">
                                 <div class="icon">
                                     <i class="fa-solid fa-user"></i>
                                 </div>                        
-                                <p>Nome: <span>${usuario.nome}</span></p>
+                                <p>Nome: <span>${usuarios.nome}</span></p>
                             </div>
                             <div class="itens">                        
                                 <div class="icon">
@@ -49,7 +55,7 @@
                                 <div class="icon">
                                     <i class="fa-solid fa-phone"></i>
                                 </div>                        
-                                <p>Telefone: <span>${usuario.telefone}</span></p>
+                                <p>Telefone: <span>${usuarios.telefone}</span></p>
                             </div>
                             <div class="itens">
                                 <div class="icon">
@@ -142,6 +148,9 @@
                             </div>                                              
                         </div>                                          
                     </div>
+
+
+
                     <div class="box-right">                                            
                         <div class="infos-container">
                             <div class="infos">
@@ -182,7 +191,7 @@
     </body>
 
     <!-- Inclusão do jQuery-->
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<!-- Inclusão do Plugin jQuery Validation-->
-<script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <!-- Inclusão do Plugin jQuery Validation-->
+    <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
 </html>

@@ -59,34 +59,31 @@ public class CarrinhoController extends HttpServlet {
                 carrinho.get(i).setImagemBase64(imagemBase64);
             }
         }
+        request.setAttribute("carrinhos", carrinho);
+        
         
         if(Usuario.getIdUsuario() != 0){
             UsuarioDAO dao = new UsuarioDAO();
             List<Usuario> users = dao.getUsuarioById(Usuario.getIdUsuario());
             request.setAttribute("usuario", users);
         }
-
-        request.setAttribute("carrinhos", carrinho);
-
+        
         float total = 0;
-
         for (Carrinho c : carrinho) {
             total += c.getSubProduto();
         }
-
         request.setAttribute("total", total);
-
-        System.out.println(total);
-
-        request.setAttribute("idUsuario", Usuario.getIdUsuario());
         
+               
         if(Usuario.getIdUsuario() != 0) {
             UsuarioDAO u = new UsuarioDAO();
-            List<Usuario> usuarios = u.getUsuarioById(2);
+            List<Usuario> usuarios = u.getUsuarioById(Usuario.getIdUsuario());
             request.setAttribute("usuarios", usuarios);
             System.out.println("Usuario Lista:"+usuarios);
         }
-
+        
+        request.setAttribute("idUsuario", Usuario.getIdUsuario());
+        
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
 
@@ -168,12 +165,9 @@ public class CarrinhoController extends HttpServlet {
             }
 
         } else if (url.equals("/continuarCompra")) {
-
-            url = "/WEB-INF/jsp/checkout.jsp";
             
-
-            RequestDispatcher d = getServletContext().getRequestDispatcher(url);
-            d.forward(request, response);
+            
+            response.sendRedirect("./checkout");
             
         }else if(url.equals("/calcularFrete")){
             

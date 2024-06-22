@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
@@ -25,14 +20,9 @@ import model.DAO.CarrinhoDAO;
 import model.DAO.CategoriaDAO;
 import model.DAO.EnderecoDAO;
 import model.DAO.PedidoDAO;
-import model.DAO.ProdutoDAO;
 import model.DAO.ProdutoPedidoDAO;
 import model.DAO.UsuarioDAO;
 
-/**
- *
- * @author Senai
- */
 public class FormaDePagamentoController extends HttpServlet {
 
     float total = 0;
@@ -46,18 +36,11 @@ public class FormaDePagamentoController extends HttpServlet {
 
         CarrinhoDAO cd = new CarrinhoDAO();
         List<Carrinho> carrinho = cd.visualizarCarrinho();
-        
-        if(Usuario.getIdUsuario() != 0){
-            UsuarioDAO dao = new UsuarioDAO();
-            List<Usuario> users = dao.getUsuarioById(Usuario.getIdUsuario());
-            request.setAttribute("usuario", users);
-        }
-        
+
         //serve para pegar as categorias no dropbutton do header
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
         request.setAttribute("categorias", categoria);
-
 
         for (int i = 0; i < carrinho.size(); i++) {
             if (carrinho.get(i).getImagemBytes() != null) {
@@ -68,9 +51,15 @@ public class FormaDePagamentoController extends HttpServlet {
 
         request.setAttribute("carrinhos", carrinho);
 
+        if (Usuario.getIdUsuario() != 0) {
+            UsuarioDAO dao = new UsuarioDAO();
+            List<Usuario> users = dao.getUsuarioById(Usuario.getIdUsuario());
+            request.setAttribute("usuario", users);
+        }
+
         UsuarioDAO ud = new UsuarioDAO();
         Usuario u = ud.pushCheckout();
-        request.setAttribute("usuario", u);
+        request.setAttribute("usuarios", u);
 
         EnderecoDAO ed = new EnderecoDAO();
         Endereco e = ed.mostrarCheckout();
@@ -86,6 +75,10 @@ public class FormaDePagamentoController extends HttpServlet {
         List<Endereco> end = ed.visualizarEnderecos();
         request.setAttribute("enderecos", end);
 
+        if (end.isEmpty()) {
+            request.setAttribute("errorMessage", "Você precisa adicionar um endereço antes de fazer um pedido.");
+        }
+
         RequestDispatcher d = getServletContext().getRequestDispatcher(url);
         d.forward(request, response);
     }
@@ -96,78 +89,79 @@ public class FormaDePagamentoController extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String url = request.getServletPath();
+        String errorMessage = "";
 
         if (url.equals("/fazerPedido")) {
-
             Pedido p = new Pedido();
 
             int idUsuario = Usuario.getIdUsuario();
-            System.out.println("O id do usuario é: " + idUsuario);
             p.setUsuario(Usuario.getIdUsuario());
 
-            System.out.println("o id do endereço é: " + Endereco.getIdEnderecoAtual());
-            p.setEndereco_entrega(Endereco.getIdEnderecoAtual());
+            if (Endereco.getIdEnderecoAtual() == 0) {
+                errorMessage = "Você precisa adicionar um endereço antes de fazer um pedido.";
+            } else {
+                p.setEndereco_entrega(Endereco.getIdEnderecoAtual());
 
-            p.setValorTotal(total);
-            p.getData_registro();
-            p.setFormaDePagamento(Pedido.getFormaDePagamentoStatic());
-            int valorFrete = p.getValorFrete();
-            valorFrete = 20;
-            p.setValorFrete(valorFrete);
-            p.setValorTotal(total + valorFrete);
-            PedidoDAO pd = new PedidoDAO();
-            ProdutoPedidoDAO pdd = new ProdutoPedidoDAO();
+                int valorFrete = p.getValorFrete();
 
-            int idProduto = pd.inserir(p);
-            pdd.inserirProduto(idProduto);
+                p.setValorTotal(total);
+                p.getData_registro();
+                p.setFormaDePagamento(Pedido.getFormaDePagamentoStatic());
 
-            request.setAttribute("valorFrete", valorFrete);
+                valorFrete = 20;
+                p.setValorFrete(valorFrete);
+                p.setValorTotal(total + valorFrete);
 
-            response.sendRedirect("./home");
+                PedidoDAO pd = new PedidoDAO();
+                ProdutoPedidoDAO pdd = new ProdutoPedidoDAO();
+
+                int idProduto = pd.inserir(p);
+                pdd.inserirProduto(idProduto);
+
+                request.setAttribute("valorFrete", valorFrete);
+
+                response.sendRedirect("./home");
+                return;
+            }           
         } else if (url.equals("/validarCartaoCredito")) {
-            //Metodo escolhido cartao credito
-
+            
             Pedido.setFormaDePagamentoStatic("Cartão de Crédito");
             response.sendRedirect("./formaDePagamento");
-
-        } else if (url.equals("/validarCartaoDebito")) {
-            //Metodo escolhido cartao Debito
-
+            
+            return;
+            
+        } else if (url.equals("/validarCartaoDebito")) {        
+            
             Pedido.setFormaDePagamentoStatic("Cartão de Débito");
             response.sendRedirect("./formaDePagamento");
-
+            
+            return;
+            
         } else if (url.equals("/mudarEndereco")) {
-
+            
             EnderecoDAO edao = new EnderecoDAO();
-
+            
             Endereco.setIdEnderecoAtual(Integer.parseInt(request.getParameter("idEndereco")));
             edao.mudarEnderecoPadrao(Integer.parseInt(request.getParameter("idEndereco")));
-
-            System.out.println("O id do endereco é: " + Endereco.getIdEnderecoAtual());
+            
             response.sendRedirect("./formaDePagamento");
-
-        } else {
-            processRequest(request, response);
+            return;
         }
 
+        if (!errorMessage.isEmpty()) {
+            request.setAttribute("errorMessage", errorMessage);
+            RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/jsp/formaDePagamento.jsp");
+            d.forward(request, response);
+        }
     }
 
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }
