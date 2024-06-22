@@ -92,3 +92,31 @@ main .title h1 {
 .card p{
     color: #ff3c0075;
 }
+
+@media screen and (min-width:1801px){
+    .cards{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width:1802px) and (min-width:1400px){
+    .cards{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width:1499px) and (min-width:1000px){
+    .cards {
+        grid-template-columns: 1fr 1fr;
+        width: 90%;
+    }
+
+}
+
+@media screen and (max-width: 1000px) and (min-width: 531px) {
+        
+    .cards{
+        display: flex;
+        flex-direction: column;
+    }
+}
