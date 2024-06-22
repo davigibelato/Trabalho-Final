@@ -22,7 +22,7 @@
             <div class="box-products">             
                     <div class="cards">
                         <c:forEach items="${produtos}" var="produto">
-                        <div class="card" style="width: 18rem;">
+                        <div class="card">
                             <img src="data:image/jpeg;base64,${produto.imagemBase64}" class="card-img-top" alt="${produto.nome}">
                             <div class="card-body">
                               <h5 class="card-title">${produto.nome}</h5>

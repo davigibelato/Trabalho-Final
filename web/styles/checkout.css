@@ -115,3 +115,59 @@ body{
     text-align: center;
     margin-top: 15px;
 }
+
+@media screen and (max-width: 730px) and (min-width:620px){
+    .container-left{
+        width: 80%;
+    }
+
+    .entrega{
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 620px) and (min-width:320px){
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container-global{
+        width: 70%;
+    }
+
+    .container-left{
+        width: 100%;
+    }
+
+    .entrega {
+        display: flex;
+        margin-top: 5%;
+        border: 1px solid black;
+        border-radius: 5px;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .preco-entrega {
+        margin-left: 0px;
+        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container-check{
+        width: auto;
+    }
+
+    .box-inputs h3{
+        text-align: center;
+    }
+
+    .inputs-2{
+        display: flex;
+        flex-direction: column;
+    }
+}

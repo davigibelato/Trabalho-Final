@@ -205,3 +205,57 @@ body{
     background-color: #dadada;
     border-color: #dadada;
 }
+
+@media screen and (max-width: 1800px) and (min-width:910px){
+
+    .cartao{
+        text-align: center;
+    }
+
+    .infos-cartao {
+        display: flex;
+        flex-direction: column;     
+        width: 80%;
+        margin: 0;
+    }
+
+    .dropdown button{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 910px) and (min-width:320px){
+
+    .cartao{
+        text-align: center;
+    }
+
+    .infos-cartao {
+        display: flex;
+        flex-direction: column;     
+        width: 80%;
+        margin: 0;
+    }
+
+    .dropdown button{
+        width: 90%;
+    }
+
+    .box-global {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 14px;
+        justify-items: center;
+        justify-content: center;
+    }
+
+    .box-left{
+        margin: 0;
+        width: 95%;
+    }
+
+    .box-right{
+        margin-top: 10%;
+    }
+
+}

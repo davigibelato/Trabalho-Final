@@ -46,7 +46,7 @@
                         </div>
                         <div class="inputs-2">
                             <input type="number" id="numeroCasa" name="numeroCasa" placeholder="Numero">
-                            <input type="text" id="complemento" name="complemento" placeholder="Complemento (Opcional)">
+                            <input type="text" id="complemento" name="complemento" placeholder="Complemento">
                         </div>
                         <div class="button">
                             <button type="submit">Continuar Para Pagamento</button>

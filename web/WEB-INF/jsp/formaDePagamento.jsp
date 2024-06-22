@@ -79,13 +79,6 @@
                         <div class="cartao">
                             <h3>Formas de Pagamento</h3>
                             <div class="infos-cartao">
-
-                                <!-- <div class="box-credit">
-                                    <div class="icon">
-                                        <i class="fa-solid fa-credit-card"></i>
-                                    </div>                            
-                                    <p>Cartão de Crédito</p>
-                                </div> -->
                                 <div class="dropdown">
                                     <button type="button" class="btn btn-primary dropdown-toggle btn-add-payment" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                                         <div class="box-credit">

@@ -215,7 +215,7 @@ img{
     background: transparent;
 }
 
-@media screen and (max-width: 1100px) and (min-width:909px){
+@media screen and (max-width: 1100px) and (min-width:970px){
     .global{
         display: grid;
         margin: 0;
@@ -233,7 +233,7 @@ img{
     }
 }
 
-@media screen and (max-width: 908px) and (min-width:320px){
+@media screen and (max-width: 969px) and (min-width:320px){
 
     main{
         height: 100%;
