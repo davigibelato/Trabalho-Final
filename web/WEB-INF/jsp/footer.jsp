@@ -28,7 +28,7 @@
                     <p class="title">Social</p>
                     <div class="icons">
                         <i class="fa-brands fa-instagram"></i>
-                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-square-twitter"></i>
                         <i class="fa-brands fa-whatsapp"></i>
                     </div> 
                 </div>

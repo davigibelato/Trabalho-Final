@@ -45,6 +45,7 @@ create table produto (
     valor float(10,2) not null,
     descricao text not null,
     categoria int not null,
+    quantidade int not null,
     promocao int not null,
     subCategoria int not null,
     imagem longblob,

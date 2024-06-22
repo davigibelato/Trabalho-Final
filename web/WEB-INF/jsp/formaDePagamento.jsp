@@ -173,7 +173,7 @@
                         </div>
                         <form action="fazerPedido" method="post">
                             <div class="box-btn">
-                                <button type="submit" onclick="showAlert(event)">Fazer Pedido</button>
+                                <button type="submit" onclick="showAlert(event)">Finalizar Compra</button>
                             </div>
                         </form>
                     </div>                      

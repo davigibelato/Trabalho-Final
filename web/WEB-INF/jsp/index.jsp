@@ -65,7 +65,7 @@
 
             <div class="bannersSecundario">
                 <img id="b1" src="images/teste.png" alt=""/>
-                <img id="b2" src="images/bannerSec.jpg" alt=""/>
+                
             </div>
 
             <h1 class="title-h1">Outros Produtos</h1>
