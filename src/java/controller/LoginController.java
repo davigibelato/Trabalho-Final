@@ -39,9 +39,7 @@ public class LoginController extends HttpServlet {
 
         String url = "/WEB-INF/jsp/login.jsp";
         System.out.println("Id Usuario: " + Usuario.getIdUsuario());
-        
 
-        
         //serve para pegar as categorias no dropbutton do header
         CategoriaDAO cat = new CategoriaDAO();
         List<Categoria> categoria = cat.listarTodos();
@@ -82,22 +80,16 @@ public class LoginController extends HttpServlet {
         String url = request.getServletPath();
 
         if ("/logar".equals(url)) {
-
             String email = request.getParameter("email");
             String password = request.getParameter("senha");
             String errorMessage = "";
 
             if (isEmpty(email) || isEmpty(password)) {
-                
                 errorMessage = "Por favor, preencha todos os campos.";
-                
             } else if ("admin@gmail.com".equals(email) && "admin".equals(password)) {
-                
-                response.sendRedirect("./CadastrarProduto");                
+                response.sendRedirect("./CadastrarProduto");
                 return;
-                
             } else {
-                
                 Usuario user = new Usuario();
                 user.setEmail(email);
                 user.setSenha(password);
@@ -106,10 +98,9 @@ public class LoginController extends HttpServlet {
                 Usuario userAutenticado = usuarioDAO.login(user);
 
                 if (userAutenticado != null && !isEmpty(userAutenticado.getEmail())) {
-                    
-                    response.sendRedirect("./home");                    
+                    request.setAttribute("successMessage", "Login realizado com sucesso!");
+                    response.sendRedirect("./home");
                     return;
-                    
                 } else {
                     errorMessage = "Email ou senha inválidos";
                 }
@@ -120,14 +111,11 @@ public class LoginController extends HttpServlet {
             }
 
             forwardToPage(request, response, "/WEB-INF/jsp/login.jsp");
-            
-            
-        }else if(url.equals("/sair")){
+
+        } else if ("/sair".equals(url)) {
             Usuario.setIdUsuario(0);
             response.sendRedirect(request.getContextPath() + "/login");
-        }
-        else {
-            
+        } else {
             processRequest(request, response);
         }
     }

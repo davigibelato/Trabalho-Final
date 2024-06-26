@@ -24,14 +24,14 @@
     <body>
         <jsp:include page="header.jsp"></jsp:include>   
 
-        <section class="vh-100 bg-image">
-            <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-                <div class="container h-100">
-                    <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-                            <div class="card" style="border-radius: 15px;">
-                                <div class="card-body p-5">
-                                    <h2 class="text-uppercase text-center mb-5">Cadastrar Usuario</h2>
+            <section class="vh-100 bg-image">
+                <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+                    <div class="container h-100">
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                                <div class="card" style="border-radius: 15px;">
+                                    <div class="card-body p-5">
+                                        <h2 class="text-uppercase text-center mb-5">Cadastrar Usuario</h2>
 
                                     <%-- Mostrar mensagem de erro --%>
                                     <c:if test="${not empty errorMessage}">
@@ -39,6 +39,13 @@
                                             ${errorMessage}
                                         </div>
                                     </c:if>
+
+                                    <c:if test="${not empty successMessage}">
+                                        <div class="alert alert-success" role="alert">
+                                            ${successMessage}
+                                        </div>
+                                    </c:if>
+
 
                                     <form action="cadastrar" method="post" id="formValidation">
                                         <div data-mdb-input-init class="form-outline mb-4">
@@ -92,8 +99,8 @@
                 </div>
             </div>
         </section>
-                                    
-                                    
+
+
 
         <jsp:include page="footer.jsp"></jsp:include>   
 

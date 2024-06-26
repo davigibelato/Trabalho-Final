@@ -38,9 +38,8 @@ public class CadastroUsuarioController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String url = "/WEB-INF/jsp/cadastrarUsuario.jsp";
-        
-        
-        if(Usuario.getIdUsuario() != 0){
+
+        if (Usuario.getIdUsuario() != 0) {
             UsuarioDAO dao = new UsuarioDAO();
             List<Usuario> users = dao.getUsuarioById(Usuario.getIdUsuario());
             request.setAttribute("usuario", users);
@@ -96,7 +95,6 @@ public class CadastroUsuarioController extends HttpServlet {
         String telefone = request.getParameter("telefone");
         String cpf = request.getParameter("cpf");
 
-
         if (nome == null || nome.trim().isEmpty()
                 || email == null || email.trim().isEmpty()
                 || senha == null || senha.trim().isEmpty()
@@ -114,29 +112,27 @@ public class CadastroUsuarioController extends HttpServlet {
         } else if (telefone.length() != 14) {
             errorMessage = "Digite o telefone corretamente";
 
-        } else if(dao.verificaCPF(cpf)){
-            errorMessage = "Ja existe um usuario com esse CPF!";    
-            
-        }else if(dao.verificaEmail(email)){
-            errorMessage = "Ja existe um usuario com esse Email!"; 
-            
-        }else if(dao.verificaTelefone(telefone)){
-            errorMessage = "Ja existe um usuario com esse Telefone!";        
-        }
-        
-            else {
+        } else if (dao.verificaCPF(cpf)) {
+            errorMessage = "Já existe um usuário com esse CPF!";
 
+        } else if (dao.verificaEmail(email)) {
+            errorMessage = "Já existe um usuário com esse Email!";
+
+        } else if (dao.verificaTelefone(telefone)) {
+            errorMessage = "Já existe um usuário com esse Telefone!";
+
+        } else {
             Usuario usuario = new Usuario();
             usuario.setNome(nome);
             usuario.setEmail(email);
             usuario.setSenha(senha);
             usuario.setTelefone(telefone);
-            usuario.setCpf(cpf); 
-            
+            usuario.setCpf(cpf);
+
             dao.create(usuario);
 
-            nextPage = "/login";
             request.setAttribute("successMessage", "Cadastro realizado com sucesso!");
+            // Remove the nextPage assignment to stay on the same page
         }
 
         if (!errorMessage.isEmpty()) {

@@ -104,7 +104,7 @@
                                             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">CVV</span>
+                                            <span class="input-group-text" id="inputGroup-sizing-default">CVC</span>
                                             <input type="text" class="form-control cvv" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" max="3" min="3">
                                         </div>
                                         <div class="input-group mb-3">
@@ -134,7 +134,7 @@
                                             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">CVV</span>
+                                            <span class="input-group-text" id="inputGroup-sizing-default">CVC</span>
                                             <input type="text" class="form-control cvv" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" max="3" min="3">
                                         </div>
                                         <div class="input-group mb-3">
